@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beginner Course</title>
+	<style>
+		{
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: 'Arial', sans-serif;
+			background-color: #f3f6f9;
+			color: #333;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+		}
+
+		.container {
+			max-width: 1200px;
+			width: 100%;
+			background-color: #ffffff;
+			border-radius: 12px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+			padding: 40px;
+			margin-top: 20px;
+		}
+
+		h1 {
+			color: #2d3748;
+			font-size: 36px;
+			text-align: center;
+			margin-bottom: 40px;
+			text-transform: uppercase;
+		}
+
+		#codeEditor {
+			width: 100%;
+			height: 250px;
+			font-family: 'Courier New', monospace;
+			border: 2px solid #6c757d;
+			border-radius: 10px;
+			padding: 15px;
+			margin-bottom: 20px;
+			background-color: #fdfdfd;
+			outline: none;
+			resize: vertical;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+		}
+
+		#runBtn {
+			display: inline-block;
+			padding: 14px 30px;
+			font-size: 18px;
+			color: #fff;
+			background-color: #007bff;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		#runBtn:hover {
+			background-color: #0056b3;
+			transform: translateY(-2px);
+		}
+
+		#output, #timer {
+			width: 100%;
+			padding: 20px;
+			background-color: #f1f3f5;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			margin-top: 20px;
+			font-size: 16px;
+			line-height: 1.5;
+			word-wrap: break-word;
+			overflow-y: auto;
+		}
+
+		#timer {
+			text-align: center;
+			background-color: #ffe8a1;
+			color: #856404;
+			font-weight: bold;
+		}
+
+		#output {
+			background-color: #e2f7e9;
+			color: #155724;
+		}
+
+		#lessonContent {
+			margin-top: 40px;
+		}
+
+		.lesson-section {
+			margin-bottom: 25px;
+			padding: 20px;
+			background-color: #f8f9fa;
+			border-radius: 8px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		}
+
+		.lesson-section h2 {
+			color: #343a40;
+			margin-bottom: 12px;
+			font-size: 24px;
+			border-bottom: 2px solid #dee2e6;
+			padding-bottom: 8px;
+		}
+
+		.lesson-section p {
+			color: #495057;
+			font-size: 16px;
+			line-height: 1.6;
+		}
+
+		a {
+			color: #007bff;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		li {
+			margin-bottom: 10px;
+		}
+
+		@media (max-width: 768px) {
+			h1 {
+				font-size: 28px;
+			}
+
+			#runBtn {
+				width: 100%;
+			}
+
+			#codeEditor {
+				height: 200px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			h1 {
+				font-size: 24px;
+			}
+
+			.container {
+				padding: 20px;
+			}
+
+			.lesson-section h2 {
+				font-size: 20px;
+			}
+
+			.lesson-section p {
+				font-size: 14px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+		<img src="../assets/images/banner-for-beginner-course.jpg" alt="Banner Image"
+			style="width: 100%; height: 100%; object-fit: cover; object-position: center bottom;">
+	</header>
+
+	<div class="container">
+		<h1>Lesson 2: Variables and Data Types</h1>
+
+		<div id="lessonContent">
+			<div class="lesson-section" id="LessonVariables">
+				<h2>Introduction</h2>
+				<p>Variables are used to store data that your program can manipulate. Understanding variables and data types is crucial for any programming language. In this lesson, you will learn how to declare variables, understand different data types, and use them effectively in C++.</p>
+			</div>
+
+			<div class="lesson-section" id="ConceptCovered">
+				<h2>Core Content</h2>
+				<p>1) What Are Variables?</p>
+				<ul>
+					<li>Variables are containers for storing data values. They are used to label data with a descriptive name, making it easier to understand and manage.</li>
+					<li>Variables must be declared with a specific data type before use.</li>
+					<li><strong>Data Types in C++</strong></li>
+					<li style="margin-left: 20px;"> Primitive Data Types: </li>
+					<ul>
+						<li style="margin-left: 40px;"><strong>int:</strong> Stores integer values (whole numbers). Example: <code> int age = 30; </code></li>
+						<li style="margin-left: 40px;"><strong>float:</strong> Stores floating-point numbers (numbers with decimals). Example: <code> float temperature = 36.6;</code></li>
+						<li style="margin-left: 40px;"><strong>double:</strong> Stores double-precision floating-point numbers for more accuracy. Example: <code> double pi = 3.14159; </code></li>
+						<li style="margin-left: 40px;"><strong>char:</strong> Stores a single character. Example: <code> char initial = 'A'; </code></li>
+						<li style="margin-left: 40px;"><strong>bool:</strong> Stores Boolean values (<code> true </code> or <code> false </code>). Example: <code> bool isAdult = true </code>;</li>
+					</ul>
+					<li style="margin-left: 20px;"> Example Declarations: </li>	
+					<ul>
+						<li style="margin-left: 40px;">int score = 100; </li>
+						<li style="margin-left: 40px;">float price = 19.99;</li>
+						<li style="margin-left: 40px;">char grade = 'A';</li>
+						<li style="margin-left: 40px;">bool isPassed = true;</li>
+					</ul> <br>
+					<li><strong>Declaring and Initializing Variables</strong></li>
+					<li style="margin-left: 20px;"> Declaration Syntax: <code> dataType variableName; </code></li>
+					<ul> 
+						<li style="margin-left: 40px;">int count; // Declaration </li>
+						<li style="margin-left: 40px;">count = 10; // Initialization</li>
+					</ul>
+					<li style="margin-left: 20px;"> Initialization: Assigning an initial value when declaring a variable.</code></li>
+					<ul> 
+						<li style="margin-left: 40px;">int count = 10; // Declaration and initialization </li>
+					</ul> <br>
+
+					<li><strong>Scope and Lifetime of Variables</strong></li>
+					<li style="margin-left: 20px;"> <strong> Local Variables:</strong> Declared inside a function or block; accessible only within that function or block.</li>
+					<li style="margin-left: 20px;"> <strong> Global Variables:</strong> Declared outside any function; accessible throughout the program.</li>
+					<li style="margin-left: 20px;"> Example </li>
+					
+					<ul style="list-style: none; padding: 0; margin: 0;">
+						<pre style="margin: 0 auto; padding: 10px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center; width: fit-content;">
+							<code>
+					int globalVar = 5; // Global variable
+
+					int main() {
+						int localVar = 10; // Local variable
+						cout << "Global Variable: " << globalVar << endl;
+						cout << "Local Variable: " << localVar << endl;
+						return 0;
+					}
+							</code>
+						</pre>	
+					</ul>
+
+					<li><strong>Simple Program to Demonstrate Variables: </strong></li>
+					<pre>
+						<code> 
+
+							#include  &lt;iostream &gt;
+							using namespace std;
+
+							int main() {
+								int age = 30;
+								float height = 5.9;
+								char gender = 'M';
+								bool isStudent = false;
+
+								cout << "Age: " << age << endl;
+								cout << "Height: " << height << " feet" << endl;
+								cout << "Gender: " << gender << endl;
+								cout << "Is Student: " << (isStudent ? "Yes" : "No") << endl;
+								return 0;
+							}
+						</code>
+					</pre> <br>
+				</ul> 
+				<li><strong>Video explain about Variables and Data Types </strong></li>
+				<div style="display: flex; justify-content: center; margin: 20px 0;">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/QANQHxx9I8Y?si=E7PgApZs8WAxtGfC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div> <br>
+
+				<li><strong>Video explain about Local and Global variables </strong></li>
+				<div style="display: flex; justify-content: center; margin: 20px 0;">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/NLFkjgeTIvQ?si=BOXe6MC4rGkxXdjk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+
+			</div>
+
+			<div class="lesson-section" id="CodeEditorSection">
+				<h2>Code Editor</h2>
+				<textarea id="codeEditor" placeholder="Write your C++ code here..."></textarea><br>
+				<button id="runBtn">Run Code</button>
+				<div id="output"></div>
+				<div id="timer"></div>
+			</div>
+
+			<div class="lesson-section" id="AdditionalKnowledge">
+				<h2>Write a program that declares variables for storing your first name, last name, age, and GPA. Then, print these details in a formatted way.</h2>
+				<p style="margin-left: 20px;"> Example output:</p>
+				<p style="margin-left: 40px;">  Name: John Doe  </p>
+				<p style="margin-left: 40px;">  Age: 20  </p>
+				<p style="margin-left: 40px;"> GPA: 3.75  </p>
+			</div>
+
+			<div class="lesson-section" id="SummaryKnowledge">
+				<h2>Summary</h2>
+				<p>By the end of this lesson, you will have set up your development environment, written, compiled, and run your first C++ program, and understood the basic components of a C++ program.</p>
+			</div>
+			<div class="lesson-section" id="navigationButtons" style="text-align: center; margin-top: 40px;">
+				<!-- Previous Button -->
+				<a href="lesson1.html" id="prevBtn" class="nav-btn" style="padding: 14px 30px; background-color: #6c757d; color: white; border-radius: 8px; text-decoration: none;">Previous</a>
+
+				<!-- Next Button -->
+				<a href="lesson3.html" id="nextBtn" class="nav-btn" style="padding: 14px 30px; background-color: #007bff; color: white; border-radius: 8px; text-decoration: none;">Next</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.getElementById('runBtn').addEventListener('click', function() {
+			var code = document.getElementById('codeEditor').value;
+			var countdownTime = 5;  // Set the countdown time (in seconds)
+
+			// Display countdown timer
+			var countdownInterval = setInterval(function() {
+				if (countdownTime > 0) {
+					document.getElementById('timer').innerText = "Time remaining: " + countdownTime + " seconds";
+					countdownTime--;
+				} else {
+					document.getElementById('timer').innerText = "Processing result...";
+					clearInterval(countdownInterval);
+				}
+			}, 1000);
+
+			// Send the C++ code to Judge0 API for compilation and execution
+			fetch("https://judge0-ce.p.rapidapi.com/submissions", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+					"X-RapidAPI-Key": "47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5"
+				},
+				body: JSON.stringify({
+					"language_id": 52, // C++ (GCC 9.2.0)
+					"source_code": code
+				})
+			})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response was not ok " + response.statusText);
+				}
+				return response.json();
+			})
+			.then(result => {
+				const token = result.token;
+				setTimeout(function() {
+					fetch(`https://judge0-ce.p.rapidapi.com/submissions/${token}`, {
+						method: "GET",
+						headers: {
+							"X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+							"X-RapidAPI-Key": "47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5"
+						}
+					})
+					.then(response => {
+						if (!response.ok) {
+							throw new Error("Network response was not ok " + response.statusText);
+						}
+						return response.json();
+					})
+					.then(outputResult => {
+						// Stop the countdown when the result is received
+						clearInterval(countdownInterval);
+						document.getElementById('timer').innerText = "Result received!";
+						
+						// Display the output
+						if (outputResult.stdout) {
+							document.getElementById('output').innerText = "Output:\n" + outputResult.stdout;
+						} else if (outputResult.stderr) {
+							document.getElementById('output').innerText = "Error:\n" + outputResult.stderr;
+						} else {
+							document.getElementById('output').innerText = "Compilation Error:\n" + outputResult.compile_output;
+						}
+					})
+					.catch(error => console.error('Error fetching result:', error));
+				}, 5000);  // Wait 5 seconds (this matches the countdown time)
+			})
+			.catch(error => console.error('Error:', error));
+		});
+	</script>
+	<script>
+		// Get the current lesson page filename (e.g., 'lesson2.html')
+		var currentLesson = window.location.pathname.split("/").pop();
+
+		// Hide the Previous button if it's the first lesson (lesson1.html)
+		if (currentLesson === 'lesson1.html') {
+			document.getElementById('prevBtn').style.display = 'none';
+		} else {
+			document.getElementById('prevBtn').style.display = 'inline-block';
+		}
+
+		// Dynamically set the href for Previous and Next buttons (if needed)
+		if (currentLesson === 'lesson2.html') {
+			document.getElementById('prevBtn').href = 'lesson1.html';
+			document.getElementById('nextBtn').href = 'lesson3.html';
+		}
+		// Add more conditions as needed for other lessons
+	</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+/* General Styles */
+body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		background-color: #f8f9fa;
+		margin: 0;
+		padding: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+		box-shadow: 0 4px 6px -6px #222;
+}
+
+/* Header Image */
+.header-image {
+		background: url('header-bg.jpg') no-repeat center center/cover;
+		height: 60vh;
+		position: relative;
+}
+
+.header-content {
+		position: absolute;
+		bottom: 30%;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+}
+
+.header-content h1 {
+		font-size: 3rem;
+		text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.header-content p {
+		font-size: 1.5rem;
+		margin-top: 10px;
+}
+
+.header-content .btn {
+		margin-top: 20px;
+		font-size: 1.2rem;
+}
+
+/* Lesson Section */
+.lesson-section {
+		background-color: #ffffff;
+		padding: 40px;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+}
+
+.lesson-title {
+		color: #007bff;
+		margin-bottom: 40px;
+		font-size: 2.5rem;
+}
+
+.lesson-section section {
+		margin-bottom: 40px;
+}
+
+.lesson-section h2 {
+		font-size: 1.8rem;
+		margin-bottom: 20px;
+		color: #343a40;
+}
+
+.lesson-section p, .lesson-section ul {
+		font-size: 1.1rem;
+		color: #555555;
+}
+
+.lesson-section ul {
+		list-style-type: disc;
+		margin-left: 20px;
+}
+
+.lesson-section a {
+		color: #007bff;
+		text-decoration: none;
+}
+
+.lesson-section a:hover {
+		text-decoration: underline;
+}
+
+/* Code Block */
+pre {
+		background-color: #1e1e1e;
+		color: #dcdcdc;
+		padding: 20px;
+		border-radius: 5px;
+		overflow-x: auto;
+		font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn-primary {
+		background-color: #007bff;
+		border: none;
+}
+
+.btn-primary:hover {
+		background-color: #0056b3;
+		transform: scale(1.05);
+		transition: 0.3s;
+}
+
+/* Footer */
+footer {
+		margin-top: 50px;
+		font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+		.header-content h1 {
+				font-size: 2.5rem;
+		}
+		.header-content p {
+				font-size: 1.2rem;
+		}
+		.lesson-section {
+				padding: 20px;
+		}
+}

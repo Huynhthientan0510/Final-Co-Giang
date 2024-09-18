@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dynamic Memory Management</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #ffecb3;
+			margin: 0;
+			padding: 20px;
+			color: #333;
+		}
+		h1 {
+			color: #f57c00;
+		}
+		.content {
+			max-width: 900px;
+			margin: 20px auto;
+			background-color: #ffffff;
+			padding: 30px;
+			border-radius: 12px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		}
+		.content h2 {
+			color: #e65100;
+			margin-bottom: 10px;
+		}
+		p {
+			line-height: 1.6;
+		}
+		textarea {
+			width: 90%;
+			height: 200px;
+			margin-top: 20px;
+			padding: 15px;
+			border: 1px solid #e65100;
+			border-radius: 10px;
+			font-family: 'Courier New', Courier, monospace;
+			background-color: #fff9c4;
+			font-size: 15px;
+		}
+
+		#codeEditor {
+			width: 90%;
+			height: 250px;
+			font-family: 'Courier New', monospace;
+			border: 2px solid #6c757d;
+			border-radius: 10px;
+			padding: 15px;
+			margin-bottom: 20px;
+			background-color: #fdfdfd;
+			outline: none;
+			resize: vertical;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+		}
+		#runBtn {
+			display: inline-block;
+			padding: 14px 30px;
+			font-size: 18px;
+			color: #fff;
+			background-color: #007bff;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		#runBtn:hover {
+			background-color: #0056b3;
+			transform: translateY(-2px);
+		}
+
+		#output, #timer {
+			width: 90%;
+			padding: 20px;
+			background-color: #f1f3f5;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			margin-top: 20px;
+			font-size: 16px;
+			line-height: 1.5;
+			word-wrap: break-word;
+			overflow-y: auto;
+		}
+
+		#timer {
+			text-align: center;
+			background-color: #ffe8a1;
+			color: #856404;
+			font-weight: bold;
+		}
+
+		#output {
+			background-color: #e2f7e9;
+			color: #155724;
+
+
+		}
+		pre {
+			background-color: #ffe0b2;
+			padding: 20px;
+			border-radius: 10px;
+			margin-top: 20px;
+			white-space: pre-wrap;
+			color: #e65100;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h1>Dynamic Memory Management in C++</h1>
+		<p>Dynamic memory management is crucial for efficient use of resources in C++. In this lesson, you'll learn how to use the <code>new</code> and <code>delete</code> operators to manage memory dynamically.</p>
+
+		<h2>Why Dynamic Memory?</h2>
+		<p>When the amount of memory needed isn't known until runtime, dynamic memory allocation allows you to request memory on the heap. This is especially useful for handling arrays or objects whose size isn't known beforehand.</p>
+
+		<h2>The <code>new</code> Operator</h2>
+		<p>The <code>new</code> operator is used to allocate memory during runtime. It allocates memory on the heap and returns a pointer to the allocated memory.</p>
+
+		<pre>
+int* ptr = new int; // Allocates memory for one integer
+		</pre>
+
+		<h2>The <code>delete</code> Operator</h2>
+		<p>Memory allocated with <code>new</code> must be deallocated using <code>delete</code>. This ensures there are no memory leaks in your program, where allocated memory is not released back to the system.</p>
+
+		<pre>
+delete ptr; // Frees memory allocated for the integer
+		</pre>
+
+		<p>For arrays allocated with <code>new[]</code>, use <code>delete[]</code>:</p>
+
+		<pre>
+int* arr = new int[10]; // Allocates memory for an array of 10 integers
+delete[] arr;           // Frees the array memory
+		</pre>
+
+		<div class="lesson-section" id="CodeEditorSection">
+			<h2>Code Editor</h2>
+			<textarea id="codeEditor" placeholder="Write your C++ code here..."></textarea><br>
+			<textarea id="inputData" placeholder="Enter your input data here..."></textarea><br>
+			<button id="runBtn">Run Code</button>
+			<div id="output"></div>
+			<div id="timer"></div>
+		</div>
+
+		<script>
+		document.getElementById('runBtn').addEventListener('click', function() {
+			var code = document.getElementById('codeEditor').value;
+			var inputData = document.getElementById('inputData').value;
+			var countdownTime = 5;  // Set the countdown time (in seconds)
+
+			// Display countdown timer
+			var countdownInterval = setInterval(function() {
+				if (countdownTime > 0) {
+					document.getElementById('timer').innerText = "Time remaining: " + countdownTime + " seconds";
+					countdownTime--;
+				} else {
+					document.getElementById('timer').innerText = "Processing result...";
+					clearInterval(countdownInterval);
+
+					// Prepare data to be sent to Judge0
+					var requestData = {
+						"source_code": code,
+						"language_id": 54, 
+						"stdin": inputData
+					};
+
+					// Send data to Judge0 API
+					fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false&fields=*', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+							'X-RapidAPI-Key': '47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5'  // Replace with your Judge0 API key
+						},
+						body: JSON.stringify(requestData)
+					})
+					.then(response => response.json())
+					.then(data => {
+						// Poll for result
+						var submissionToken = data.token;
+						setTimeout(function() {
+							fetch(`https://judge0-ce.p.rapidapi.com/submissions/${submissionToken}?base64_encoded=false&fields=*`, {
+								method: 'GET',
+								headers: {
+									'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+									'X-RapidAPI-Key': '47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5'  // Replace with your Judge0 API key
+								}
+							})
+							.then(result => result.json())
+							.then(outputData => {
+								// Display the result in the output div
+								if (outputData.stdout) {
+									document.getElementById('output').innerText = "Output:\n" + outputData.stdout;
+								} else if (outputData.stderr) {
+									document.getElementById('output').innerText = "Error:\n" + outputData.stderr;
+								} else {
+									document.getElementById('output').innerText = "Error:\n" + outputData.compile_output;
+								}
+							});
+						}, 3000); // Poll after 3 seconds
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+				}
+			}, 1000);
+		});
+	</script>
+	</div>
+</body>
+</html>

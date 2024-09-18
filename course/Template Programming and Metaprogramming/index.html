@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Template Programming & Metaprogramming</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<style>
+		/* General Styles */
+		body {
+			font-family: 'Roboto', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f4f4f4;
+			color: #333;
+		}
+
+		/* Navbar Styles */
+		.navbar {
+			background-color: #2c3e50;
+			padding: 1rem;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 100;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			transition: background-color 0.3s ease;
+		}
+		.navbar a {
+			color: #fff;
+			margin-left: 15px;
+			text-decoration: none;
+			font-weight: 500;
+		}
+		.navbar a:hover {
+			color: #3498db;
+		}
+		.navbar-brand {
+			font-size: 1.5rem;
+			font-weight: 700;
+		}
+
+		/* Hero Section */
+		#hero {
+			background: linear-gradient(120deg, #3498db, #8e44ad);
+			color: white;
+			padding: 100px 0;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+		}
+		#hero h1 {
+			font-size: 3.5rem;
+			margin-bottom: 20px;
+			animation: fadeInDown 1s ease;
+		}
+		#hero p {
+			font-size: 1.3rem;
+			animation: fadeInUp 1.2s ease;
+		}
+		#hero .btn {
+			background-color: #fff;
+			color: #3498db;
+			padding: 12px 25px;
+			font-size: 1.2rem;
+			border-radius: 50px;
+			transition: 0.3s;
+		}
+		#hero .btn:hover {
+			background-color: #3498db;
+			color: white;
+		}
+
+		/* Lessons Section */
+		#lessons {
+			padding: 80px 0;
+			background-color: #f9f9f9;
+		}
+		#lessons h2 {
+			text-align: center;
+			font-size: 2.5rem;
+			margin-bottom: 50px;
+			font-weight: 700;
+			color: #333;
+		}
+		.lesson-card {
+			background-color: white;
+			border-radius: 10px;
+			padding: 20px;
+			margin: 15px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.lesson-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+		}
+		.lesson-card h5 {
+			font-size: 1.5rem;
+			font-weight: 700;
+			margin-bottom: 15px;
+		}
+		.lesson-card p {
+			font-size: 1rem;
+			color: #777;
+		}
+		.lesson-card .btn {
+			display: inline-block;
+			margin-top: 10px;
+			padding: 10px 20px;
+			background-color: #3498db;
+			color: white;
+			border-radius: 50px;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+		.lesson-card .btn:hover {
+			background-color: #2980b9;
+		}
+
+		/* Footer */
+		footer {
+			background-color: #2c3e50;
+			padding: 20px 0;
+			text-align: center;
+			color: white;
+		}
+
+		/* Media Queries */
+		@media (max-width: 768px) {
+			#hero h1 {
+				font-size: 2.5rem;
+			}
+			#hero p {
+				font-size: 1rem;
+			}
+			.lesson-card h5 {
+				font-size: 1.2rem;
+			}
+		}
+
+		/* Animations */
+		@keyframes fadeInDown {
+			from {
+				opacity: 0;
+				transform: translateY(-30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+	<a href="#" class="navbar-brand">Template Programming</a>
+	<div class="navbar-links">
+		<a href="#lessons">Lessons</a>
+		<a href="#about">About</a>
+		<a href="#contact">Contact</a>
+	</div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero">
+	<div class="container">
+		<h1>Master Template Programming & Metaprogramming</h1>
+		<p>Dive deep into C++ templates with our hands-on lessons.</p>
+		<a href="#lessons" class="btn">Explore Lessons</a>
+	</div>
+</section>
+
+<!-- Lessons Section -->
+<section id="lessons">
+	<div class="container">
+		<h2>Lessons</h2>
+		<div class="row">
+			<!-- Lesson 1 -->
+			<div class="col-md-4">
+				<div class="lesson-card">
+					<h5>Lesson 1: Introduction to Templates</h5>
+					<p>Learn the fundamentals of templates in C++.</p>
+					<a href="lesson1.html" class="btn">Go to Lesson</a>
+				</div>
+			</div>
+
+			<!-- Lesson 2 -->
+			<div class="col-md-4">
+				<div class="lesson-card">
+					<h5>Lesson 2: Function and Class Templates</h5>
+					<p>Understand how to create function and class templates.</p>
+					<a href="lesson2.html" class="btn">Go to Lesson</a>
+				</div>
+			</div>
+
+			<!-- Lesson 3 -->
+			<div class="col-md-4">
+				<div class="lesson-card">
+					<h5>Lesson 3: Template Specialization</h5>
+					<p>Master the art of template specialization in C++.</p>
+					<a href="lesson3.html" class="btn">Go to Lesson</a>
+				</div>
+			</div>
+
+			<!-- Lesson 4 -->
+			<div class="col-md-4">
+				<div class="lesson-card">
+					<h5>Lesson 4: Variadic Templates & Advanced Techniques</h5>
+					<p>Explore variadic templates and advanced techniques.</p>
+					<a href="lesson4.html" class="btn">Go to Lesson</a>
+				</div>
+			</div>
+
+			<!-- Lesson 5 -->
+			<div class="col-md-4">
+				<div class="lesson-card">
+					<h5>Lesson 5: Template Metaprogramming (TMP)</h5>
+					<p>Dive into template metaprogramming (TMP).</p>
+					<a href="lesson5.html" class="btn">Go to Lesson</a>
+				</div>
+			</div>
+
+			<!-- Lesson 6 -->
+			<div class="col-md-4">
+				<div class="lesson-card">
+					<h5>Lesson 6: Hands-on Practice with Templates</h5>
+					<p>Put your knowledge to the test with hands-on exercises.</p>
+					<a href="lesson6.html" class="btn">Go to Lesson</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Footer -->
+<footer>
+	<p>&copy; SCAM Center. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

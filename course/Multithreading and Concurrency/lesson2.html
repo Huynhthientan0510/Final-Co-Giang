@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: #f0f8ff;
+			overflow-x: hidden;
+			scroll-behavior: smooth;
+		}
+
+		/* Header Styling */
+		.lesson-header {
+			background: linear-gradient(135deg, #007bff, #00c6ff);
+			color: white;
+			padding: 50px 0;
+			text-align: center;
+			margin-bottom: 40px;
+			border-bottom-left-radius: 50px;
+			border-bottom-right-radius: 50px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.lesson-header h1 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+			animation: bounceInDown 1s ease-in-out;
+		}
+
+		.lesson-header p {
+			font-size: 1.2rem;
+			margin-top: 10px;
+		}
+
+		/* Section Title */
+		.section-title {
+			font-size: 1.8rem;
+			margin-top: 20px;
+			color: #007bff;
+			text-transform: uppercase;
+			font-weight: bold;
+			border-bottom: 3px solid #007bff;
+			display: inline-block;
+			padding-bottom: 5px;
+			position: relative;
+			animation: fadeInLeft 1s ease-in-out;
+		}
+
+		.section {
+			margin-bottom: 30px;
+			padding: 20px;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			animation: fadeInUp 1s ease-in-out;
+		}
+
+		.section p {
+			color: #333;
+			line-height: 1.6;
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		/* Code Example */
+		.code-example {
+			background-color: #2d2d2d;
+			color: #61dafb;
+			padding: 20px;
+			border-radius: 5px;
+			font-family: 'Courier New', Courier, monospace;
+			overflow-x: auto;
+			margin-top: 10px;
+			border-left: 5px solid #007bff;
+			animation: fadeIn 1.5s ease-in-out;
+		}
+
+		/* Button Styles */
+		.btn-quiz {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			transition: all 0.3s ease;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+		}
+
+		.btn-quiz:hover {
+			background-color: #218838;
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+		}
+
+		.btn-quiz:focus {
+			outline: none;
+			box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+		}
+
+		.btn-quiz:active {
+			transform: translateY(1px);
+		}
+
+		/* Animations */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInLeft {
+			from {
+				opacity: 0;
+				transform: translateX(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes bounceInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+			60% {
+				opacity: 1;
+				transform: translateY(30px);
+			}
+			80% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Lesson Header -->
+	<header class="lesson-header">
+		<h1>Welcome to Lesson 2</h1>
+		<p>Creating and Managing Threads</p>
+	</header>
+
+	<div class="container">
+		<!-- Introduction Section -->
+		<div class="section">
+			<h2 class="section-title"> 1) Introduction</h2>
+			<ul>
+				<li> Creating and managing threads effectively is crucial for writing robust multithreaded applications. This lesson explores the various ways to create threads in C++, manage their lifecycle, and ensure they are properly controlled.</li>
+			</ul>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="section">
+			<h2 class="section-title"> 2) Purpose of the Lesson</h2>
+			<ul>
+				<li> To provide a comprehensive understanding of thread creation using functions, lambda expressions, and member functions, along with best practices for managing threads.</li>
+			</ul>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="section">
+			<h2 class="section-title"> 3) Detailed Explanation</h2>
+			<ul> 
+				<li> <strong> Creating Threads with Functions </strong>: </li> <br>
+				<li> <strong> Differences between Processes and Threads </strong> </li>
+				<li style="margin-left: 20px;"> Standard functions can be passed as callable objects to <code> std::thread </code> </li>
+				<li style="margin-left: 20px"> Discuss parameter passing to threads and how to use <code> std::ref() </code> when you need to pass references.</li> <br>
+				<li> <strong> Using Lambda Expressions: </strong> </li>
+				<li style="margin-left: 20px;"> <strong> Lambda expressions allow for concise, inline definitions of thread tasks without the need for standalone function declarations.</li>
+				<li style="margin-left: 20px;"> <strong> Syntax</strong>: <code> [capture](parameters) { body } <code> </li> <br>
+				
+				<li> <strong> Creating Threads with Member Functions: </strong> </li>
+				<li style="margin-left: 20px;"> Threads can be created to run member functions by passing the object instance and the member function pointer to <code> std::thread </code>.</li>
+				<li style="margin-left: 20px;">Example:</li>
+			</ul>
+			<div class="section">
+				<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+// Function that will be run by the thread
+void printMessage() {
+	std::cout << "Hello from the thread!" << std::endl;
+}
+
+class Worker {
+public:
+	void doWork() {
+		std::cout << "Working from member function!" << std::endl;
+	}
+};
+
+int main() {
+	Worker worker;
+	std::thread t(&Worker::doWork, &worker); // Passing the function pointer and object
+	t.join();
+	return 0;
+}
+			</pre> <br>
+			<h2> Explanation: </h2>
+			<ul>
+				<li> Thread Management: </li>
+				<li style="margin-left:20px"> <strong>Joining Threads</strong>: Ensures that the main thread waits for the spawned thread to complete.</li>
+				<li style="margin-left:20px"> <strong>Detaching Threads</strong>: Allows threads to run independently, making them non-blocking, but requires careful management to avoid accessing resources that may no longer exist.</li> <br>
+
+				<li > Thread Identification and Status: </li>
+				<li style="margin-left:20px">: Use <code>std::this_thread::get_id()</code>to obtain the ID of the current thread.</li>
+				<li style="margin-left:20px">:  <code>std::thread::joinable()</code> checks if a thread is joinable (i.e., it has not been joined or detached).</li>
+			</ul>
+			</div> 
+		</div>
+
+		<!-- Code Examples or Practical Demonstrations -->
+		<div class="section">
+			<h2 class="section-title">Creating Threads with Different Callables</h2>
+			<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+void functionThread() {
+    std::cout << "Thread created with a function!" << std::endl;
+}
+
+int main() {
+    // Creating thread with a function
+    std::thread t1(functionThread);
+
+    // Creating thread with a lambda expression
+    std::thread t2([]() {
+        std::cout << "Thread created with a lambda!" << std::endl;
+    });
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+
+			</pre><br>
+			<h2> Explanation: </h2>
+			<ul>
+				<li> Explain how each thread is created, and the importance of managing each thread's lifecycle using <code> Join </code></li>
+			</ul>
+		</div>
+
+		<!-- Best Practices and Tips -->
+		<div class="section">
+			<h2 class="section-title">Best Practices and Tips</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Always Manage Threads </strong>: Either join or detach all threads before program termination to avoid undefined behavior.</li>
+				<li class="list-group-item"> <strong> Passing Parameters Safely</strong>: When passing parameters to threads, prefer using copies or <code> std::ref() </code> for references. Be cautious about passing pointers to avoid dangling references.</li>
+				<li class="list-group-item"> <strong> Thread Safety with Shared Data</strong>: Use synchronization mechanisms like mutexes to ensure safe access to shared data.</li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes and Pitfalls -->
+		<div class="section">
+			<h2 class="section-title">Common Mistakes and Pitfalls:</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Detached Threads</strong>: Threads that are detached run independently, but if not managed carefully, they may access resources that no longer exist, leading to crashes.</li>
+				<li class="list-group-item"> <strong> Accessing Moved Thread Objects</strong>: Once a thread has been moved using <code> std::move </code>, the original thread object is no longer usable. </li>
+			</ul>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="section">
+			<h2 class="section-title">Real-World Applications</h2>
+			<ul>
+				<li> <strong>Multithreaded Download Managers </strong>:Each thread can handle a separate file download concurrently. </li>
+				<li> <strong>Parallel Processing in Games </strong>:Threads can handle different parts of game logic, such as AI, rendering, and physics. </li>
+			</ul>
+		</div>
+
+		<!-- Advanced Concepts -->
+		<div class="section">
+			<h2 class="section-title">Advanced Concepts</h2>
+			<ul>
+				<li> <strong> Handling Exceptions in Threads </strong>: Exceptions thrown in threads are not propagated to the main thread. Discuss strategies like using <code> std::promise </code> and <code> std::future </code> to catch and handle exceptions.</li> 
+			</ul>
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="section text-center">
+			<h2 class="section-title">Interactive Elements / Quizzes</h2>
+			<button class="btn btn-quiz">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="section">
+			<h2 class="section-title">Summary</h2>
+			<p>Recap of key methods for creating and managing threads, the importance of proper thread lifecycle management, and the risks associated with poor thread handling.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="section">
+			<h2 class="section-title">Exercises / Challenges</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Basic Exercise </strong>: Create a program that launches three threads, each printing a different message.</li>
+				<li class="list-group-item"> <strong> Intermediate Exercise </strong>: Create a program that launches a thread to perform matrix multiplication, demonstrating thread parameter passing.</li>
+			</ul>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="section">
+			<h2 class="section-title">Further Reading and Resources</h2>
+			<ul>
+				<li> <strong> Documentation </strong>: Extensive reading on <code> std::thread </code> and callable objects.</li>
+				<li> <strong> Books </strong>: Advanced C++ Concurrency topics in “The Art of Multiprocessor Programming” by Maurice Herlihy and Nir Shavit.</li>
+				<li> <p> Read more information in this weebsite: <a href="https://www.geeksforgeeks.org/how-to-create-a-thread-in-cpp/"> How to create Thread </a> </p></li>
+			</ul>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="section">
+			<h2 class="section-title">Q&A / Reflection Section</h2>
+			
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="section">
+			<h2 class="section-title">Project-Based Learning Section</h2>
+			<p>Build a simple task scheduler that manages and executes tasks using threads, simulating a lightweight version of a thread pool.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap JavaScript Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

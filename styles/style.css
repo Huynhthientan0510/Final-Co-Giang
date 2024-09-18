@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+.navbar {
+  padding: 1rem 2rem;
+  margin-bottom: 10px; /* Space below the navbar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-banner {
+  height: 70vh;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  background-size: 100%; /* Ensure visibility */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(1); /* Make icons visible on light backgrounds */
+}
+
+.carousel-item {
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-indicators li {
+  background-color: #007bff;
+}
+
+.carousel-indicators .active {
+  background-color: #0056b3;
+}
+
+/* Courses Section */
+#courses .card {
+  transition: transform 0.3s ease-in-out;
+}
+
+#courses .card:hover {
+  transform: translateY(-10px);
+}
+
+/* Why Choose Us */
+.why-choose-us {
+  background: #f8f9fa;
+}
+
+/* Instructor Section */
+.instructor-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.instructor-card:hover {
+  transform: translateY(-10px);
+}
+
+.instructor-img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.social-media a {
+  font-size: 20px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-media a:hover {
+  color: #007bff;
+}
+
+/* Footer */
+footer {
+  background: #343a40;
+  color: #ffffff;
+}
+
+footer p {
+  margin: 0;
+}
+.testimonial-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    margin-bottom: 15px;
+}
+
+.testimonial-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.testimonial-text {
+    flex-grow: 1;
+}
+
+/* Carousel Controls */
+.carousel-control-prev, .carousel-control-next {
+    width: 5%;
+    /* Adjust the width as needed */
+}
+
+.carousel-control-prev {
+    left: ;
+    /* Position it at the left edge of the carousel container */
+}
+
+.carousel-control-next {
+    right: 0;
+    /* Position it at the right edge of the carousel container */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    background-size: 100%; /* Ensure visibility */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+

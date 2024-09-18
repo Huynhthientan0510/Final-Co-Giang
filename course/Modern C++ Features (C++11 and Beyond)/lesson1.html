@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C++ Course - Lesson 1</title>
+		
+		<!-- Bootstrap and FontAwesome -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		
+
+		<style>
+				body {
+						background-color: #f4f7fc;
+						font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+
+				.header h1 {
+						text-align: center;
+						margin-top: 20px;
+						color: #333;
+				}
+
+				h1, h2 {
+						color: #007bff;
+						position: relative;
+				}
+
+				/* Icon styles */
+				h2 i {
+						color: #007bff;
+						margin-right: 10px;
+				}
+
+				.content-section {
+						background: white;
+						border-radius: 8px;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+						margin-bottom: 20px;
+						padding: 20px;
+						opacity: 0;
+						transform: translateY(50px);
+						transition: all 0.6s ease;
+				}
+
+				/* Animation for sections */
+				.content-section.visible {
+						opacity: 1;
+						transform: translateY(0);
+				}
+
+				pre {
+						background-color: #f0f0f0;
+						padding: 15px;
+						border-radius: 8px;
+						font-size: 1rem;
+						border-left: 5px solid #007bff;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				}
+
+				code {
+						background-color: #e8e8e8;
+						padding: 2px 6px;
+						border-radius: 4px;
+				}
+
+				.btn {
+						background-color: #007bff;
+						color: white;
+				}
+
+				.footer {
+						text-align: center;
+						margin-top: 20px;
+						padding: 20px;
+						background-color: #007bff;
+						color: white;
+				}
+		</style>
+</head>
+<body>
+		<div class="container">
+				<header class="header">
+						<h1>Lesson 1: Introduction to Modern C++</h1>
+				</header>
+
+				<!-- Lesson Introduction -->
+				<section class="content-section">
+						<h2><i class="fas fa-book"></i>Introduction</h2>
+						<p>C++ has evolved significantly over the years, with C++11, C++14, C++17, and C++20 introducing new features aimed at improving performance, security, and code readability. This lesson will provide an overview of the most important features introduced in these versions and how they can be utilized in your projects.</p>
+				</section>
+
+				<!-- Purpose of the Lesson -->
+				<section class="content-section">
+						<h2><i class="fas fa-bullseye"></i>Purpose of the Lesson</h2>
+						<p>The goal of this lesson is to familiarize students with the major enhancements in modern C++ versions (starting from C++11). By the end of this lesson, you will be able to: </p>
+						<ul>
+								<li>Recognize the motivation for these new features.</li>
+								<li>Understand how these features improve code quality and performance.</li>
+								<li>Know when to apply these features in real-world development.</li>
+						</ul>
+				</section>
+
+				<!-- Detailed Explanation -->
+				<section class="content-section">
+						<h2><i class="fas fa-info-circle"></i>Detailed Explanation</h2>
+						<p><strong>Motivation Behind Modern C++</strong></p>
+						<p>The pre-C++11 era required developers to manually manage memory, write verbose code, and deal with certain performance limitations. Modern C++ brings the following improvements:</p>
+						<ul>
+								<li><strong>Safety</strong>: Reduced errors, like memory leaks, through smart pointers.</li>
+								<li><strong>Efficiency</strong>: Reduced overhead and improved performance with features like move semantics and <code>constexpr</code>.</li>
+								<li><strong>Readability</strong>: Features like lambda expressions and the <code>auto</code> keyword simplify the syntax and make the code easier to read.</li>
+						</ul>
+				</section>
+
+				<!-- Key Features Introduced -->
+				<section class="content-section">
+						<h2><i class="fas fa-key"></i>Key Features Introduced</h2>
+						<ul>
+								<li><strong>Lambda Expressions</strong>: Allows inline function definitions, reducing boilerplate code.</li>
+								<li><strong>Smart Pointers</strong>: Automates memory management, preventing leaks and dangling pointers.</li>
+								<li><strong>Move Semantics</strong>: Transfers resources without copying, boosting performance.</li>
+								<li><strong>Auto Keyword</strong>: Simplifies type declarations by allowing the compiler to infer types.</li>
+								<li><strong>Range-based for Loops</strong>: Simplifies iteration over collections.</li>
+								<li><strong>Constexpr</strong>: Enables computations at compile time, optimizing efficiency.</li>
+								<li><strong>Nullptr</strong>: A safer alternative to <code>NULL</code> for pointer initialization.</li>
+						</ul>
+				</section>
+
+				<!-- Code Examples -->
+				<section class="content-section">
+						<h2><i class="fas fa-code"></i>Code Examples</h2>
+						<p>Here are some practical demonstrations of modern C++ features:</p>
+						<!-- Lambda -->
+						<ul>
+								<li><strong>Lambda Expressions Example:</strong></li>
+								<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+
+int main() {
+		std::vector<int> nums = {1, 2, 3, 4, 5};
+		std::for_each(nums.begin(), nums.end(), [](int n) {
+				std::cout << n * 2 << " "; // Doubling each element
+		});
+		return 0;
+}
+								</pre>
+								<p> This code uses a lambda expression to double each element in a vector. </p>
+						</ul> <br>
+
+						<!-- Smart Pointer -->
+						<ul>
+								<li><strong>Smart Pointers Example:</strong></li>
+								<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+
+int main() {
+		std::unique_ptr<int> ptr = std::make_unique<int>(10);
+		std::cout << "Smart pointer value: " << *ptr << std::endl;
+		return 0;
+}
+								</pre>
+						</ul>
+						<!-- Lambda -->
+						<ul>
+								<li><strong>Here, <code> std::unique_ptr </code> manages memory for an integer object:</strong></li>
+								<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+
+int main() {
+		std::vector<int> vec1 = {1, 2, 3};
+		std::vector<int> vec2 = std::move(vec1);  // Transfers resources from vec1 to vec2
+
+		std::cout << "vec2 contains: ";
+		for (int i : vec2) std::cout << i << " ";
+
+		return 0;
+} 
+								</pre>
+								<p> Move semantics transfer the contents of <code> vec1 </code> to <code> vec2 </code> without copying the elements. </p>
+						</ul> 
+				</section>
+
+				<!-- Best Practices and Tips -->
+				<section class="content-section">
+						<h2><i class="fas fa-lightbulb"></i>Tips</h2>
+						<ul>
+								<li>Use lambdas to simplify code, especially in cases where you need short, throwaway functions.</li>
+								<li>Prefer smart pointers over raw pointers to avoid memory management issues.</li>
+								<li>Use move semantics where possible to avoid unnecessary copying and improve performance.</li>
+								<li>When using the <code>auto</code> keyword, ensure it's clear what the inferred type will be for maintainability..</li>
+								<li>Leverage <code> constexpr </code> for computations that can be done at compile-time to reduce runtime overhead.</li>
+						</ul>
+				</section>
+
+				<!-- Common Mistakes and Pitfalls -->
+				<section class="content-section">
+						<h2><i class="fas fa-exclamation-circle"></i>Common Mistakes and Pitfalls</h2>
+						<ul>
+							<li> <strong> Incorrect Lambda Capture</strong>:Forgetting whether to capture by reference or by value can lead to unintended behavior or runtime errors. </li>
+							<li> <strong> Overusing</strong> <code>auto</code>:Overuse of the <code>auto</code> keyword can lead to code that is hard to understand, as it obscures the actual type of variables. </li>
+							<li> <strong>Misusing Smart Pointers</strong>: Using <code> std::shared_ptr </code> inappropriately can lead to overhead from reference counting or memory leaks from circular references.</li>
+						</ul>
+				</section>
+
+				<!-- Real-World Applications -->
+				<section class="content-section">
+						<h2><i class="fas fa-industry"></i>Real-World Applications</h2>
+						<p>Modern C++ features are used widely across industries:</p>
+						<ul>
+							<li> <strong> Game Development</strong>:Move semantics are used extensively to transfer resources like textures and models without copying. </li>
+							<li> <strong> High-Performance Computing </strong>:<code>constexpr</code>  is used to perform calculations at compile-time, optimizing runtime performance. </li>
+							<li> <strong>Embedded Systems</strong>: Range-based for loops and smart pointers help manage limited resources efficiently in real-time systems.</li>
+						</ul>
+				</section>
+
+				<!-- Advanced Concepts (Optional) -->
+				<section class="content-section">
+						<h2><i class="fas fa-cogs"></i>Advanced Concepts</h2>
+						<p> <strong> Lambda Expressions with Stateful Captures </strong>: Explore how lambdas can capture variables by reference or value and how to modify those values.</p>
+						<p> <strong> Allocator-aware Containers </strong>: A deeper dive into how modern C++ allows developers to customize memory allocation for containers like <code> std::vector </code>.</p>
+				</section>
+
+				<!-- Interactive Quiz -->
+				<section class="content-section">
+						<h2><i class="fas fa-clipboard-check"></i>Quiz</h2>
+						<button class="btn quiz-btn">Start Quiz</button>
+				</section>
+
+				<!-- Summary -->
+				<section class="content-section summary">
+						<h2><i class="fas fa-file-alt"></i>Summary</h2>
+						<p>In this lesson, we explored the key features introduced in C++11 and beyond. These features include lambda expressions, smart pointers, move semantics, <code> constexpr </code>, and more. Understanding and applying these features can greatly improve the performance, safety, and readability of your C++ code.</p>
+				</section>
+
+				<!-- Exercises -->
+				<section class="content-section exercise">
+						<h2><i class="fas fa-dumbbell"></i>Exercises</h2>
+						<p> <strong> Exercise 1</strong>:Write a function using lambda expressions to filter out all even numbers from a list of integers. </p>
+						<p> <strong> Exercise 2</strong>:Convert a legacy codebase using raw pointers to use smart pointers. </p>
+						<p> <strong> Exercise 3</strong>:Write a program that uses move semantics to transfer a resource (like a large array) from one object to another. </p>
+				</section>
+
+				<!-- Further Reading -->
+				<section class="content-section reading">
+						<h2><i class="fas fa-link"></i>Further Reading and Resources	</h2>
+						<li> <a href="https://www.stroustrup.com/C++11FAQ.htm">C++11: The Good, The Bad, and The Ugly </a></li>
+						<li> <a href="https://isocpp.org/">ISO C++ Committee: Updates and Future Directions </a></li>
+						<li> <<a href="https://www.stroustrup.com/C++.html">The C++ Programming Language by Bjarne Stroustrup </a> </li>
+				</section>
+
+
+				<!-- Question -->
+				<section class="content-section question">
+						<h2><i class="fas fa-question"></i>Any Question?</h2>		
+				</section>
+
+
+				<!-- Project -->
+				<section class="content-section project">
+						<h2><i class="fas fa-project-diagram"></i>Project-Based Learning</h2>	
+						<p> Refactor an existing project to use modern C++ features, such as replacing raw pointers with smart pointers and applying move semantics.</p>	
+				</section>
+
+				<!-- Footer -->
+				<footer class="footer">
+						<p>SCAM Center. All Rights Reserved</p>
+				</footer>
+		</div>
+
+		<!-- Bootstrap JS, jQuery, and FontAwesome -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Animation Script -->
+		<script>
+				// Scroll Animation
+				window.addEventListener('scroll', function () {
+						const sections = document.querySelectorAll('.content-section');
+						sections.forEach(section => {
+								const position = section.getBoundingClientRect().top;
+								if (position < window.innerHeight - 100) {
+										section.classList.add('visible');
+								}
+						});
+				});
+		</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course Lesson</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar">
+		<div class="logo">C++ Learning</div>
+		<ul class="nav-links">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Courses</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!-- Hero Section -->
+	<header class="hero">
+		<div class="hero-content">
+			<h1>Welcome to Lesson 4</h1>
+			<p>Nearly finishing your journey on learning C++ </p>
+			<a href="#lesson" class="cta-btn">Start Learning</a>
+		</div>
+	</header>
+
+	<!-- Lesson Section -->
+	<section class="lesson" id="lesson">
+		<h1 class="section-title">Lesson Title: Smart Pointers ( <code> unique_ptr, shared_ptr </code>)</h1>
+
+		<!-- Introduction -->
+		<div class="lesson-section">
+			<h2>Introduction</h2>
+			<p>Smart pointers in C++ provide automatic and safe management of dynamically allocated 
+			memory. Unlike raw pointers, smart pointers ensure proper deallocation, reducing the risk of 
+			memory leaks and dangling pointers.</p>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="lesson-section">
+			<h2>Purpose of the Lesson</h2>
+			<p>The purpose of this lesson is to introduce smart pointers <code> unique_ptr</code> , <code> shared_ptr</code> , and 
+			others and explain their advantages over raw pointers. Understanding smart pointers is crucial for writing modern, safe, and efficient C++ code.</p>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="lesson-section">
+			<h2>Detailed Explanation</h2>
+			
+			<ul>
+				<li> <strong> Smart Pointers Overview </strong>: Smart pointers are classes that act like pointers but automatically manage memory.</li>
+				<li> <strong><code> unique_ptr </code> </strong>: Manages single ownership of a resource. The resource is automatically deleted when the <code> unique_ptr </code> goes out of scope</li>
+				<li>  <strong> <code> shared_ptr </code> </strong>: Allows multiple pointers to share ownership of a resource. The resource is  deleted when the last <code> shared_ptr </code> pointing to it is destroyed</li>
+			</ul>
+		</div>
+
+		<!-- Code Examples -->
+		<div class="lesson-section code-examples">
+			<h2>Code Examples</h2>
+			<pre><code>
+include &lt;iostream&gt;
+include &lt;memory&gt; // Include memory header for smart pointers.
+int main() {
+	// Example of unique_ptr
+	std::unique_ptr&lt;int&gt; uniquePtr = std::make_unique&lt;int&gt;(100); // Create a unique_ptr. 
+	std::cout << "unique_ptr value: " << uniquePtr << std::endl;
+
+	// unique_ptr cannot be copied, but can be moved
+	std::unique_ptr&lt;int&gt; movedPtr = std::move(uniquePtr); // Transfer ownership.
+
+	// Example of shared_ptr
+	std::shared_ptr&lt;int&gt; sharedPtr1 = std::make_shared&lt;int&gt;(200); // Create a shared_ptr. 
+	std::shared_ptr&lt;int&gt; sharedPtr2 = sharedPtr1; // Copy the shared_ptr (reference count increases).
+	std::cout << "shared_ptr value: " << sharedPtr1 << std::endl;
+	std::cout << "shared_ptr use count: " << sharedPtr1.use_count() << std::endl; // Shows the 
+	number of owners.
+	return 0;
+}
+
+
+
+
+			</code></pre> 
+		</div>
+		<p> Explanation of the Code: </p>
+		<ul>
+			<li> <code> unique_ptr </code> <strong> Example</strong>:<code> unique_ptr </code> manages single ownership. It cannot be copied, 
+ensuring exclusive control over the resource. Ownership can be transferred using <code> std::move </code>.
+			.</li>
+			<li> <code> shared_ptr </code> <strong>Example </strong>: <code> shared_ptr </code>  allows multiple pointers to share ownership of the same resource, automatically managing the resource's lifetime through reference counting. </li>
+		</ul>
+
+		<!-- Best Practices -->
+		<div class="lesson-section">
+			<h2>Tips:</h2>
+			<ul>	
+				<li> <strong> Prefer Smart Pointers over Raw Pointers </strong>: Smart pointers reduce the risk of memory management errors.</li>
+				<li> <strong> Use </strong> <code> unique_ptr </code> <strong> for Exclusive Ownership </strong>:  Ideal when a resource should have only one owner.</li>
+				<li> <strong> Use</strong> <code> shared_ptr </code> <strong> for Shared Ownership </strong>:Suitable when multiple parts of the code need to  share a resource</li>
+			<h2> Advanced Concepts</h2>
+			<ul>
+				<li> <code>weak_ptr </code>: A non-owning reference to an object managed by `shared_ptr`, used to prevent circular references</li>
+				<li> <strong>Custom Deleters </strong>: Allow smart pointers to manage resources other than memory (e.g., file handles).</li>
+			</ul>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes -->
+		<div class="lesson-section">
+			<h2>Common Mistakes</h2>
+			<li> <strong>Circular References with </strong> <code> shared_ptr </code>: Can lead to memory leaks. Use <code> weak_ptr </code> to break cycles</li>
+			<li> <strong> Misunderstanding Ownership </strong>: Incorrectly managing ownership with smart pointers can cause unexpected behaviors.</li>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="lesson-section">
+			<h2>Real-World Applications</h2>
+			<li> <strong> Resource Management </strong>: Automatically managing the lifetime of dynamically allocated resources</li>
+			<li> <strong> Plugin Systems</strong>: Managing lifetimes of loaded modules without manual cleanup. </li>
+			
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="lesson-section quiz">
+			<h2>Quiz</h2>
+			<p>Take the quiz to test your understanding of the material...</p>
+			<button class="quiz-btn">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="lesson-section">
+			<h2>Summary</h2>
+			<p>Smart pointers provide automatic, safe memory management in C++, helping to prevent common memory-related issues. They are an essential tool in modern C++ programming.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="lesson-section">
+			<h2>Exercises</h2>
+			<li> <strong> Basic Exercise 1 </strong>: Create a <code> unique_ptr </code> to manage a dynamically allocated integer. </li>
+			<li> <strong> Basic Exercise 2 </strong>: Use <code> shared_ptr </code>, to manage a resource shared between two objects.</li>
+			<li> <strong> Intermediate Exercise 1 </strong>:Implement a class using  <code> unique_ptr</code> for exclusive ownership of its resources </li>
+			<li> <strong> Intermediate Exercise 2 </strong>: Demonstrate the use of <code> weak_ptr </code> to solve a circular reference issue.</li>
+			<li> <strong> Advanced Exercise 1 </strong>: Create a custom deleter for <code> unique_ptr</code> that logs when memory is deleted </li>
+			<li> <strong> Advanced Exercise 2 </strong>Implement a resource pool using <code> shared_ptr </code> to manage a collection of reusable objects. </li>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="lesson-section">
+			<h2>Further Reading</h2>
+			<p>You can read more about this lession, read <a href="https://en.cppreference.com/w/cpp/memory">Smart Pointers</a></p>
+			<p>- Book: "Modern C++ Programming with Test-Driven Development" by Jeff Langr. </p>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="lesson-section">
+			<h2>Q&A</h2>
+			<p>Reflect on what you've learned and post any questions in the comments section...</p>
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="lesson-section">
+			<h2>Project-Based Learning</h2>
+			<p>Project: Create a resource manager using smart pointers to handle different types of dynamically allocated resources.</p>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; 2024 SCAM center | All rights reserved</p>
+	</footer>
+
+	<script src="scripts.js"></script>
+</body>
+</html>

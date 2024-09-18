@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Inheritance and Polymorphism in C++</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #e1f5fe;
+			margin: 0;
+			padding: 20px;
+			color: #333;
+		}
+		h1 {
+			color: #0288d1;
+		}
+		.content {
+			max-width: 900px;
+			margin: 20px auto;
+			background-color: #ffffff;
+			padding: 30px;
+			border-radius: 12px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		}
+		.content h2 {
+			color: #01579b;
+			margin-bottom: 10px;
+		}
+		p {
+			line-height: 1.6;
+		}
+		textarea {
+			width: 90%;
+			height: 200px;
+			margin-top: 20px;
+			padding: 15px;
+			border: 1px solid #e65100;
+			border-radius: 10px;
+			font-family: 'Courier New', Courier, monospace;
+			background-color: #fff9c4;
+			font-size: 15px;
+		}
+
+		#codeEditor {
+			width: 90%;
+			height: 250px;
+			font-family: 'Courier New', monospace;
+			border: 2px solid #6c757d;
+			border-radius: 10px;
+			padding: 15px;
+			margin-bottom: 20px;
+			background-color: #fdfdfd;
+			outline: none;
+			resize: vertical;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+		}
+		#runBtn {
+			display: inline-block;
+			padding: 14px 30px;
+			font-size: 18px;
+			color: #fff;
+			background-color: #007bff;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		#runBtn:hover {
+			background-color: #0056b3;
+			transform: translateY(-2px);
+		}
+
+		#output, #timer {
+			width: 90%;
+			padding: 20px;
+			background-color: #f1f3f5;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			margin-top: 20px;
+			font-size: 16px;
+			line-height: 1.5;
+			word-wrap: break-word;
+			overflow-y: auto;
+		}
+
+		#timer {
+			text-align: center;
+			background-color: #ffe8a1;
+			color: #856404;
+			font-weight: bold;
+		}
+
+		#output {
+			background-color: #e2f7e9;
+			color: #155724;
+
+
+		}
+		pre {
+			background-color: #b3e5fc;
+			padding: 20px;
+			border-radius: 10px;
+			margin-top: 20px;
+			white-space: pre-wrap;
+			color: #01579b;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h1>Object-Oriented Programming: Inheritance and Polymorphism</h1>
+		<p>In this lesson, you will dive deeper into two core concepts of Object-Oriented Programming (OOP): Inheritance and Polymorphism. These are essential for building scalable, maintainable applications in C++.</p>
+
+		<h2>Inheritance</h2>
+		<p>Inheritance allows one class (the derived or child class) to inherit the properties and behaviors of another class (the base or parent class). This helps reduce code duplication and fosters code reusability.</p>
+
+		<p>For example, consider a base class <code>Animal</code> and a derived class <code>Dog</code>. The <code>Dog</code> class can inherit the characteristics of the <code>Animal</code> class:</p>
+
+		<pre>
+class Animal {
+public:
+	void eat() {
+		std::cout &lt;&lt; "Eating..." &lt;&lt; std::endl;
+	}
+};
+
+class Dog : public Animal {
+public:
+	void bark() {
+		std::cout &lt;&lt; "Barking..." &lt;&lt; std::endl;
+	}
+};
+		</pre>
+
+		<p>Now, the <code>Dog</code> class can both bark and eat, even though the <code>eat()</code> method is defined in the <code>Animal</code> class. Inheritance allows for the extension and customization of behavior from parent to child classes.</p>
+
+		<h2>Polymorphism</h2>
+		<p>Polymorphism allows different classes to be treated as if they are instances of the same base class, and the specific method implementation called is determined at runtime. This makes your programs flexible and scalable.</p>
+
+		<p>Using the same <code>Animal</code> example, you can create a virtual function in the base class and override it in derived classes:</p>
+
+		<pre>
+class Animal {
+public:
+	virtual void sound() {
+		std::cout &lt;&lt; "Some generic animal sound" &lt;&lt; std::endl;
+	}
+};
+
+class Dog : public Animal {
+public:
+	void sound() override {
+		std::cout &lt;&lt; "Bark!" &lt;&lt; std::endl;
+	}
+};
+
+class Cat : public Animal {
+public:
+	void sound() override {
+		std::cout &lt;&lt; "Meow!" &lt;&lt; std::endl;
+	}
+};
+		</pre>
+
+		<p>With polymorphism, you can now use a pointer or reference to the base class to call the correct method for each derived class:</p>
+
+		<pre>
+Animal* a1 = new Dog();
+Animal* a2 = new Cat();
+
+a1->sound();  // Output: Bark!
+a2->sound();  // Output: Meow!
+		</pre>
+
+
+		<div class="lesson-section" id="CodeEditorSection">
+			<h2>Code Editor</h2>
+			<textarea id="codeEditor" placeholder="Write your C++ code here..."></textarea><br>
+			<textarea id="inputData" placeholder="Enter your input data here..."></textarea><br>
+			<button id="runBtn">Run Code</button>
+			<div id="output"></div>
+			<div id="timer"></div>
+		</div>
+		<script>
+			document.getElementById('runBtn').addEventListener('click', function() {
+				var code = document.getElementById('codeEditor').value;
+				var inputData = document.getElementById('inputData').value;
+				var countdownTime = 5;  // Set the countdown time (in seconds)
+
+				// Display countdown timer
+				var countdownInterval = setInterval(function() {
+					if (countdownTime > 0) {
+						document.getElementById('timer').innerText = "Time remaining: " + countdownTime + " seconds";
+						countdownTime--;
+					} else {
+						document.getElementById('timer').innerText = "Processing result...";
+						clearInterval(countdownInterval);
+
+						// Prepare data to be sent to Judge0
+						var requestData = {
+							"source_code": code,
+							"language_id": 54, 
+							"stdin": inputData
+						};
+
+						// Send data to Judge0 API
+						fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=false&fields=*', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+								'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+								'X-RapidAPI-Key': '47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5'  // Replace with your Judge0 API key
+							},
+							body: JSON.stringify(requestData)
+						})
+						.then(response => response.json())
+						.then(data => {
+							// Poll for result
+							var submissionToken = data.token;
+							setTimeout(function() {
+								fetch(`https://judge0-ce.p.rapidapi.com/submissions/${submissionToken}?base64_encoded=false&fields=*`, {
+									method: 'GET',
+									headers: {
+										'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+										'X-RapidAPI-Key': '47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5'  // Replace with your Judge0 API key
+									}
+								})
+								.then(result => result.json())
+								.then(outputData => {
+									// Display the result in the output div
+									if (outputData.stdout) {
+										document.getElementById('output').innerText = "Output:\n" + outputData.stdout;
+									} else if (outputData.stderr) {
+										document.getElementById('output').innerText = "Error:\n" + outputData.stderr;
+									} else {
+										document.getElementById('output').innerText = "Error:\n" + outputData.compile_output;
+									}
+								});
+							}, 3000); // Poll after 3 seconds
+						})
+						.catch(error => {
+							console.error('Error:', error);
+						});
+					}
+				}, 1000);
+			});
+	</script>
+	</div>
+</body>
+</html>

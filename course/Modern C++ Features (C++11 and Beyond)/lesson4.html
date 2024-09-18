@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C++ Course - Lesson 4</title>
+		
+		<!-- Bootstrap and FontAwesome -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		
+
+		<style>
+				body {
+						background-color: #f4f7fc;
+						font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+
+				.header h1 {
+						text-align: center;
+						margin-top: 20px;
+						color: #333;
+				}
+
+				h1, h2 {
+						color: #007bff;
+						position: relative;
+				}
+
+				/* Icon styles */
+				h2 i {
+						color: #007bff;
+						margin-right: 10px;
+				}
+
+				.content-section {
+						background: white;
+						border-radius: 8px;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+						margin-bottom: 20px;
+						padding: 20px;
+						opacity: 0;
+						transform: translateY(50px);
+						transition: all 0.6s ease;
+				}
+
+				/* Animation for sections */
+				.content-section.visible {
+						opacity: 1;
+						transform: translateY(0);
+				}
+
+				pre {
+						background-color: #f0f0f0;
+						padding: 15px;
+						border-radius: 8px;
+						font-size: 1rem;
+						border-left: 5px solid #007bff;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				}
+
+				code {
+						background-color: #e8e8e8;
+						padding: 2px 6px;
+						border-radius: 4px;
+				}
+
+				.btn {
+						background-color: #007bff;
+						color: white;
+				}
+
+				.footer {
+						text-align: center;
+						margin-top: 20px;
+						padding: 20px;
+						background-color: #007bff;
+						color: white;
+				}
+		</style>
+</head>
+<body>
+		<div class="container">
+				<header class="header">
+						<h1>Lesson 4: Rvalue References and Move Semantics</h1>
+				</header>
+
+				<!-- Lesson Introduction -->
+				<section class="content-section">
+						<h2><i class="fas fa-book"></i>Introduction</h2>
+						<p>Rvalue references and move semantics are advanced features introduced in C++11 that enable efficient resource management and optimization of object transfers. Rvalue references allow for the implementation of move constructors and move assignment operators, reducing unnecessary copying and improving performance.</p>
+				</section>
+
+				<!-- Purpose of the Lesson -->
+				<section class="content-section">
+						<h2><i class="fas fa-bullseye"></i>Purpose of the Lesson</h2>
+						<p>By the end of this lesson, you will: </p>
+						<ul>
+								<li>Understand the concept of rvalue references and their role in move semantics..</li>
+								<li>Learn how to implement move constructors and move assignment operators.</li>
+								<li>Explore best practices for using rvalue references and move semantics to optimize performance.</li>
+						</ul>
+				</section>
+
+				<!-- Detailed Explanation -->
+				<section class="content-section">
+						<h2><i class="fas fa-info-circle"></i>Detailed Explanation</h2>
+						<p><strong>Rvalue References</strong></p>
+						<p>Rvalue references are a type of reference that binds to rvalues (temporary objects) and are denoted by <code>&& </code>. They enable the efficient transfer of resources from temporary objects.</p>
+						<pre class="highlight">
+#include &lt;iostream&gt;
+
+void process(int &&x) {
+    std::cout << "Processing: " << x << std::endl;
+}
+
+int main() {
+    process(5);  // 5 is an rvalue
+    int a = 10;
+    process(std::move(a));  // a is cast to an rvalue
+    std::cout << "a after move: " << a << std::endl;  // Output: a after move: 10
+    return 0;
+}							</pre>
+								<p> Explanation </p>
+								<li><code>process(int &&x)</code>: takes an rvalue reference as a parameter, which allows it to accept both rvalues and objects cast to rvalues using <code> std::move </code>.</li>
+								<li> <code> std::move(a) </code> casts <code> a </code> to an rvalue, allowing <code> process </code> to take ownership of <code> a </code>. After the move, a is left in a valid but unspecified state.</li>
+						</ul><br>
+						<ul>
+								<li><code>std::unique_ptr</code>: Represents exclusive ownership of a dynamically allocated object. Only one <code> std::unique_ptr </code> can own the object at a time, and it automatically deletes the object when the <code> std::unique_ptr </code> is destroyed.</li>
+								<li><code>std::shared_ptr</code>:  SRepresents shared ownership of a dynamically allocated object. Multiple <code> std::shared_ptr </code> instances can own the same object. The object is deleted only when the last <code> std::shared_ptr </code> owning it is destroyed.</li>
+								<li><code>std::weak_ptr</code>: Acts as a non-owning reference to an object managed by <code> std::shared_ptr </code>. It does not affect the reference count of the object and is used to break circular references that can lead to memory leaks.</li>
+						</ul> <br>
+
+						<p>Move Constructor</p>
+						<p> A move constructor transfers ownership of resources from a temporary object to a new object, avoiding unnecessary copies.</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;utility&gt;
+class Resource {
+public:
+    Resource() : data(new int[10]) {
+        std::cout << "Resource acquired" << std::endl;
+    }
+    
+    ~Resource() {
+        delete[] data;
+        std::cout << "Resource released" << std::endl;
+    }
+    
+    // Move constructor
+    Resource(Resource &&other) noexcept : data(other.data) {
+        other.data = nullptr;
+        std::cout << "Resource moved" << std::endl;
+    }
+
+private:
+    int* data;
+};
+
+int main() {
+    Resource r1;
+    Resource r2 = std::move(r1);  // Move r1 to r2
+    return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li>The move constructor <code> Resource(Resource &&other) </code> transfers ownership of the <code> data </code> pointer from <code> other </code> to the new object. The <code> other </code> object’s <code> data </code> pointer is set to <code> nullptr to avoid double deletion..</li>
+								<li>After moving, <code> r1 </code> no longer owns the resource, and <code> r2 </code> takes over ownership.</li>
+						</ul><br>
+
+						<p>Move Assignment Operator></p>
+						<p><code> The move assignment operator transfers ownership of resources from one object to another and is used in assignment scenarios.</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;utility&gt;
+
+class Resource {
+public:
+    Resource() : data(new int[10]) {
+        std::cout << "Resource acquired" << std::endl;
+    }
+    
+    ~Resource() {
+        delete[] data;
+        std::cout << "Resource released" << std::endl;
+    }
+    
+    // Move assignment operator
+    Resource &operator=(Resource &&other) noexcept {
+        if (this != &other) {  // Self-assignment check
+            delete[] data;  // Release existing resource
+            data = other.data;  // Transfer ownership
+            other.data = nullptr;  // Nullify other’s pointer
+        }
+        std::cout << "Resource moved via assignment" << std::endl;
+        return *this;
+    }
+
+private:
+    int* data;
+};
+
+int main() {
+    Resource r1;
+    Resource r2;
+    r2 = std::move(r1);  // Move r1 to r2
+    return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li>The move assignment operator <code> operator=(Resource &&other) </code> transfers ownership of the resource from <code> other </code> to the current object (<code> *this </code>)..</li>
+								<li> The existing resource is released before transferring ownership to prevent memory leaks.</li>
+								<li>After the move, <code> r1 </code> is left in a valid but unspecified state, and <code> r2 </code> takes over the resource.</li>
+						</ul><br>
+
+				<!-- Best Practices and Tips -->
+				<section class="content-section">
+						<h2><i class="fas fa-lightbulb"></i>Tips</h2>
+						<ul>
+								<li> <strong>Implement Move Operations for Classes Managing Resources<code> Always provide move constructors and move assignment operators for classes managing resources (e.g., dynamic memory, file handles).</li>
+								<li> <strong> Use <code> std::move </code> fto Indicate Move Semantics </strong>: Use <code> std::move </code> to cast objects to rvalues when you want to enable move semantics.</li>
+								<li> Handle Self-Assignment in Move Assignment Operators </strong>: Always check for self-assignment in move assignment operators to prevent unintended behavior.</li>
+						</ul>
+				</section>
+
+				<!-- Common Mistakes and Pitfalls -->
+				<section class="content-section">
+						<h2><i class="fas fa-exclamation-circle"></i>Common Mistakes and Pitfalls</h2>
+						<ul>
+							<li> <strong> Forgetting to Nullify Moved-From Objects</strong>:Ensure that after moving resources, the moved-from object’s pointers are set to nullptr to avoid double deletion.</li>
+							<li> <strong> Incorrect Implementation of Move Operations</strong>:Failing to correctly implement move constructors and move assignment operators can lead to resource leaks or undefined behavior. </li>
+						</ul>
+
+				<!-- Real-World Applications -->
+				<section class="content-section">
+						<h2><i class="fas fa-industry"></i>Real-World Applications</h2>
+						<ul>
+							<li> <strong> Efficient Container Operations</strong>:Move semantics are used in STL containers to efficiently manage elements during operations like resizing and reallocation.</li>
+							<li> <strong> Resource Management in Classes </strong>: Move semantics help efficiently manage resources in classes that handle dynamic memory or other resources.</li>
+						</ul>
+				</section>
+
+				<!-- Advanced Concepts (Optional) -->
+				<section class="content-section">
+						<h2><i class="fas fa-cogs"></i>Advanced Concepts</h2>
+						<li> <strong> Perfect Forwarding: Utilize <code> std::forward </code> to forward arguments in templates while preserving their value category (lvalue or rvalue)</li>
+						<pre class="highlight">
+template<typename T>
+void wrapper(T&& arg) {
+    process(std::forward<T>(arg));  // Forward argument while preserving its category
+}
+				</section>
+
+				<!-- Interactive Quiz -->
+				<section class="content-section">
+						<h2><i class="fas fa-clipboard-check"></i>Quiz</h2>
+						<button class="btn quiz-btn">Start Quiz</button>
+				</section>
+
+				<!-- Summary -->
+				<section class="content-section summary">
+						<h2><i class="fas fa-file-alt"></i>Summary</h2>
+						<p>Rvalue references and move semantics in C++ enable efficient resource management by transferring ownership of resources rather than copying them. Understanding and implementing move constructors and move assignment operators help in optimizing performance and managing resources effectively.</p>
+				</section>
+
+				<!-- Exercises -->
+				<section class="content-section exercise">
+						<h2><i class="fas fa-dumbbell"></i>Exercises</h2>
+						<p> <strong> Exercise 1</strong>:Implement a class with a move constructor and move assignment operator that manages a dynamically allocated array. Demonstrate their usage. </p>
+						<p> <strong> Exercise 2</strong>:Write a function that takes an rvalue reference and returns it by value. Test the function with temporary and named objects.</p>
+						<p> <strong> Exercise 3</strong>:Create a container class that utilizes move semantics for efficient element management. Implement and test your container with various operations.</p>
+				</section>
+
+				<!-- Further Reading -->
+				<section class="content-section reading">
+						<h2><i class="fas fa-link"></i>Further Reading and Resources</h2>
+						<li> <a href="https://en.cppreference.com/w/cpp/language/move_constructor">Move Semantics in C++</a></li>
+						<li> <a href="https://isocpp.org/wiki/faq/move-semantics">C++ Move Semantics and Rvalue References </a></li>
+						<li> <<a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rvalue-references">C++ Core Guidelines: MoveSemantics </a> </li>
+				</section>
+
+
+				<!-- Question -->
+				<section class="content-section question">
+						<h2><i class="fas fa-question"></i>Any Question?</h2>		
+				</section>
+
+
+				<!-- Project -->
+				<section class="content-section project">
+						<h2><i class="fas fa-project-diagram"></i>Project-Based Learning</h2>	
+						<p> Develop a resource manager that uses move semantics for efficient handling of dynamic resources. Implement a variety of operations and demonstrate their performance improvements compared to copy-based operations</p>	
+				</section>
+
+				<!-- Footer -->
+				<footer class="footer">
+						<p>SCAM Center. All Rights Reserved</p>
+				</footer>
+		</div>
+
+		<!-- Bootstrap JS, jQuery, and FontAwesome -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Animation Script -->
+		<script>
+				// Scroll Animation
+				window.addEventListener('scroll', function () {
+						const sections = document.querySelectorAll('.content-section');
+						sections.forEach(section => {
+								const position = section.getBoundingClientRect().top;
+								if (position < window.innerHeight - 100) {
+										section.classList.add('visible');
+								}
+						});
+				});
+		</script>
+</body>
+</html>

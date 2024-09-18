@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multithreading Exercises</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            padding: 30px;
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            border: none;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 24px rgba(0,0,0,0.3);
+            background-color: rgba(255,255,255,0.95);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .card-text {
+            font-size: 1rem;
+            color: #f8f9fa;
+        }
+        .basic {
+            background: linear-gradient(145deg, #a1c4fd, #c2e9fb); /* Light blue gradient */
+        }
+        .intermediate {
+            background: linear-gradient(145deg, #ff5722, #e64a19);
+        }
+        .advanced {
+            background: linear-gradient(145deg, #2196f3, #1976d2);
+        }
+        .card-body {
+            text-align: center;
+            padding: 25px;
+        }
+        @media (max-width: 768px) {
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Multithreading Exercises</h1>
+
+<div class="container">
+    <!-- Basic Exercises Row -->
+    <div class="row mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="card basic">
+                <div class="card-body">
+                    <h5 class="card-title">Basic Exercise 1</h5>
+                    <p class="card-text">Create a simple thread that prints "Hello, World!" to demonstrate basic thread creation.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card basic">
+                <div class="card-body">
+                    <h5 class="card-title">Basic Exercise 2</h5>
+                    <p class="card-text">Use two threads to increment a shared counter. Synchronize access using a mutex to prevent race conditions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card basic">
+                <div class="card-body">
+                    <h5 class="card-title">Basic Exercise 3</h5>
+                    <p class="card-text">Write a program with three threads that print numbers in sequence: Thread 1 prints 1-5, Thread 2 prints 6-10, Thread 3 prints 11-15.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card basic">
+                <div class="card-body">
+                    <h5 class="card-title">Basic Exercise 4</h5>
+                    <p class="card-text">Implement a program where one thread writes data to a file while another reads from it simultaneously.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intermediate Exercises Row -->
+    <div class="row mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="card intermediate">
+                <div class="card-body">
+                    <h5 class="card-title">Intermediate Exercise 1</h5>
+                    <p class="card-text">Develop a multithreaded program to find the sum of an array using multiple threads. Each thread computes a partial sum.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card intermediate">
+                <div class="card-body">
+                    <h5 class="card-title">Intermediate Exercise 2</h5>
+                    <p class="card-text">Simulate a producer-consumer scenario using threads. Use a mutex and condition variables to handle synchronization.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card intermediate">
+                <div class="card-body">
+                    <h5 class="card-title">Intermediate Exercise 3</h5>
+                    <p class="card-text">Create a thread pool with fixed-size threads that process a queue of tasks. Implement task submission and execution.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card intermediate">
+                <div class="card-body">
+                    <h5 class="card-title">Intermediate Exercise 4</h5>
+                    <p class="card-text">Implement the dining philosophers problem using threads and semaphores to manage resource sharing and avoid deadlocks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Exercises Row -->
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="card advanced">
+                <div class="card-body">
+                    <h5 class="card-title">Advanced Exercise 1</h5>
+                    <p class="card-text">Implement parallel matrix multiplication using multiple threads, dividing the task into row-wise computations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card advanced">
+                <div class="card-body">
+                    <h5 class="card-title">Advanced Exercise 2</h5>
+                    <p class="card-text">Develop a multithreaded HTTP server simulation where each request is handled by a separate thread from a thread pool.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card advanced">
+                <div class="card-body">
+                    <h5 class="card-title">Advanced Exercise 3</h5>
+                    <p class="card-text">Create a parallel quicksort algorithm that uses multiple threads to sort sections of the array concurrently.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card advanced">
+                <div class="card-body">
+                    <h5 class="card-title">Advanced Exercise 4</h5>
+                    <p class="card-text">Design a thread-safe logging system where multiple threads write log entries to a shared file without data corruption.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

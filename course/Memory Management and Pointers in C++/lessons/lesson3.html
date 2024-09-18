@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course Lesson</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar">
+		<div class="logo">C++ Learning</div>
+		<ul class="nav-links">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Courses</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!-- Hero Section -->
+	<header class="hero">
+		<div class="hero-content">
+			<h1>Welcome to Lesson 3</h1>
+			<p>Half of journey on learning C++ </p>
+			<a href="#lesson" class="cta-btn">Start Learning</a>
+		</div>
+	</header>
+
+	<!-- Lesson Section -->
+	<section class="lesson" id="lesson">
+		<h1 class="section-title">Lesson Title: Dynamic Memory Allocation (new, delete)</h1>
+
+		<!-- Introduction -->
+		<div class="lesson-section">
+			<h2>Introduction</h2>
+			<p>Dynamic memory allocation in C++ allows the allocation of memory during runtime, providing
+			flexibility in managing memory efficiently. The `new` and `delete` operators are essential tools
+			for managing this dynamic memory, allowing developers to create and destroy objects as
+			needed.</p>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="lesson-section">
+			<h2>Purpose of the Lesson</h2>
+			<p>The purpose of this lesson is to understand how to use `new` and `delete` for dynamic memory
+			allocation and deallocation. Mastery of these operators is crucial for creating scalable
+			applications and managing memory efficiently.</p>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="lesson-section">
+			<h2>Detailed Explanation</h2>
+			
+			<ul>
+				<li> <strong> Dynamic Memory Allocation </strong>: Memory allocation at runtime using the <code> new</code>  operator; declares a pointer to an integer.</li>
+				<li> <strong><code> new </code> Operator: </strong>Allocates memory from the heap and returns a pointer to the allocated space.</li>
+				<li> <strong> <code> delete </code> Operator </strong>:  Deallocates memory previously allocated with `new`, freeing up resources.</li>
+				<li> <strong>Array Allocation </strong>: <code> new </code> can also allocate memory for arrays.</li>
+				<li> <strong>Memory Leaks </strong>:Occur when allocated memory is not properly deallocated, leading to wasted resources.</li>
+			</ul>
+		</div>
+
+		<!-- Code Examples -->
+		<div class="lesson-section code-examples">
+			<h2>Code Examples</h2>
+			<pre><code>
+#include <iostream>
+int main() {
+	// Dynamic allocation of a single integer
+	int* ptr = new int(10); // Allocate memory for an integer and initialize it to 10.
+	std::cout << "Value: " << *ptr << std::endl; // Output the value pointed to by ptr.
+	delete ptr; // Deallocate the memory to avoid memory leaks.
+	// Dynamic allocation of an array
+	int size = 5;
+	int* arr = new int[size]; // Allocate memory for an array of 5 integers.
+	// Initialize and print array elements
+	for (int i = 0; i < size; i++) {
+	arr[i] = i * 10;
+	std::cout << "Array element " << i << ": " << arr[i] << std::endl;
+	}
+	delete[] arr; // Deallocate the array memory.
+	return 0;
+}
+
+
+
+			</code></pre> 
+		</div>
+		<p> Explanation of the Code: </p>
+		<ul>
+			<li> <strong> Single Integer Allocation</strong>: The code uses <code> new</code> to allocate memory for a single integer,
+			initializing it with the value<code> 10</code>. The memory is then freed using <code> delete</code>.
+			.</li>
+			<li> <strong> Array Allocation </strong>: The <code> new </code>  operator is used to dynamically allocate an array of integers.
+			After use, the memory is deallocated using <code> delete[] </code> to avoid memory leaks.</li>
+			<li> <strong>Pointer Arithmetic with Arrays </strong>: The array <code> arr </code> is used with a pointer <code> arrPtr </code> that points to its first element. By incrementing <code> arrPtr </code>, the code accesses subsequent elements of the array without needing explicit indexing.</li>
+		</ul>
+
+		<!-- Best Practices -->
+		<div class="lesson-section">
+			<h2>Tips:</h2>
+			<ul>	
+				<li> <strong> Always Pair </strong> <code> new </code>  <strong> with  </strong> <code> delete </code>: : Ensure that every <code> new</code>  operation has a corresponding <code> delete</code>  to avoid memory leaks.</li>
+				<li> <strong> Use </strong> <code>delete[] </code> <strong> for Arrays </strong>:  When freeing dynamically allocated arrays, always use <code>delete[]</code> instead of <code>delete</code>.</li>
+				<li> <strong>Nullify Pointers</strong>:After deleting a pointer, set it to <code> nullptr</code>  to prevent accidentaldereferencing. </li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes -->
+		<div class="lesson-section">
+			<h2>Common Mistakes</h2>
+			<li> <strong> Memory Leaks </strong>: Failing to free heap memory results in memory that remains allocated indefinitely, which can degrade performance and crash programs over time.</li>
+			<li> <strong> Dangling Pointers </strong>: Pointers that reference memory that has already been freed can lead to undefined behavior if accessed again.</li>
+			<li> <strong> Stack Overflows </strong>: Deep recursion or excessive stack usage can exhaust stack space, leading to a crash.</li>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="lesson-section">
+			<h2>Real-World Applications</h2>
+			<p> Pointers are used in applications requiring dynamic memory management, such as:</p>
+			<li> <strong> Dynamic Data Structures </strong>: Implementing data structures like linked lists, trees, and graphs</li>
+			<li> <strong> Resource Management</strong>: : Managing memory in applications that require frequent allocation  and deallocation, such as simulations or games. </li>
+			
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="lesson-section quiz">
+			<h2>Quiz</h2>
+			<p>Take the quiz to test your understanding of the material...</p>
+			<button class="quiz-btn">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="lesson-section">
+			<h2>Summary</h2>
+			<p>Dynamic memory allocation allows for flexible and efficient memory use in C++. Proper use of new and delete is essential for managing resources and preventing memory-related issues.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="lesson-section">
+			<h2>Exercises</h2>
+			<li> <strong> Basic Exercise 1 </strong>: Allocate memory for an integer using <code> new </code> and print its value. </li>
+			<li> <strong> Basic Exercise 2 </strong>: Create an array using <code> new </code>, populate it with values, and print them.</li>
+			<li> <strong> Intermediate Exercise 1 </strong>:Write a program that allocates memory for a 2D array using new.</li>
+			<li> <strong> Intermediate Exercise 2 </strong>: Implement a dynamic stack using <code> new </code> for memory allocation.</li>
+			<li> <strong> Advanced Exercise 1 </strong>: Implement a simple linked list using dynamic memory allocation.</li>
+			<li> <strong> Advanced Exercise 2 </strong>Create a class that uses dynamic memory allocation in its  constructor and destructor.</li>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="lesson-section">
+			<h2>Further Reading</h2>
+			<p>You can read more about this lession, read <a href="https://cplusplus.com/doc/tutorial/dynamic/">Dynamic Memory in C++</a></p>
+			<p>Book: "The C++ Programming Language" by Bjarne Stroustrup </p>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="lesson-section">
+			<h2>Q&A</h2>
+			<p>Reflect on what you've learned and post any questions in the comments section...</p>
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="lesson-section">
+			<h2>Project-Based Learning</h2>
+			<p>Project: Build a simple memory management system that allocates and deallocates memory based on user input.</p>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; 2024 SCAM center | All rights reserved</p>
+	</footer>
+
+	<script src="scripts.js"></script>
+</body>
+</html>

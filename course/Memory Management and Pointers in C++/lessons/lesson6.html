@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Memory Management and Pointers in C++</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		
+
+		/* Header styles */
+		header {
+			background: url('pratice.jpg') center center / cover no-repeat;
+			color: white;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+			padding: 100px 0;
+			animation: fadeIn 2s ease-in-out;
+			position: relative;
+		}
+
+		/* Sticky Navigation */
+		nav {
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			background-color: rgba(0, 0, 0, 0.7);
+			transition: background-color 0.5s;
+		}
+
+		nav a {
+			color: white !important;
+			transition: color 0.3s;
+		}
+
+		nav a:hover {
+			color: #FFD700 !important; /* Golden color on hover */
+		}
+
+		/* Section animations */
+		section {
+			animation: slideIn 1s ease-in-out;
+			margin-bottom: 30px;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideIn {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Hover effects for list items */
+		.list-group-item {
+			transition: transform 0.3s, background-color 0.3s;
+			cursor: pointer;
+		}
+
+		.list-group-item:hover {
+			transform: scale(1.05);
+			background-color: #f8f9fa;
+		}
+
+		/* Footer styles */
+		footer {
+			background-color: #343a40;
+			color: white;
+			padding: 20px 0;
+		}
+
+		.footer-link {
+			color: #FFD700;
+			text-decoration: none;
+		}
+
+		.footer-link:hover {
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="#">C++ Memory Management</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a class="nav-link" href="#introduction">Introduction</a></li>
+					<li class="nav-item"><a class="nav-link" href="#content">Lesson Content</a></li>
+					<li class="nav-item"><a class="nav-link" href="#exercises">Exercises</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Header -->
+	<header class="text-center">
+		<div class="container">
+			<h1 class="display-4">Memory Management and Pointers in C++</h1>
+			<p class="lead">Master the essentials of memory management and pointers with engaging lessons and exercises.</p>
+		</div>
+	</header>
+
+	<!-- Introduction Section -->
+	<section id="introduction" class="py-5">
+		<div class="container">
+			<h2 class="mb-4 text-primary">Introduction</h2>
+			<p>Welcome to the lesson on Memory Management and Pointers in C++. This lesson will cover key concepts such as stack vs. heap memory, pointers, dynamic memory allocation, smart pointers, and best practices to avoid memory leaks.</p>
+		</div>
+	</section>
+
+	<!-- Lesson Content Section -->
+	<section id="content" class="py-5 bg-light">
+		<div class="container">
+			<h2 class="mb-4 text-success">Lesson Content</h2>
+			<div class="accordion" id="lessonAccordion">
+				<!-- Lesson 1 -->
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#lesson1" aria-expanded="true">
+							Lesson 1: Introduction to Memory in C++ (Stack vs. Heap)
+						</button>
+					</h2>
+					<div id="lesson1" class="accordion-collapse collapse show" data-bs-parent="#lessonAccordion">
+						<div class="accordion-body">
+							Understand the differences between stack and heap memory, and how they are used in C++.
+						</div>
+					</div>
+				</div>
+				<!-- Repeat for other lessons -->
+				<!-- Lesson 2 -->
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lesson2">
+							Lesson 2: Basics of Pointers and Addressing
+						</button>
+					</h2>
+					<div id="lesson2" class="accordion-collapse collapse" data-bs-parent="#lessonAccordion">
+						<div class="accordion-body">
+							Learn the basics of pointers, how to declare them, and how to use them to access memory addresses.
+						</div>
+					</div>
+				</div>
+				<!-- Additional lessons -->
+				<!-- Add similar accordion items for Lessons 3 to 5 -->
+			</div>
+		</div>
+	</section>
+
+	
+	<!-- Exercises Section -->
+	<section id="exercises" class="py-5">
+		<div class="container">
+			<h2 class="mb-4 text-warning">Exercises</h2>
+			<div class="row">
+				<!-- Fundamental Exercises -->
+				<div class="col-md-4">
+					<h3>Fundamental</h3>
+					<div class="accordion" id="fundamentalExercises">
+						<!-- Exercise 1 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fundamental1" aria-expanded="false">
+									Exercise 1: Understanding Pointers
+								</button>
+							</h2>
+							<div id="fundamental1" class="accordion-collapse collapse" data-bs-parent="#fundamentalExercises">
+								<div class="accordion-body">
+									Write a program that declares a pointer to an integer, assigns it to the address of a variable, and then displays the value stored at that address using the pointer.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 2 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fundamental2">
+									Exercise 2: Pointer Arithmetic
+								</button>
+							</h2>
+							<div id="fundamental2" class="accordion-collapse collapse" data-bs-parent="#fundamentalExercises">
+								<div class="accordion-body">
+									Create a program that performs pointer arithmetic to iterate through an array of integers and prints each value.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 3 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fundamental3">
+									Exercise 3: Dynamic Memory Allocation
+								</button>
+							</h2>
+							<div id="fundamental3" class="accordion-collapse collapse" data-bs-parent="#fundamentalExercises">
+								<div class="accordion-body">
+									Implement a program that dynamically allocates an array of integers using the `new` keyword and then frees the memory using `delete`.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 4 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fundamental4">
+									Exercise 4: Pointer to a Function
+								</button>
+							</h2>
+							<div id="fundamental4" class="accordion-collapse collapse" data-bs-parent="#fundamentalExercises">
+								<div class="accordion-body">
+									Write a program that demonstrates the use of a pointer to a function, passing different functions to the pointer and calling them.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Intermediate Exercises -->
+				<div class="col-md-4">
+					<h3>Intermediate</h3>
+					<div class="accordion" id="intermediateExercises">
+						<!-- Exercise 5 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#intermediate5">
+									Exercise 5: Multi-level Pointers
+								</button>
+							</h2>
+							<div id="intermediate5" class="accordion-collapse collapse" data-bs-parent="#intermediateExercises">
+								<div class="accordion-body">
+									Create a program using double pointers (pointers to pointers) to dynamically allocate a 2D array.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 6 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#intermediate6">
+									Exercise 6: Dynamic 2D Array
+								</button>
+							</h2>
+							<div id="intermediate6" class="accordion-collapse collapse" data-bs-parent="#intermediateExercises">
+								<div class="accordion-body">
+									Develop a program that dynamically allocates memory for a 2D array and allows the user to input values.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 7 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#intermediate6">
+									Exercise 7: Smart Pointers (<code> unique_ptr </code>)
+								</button>
+							</h2>
+							<div id="intermediate6" class="accordion-collapse collapse" data-bs-parent="#intermediateExercises">
+								<div class="accordion-body">
+									Write a program that creates a class Person with a name attribute. Use a <code> unique_ptr </code> to create an instance of the Person class, assign a name, and display it.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 8 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#intermediate6">
+									Exercise 8: Shared Ownership with <code> shared_ptr </code>
+								</button>
+							</h2>
+							<div id="intermediate6" class="accordion-collapse collapse" data-bs-parent="#intermediateExercises">
+								<div class="accordion-body">
+									Create a program that simulates a shared resource using <code> shared_ptr </code>. Create two <code> shared_ptr </code> instances pointing to the same dynamically allocated memory and display the reference count.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Advanced Exercises -->
+				<div class="col-md-4">
+					<h3>Advanced</h3>
+					<div class="accordion" id="advancedExercises">
+						<!-- Exercise 9 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#advanced9">
+									Exercise 9: Avoiding Memory Leaks
+								</button>
+							</h2>
+							<div id="advanced9" class="accordion-collapse collapse" data-bs-parent="#advancedExercises">
+								<div class="accordion-body">
+									Implement a class with a constructor and destructor where memory is dynamically allocated in the constructor and freed in the destructor. Intentionally create a scenario that causes a memory leak, then fix it.
+								</div>
+							</div>
+						<!-- Exercise 10 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#advanced9">
+									Exercise 10: Circular References in Smart Pointers
+								</button>
+							</h2>
+							<div id="advanced9" class="accordion-collapse collapse" data-bs-parent="#advancedExercises">
+								<div class="accordion-body">
+									Create two classes <code> A </code> and <code> B </code>, where each has a <code> shared_ptr </code> to the other. Identify the issue of circular reference and resolve it using <code> weak_ptr </code>.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 11 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#advanced9">
+									Exercise 11: Custom Deleters with <code> unique_ptr </code>
+								</button>
+							</h2>
+							<div id="advanced9" class="accordion-collapse collapse" data-bs-parent="#advancedExercises">
+								<div class="accordion-body">
+									Implement a custom deleter for a <code> unique_ptr </code> that dynamically allocates an array of integers. The custom deleter should correctly free the allocated memory.
+								</div>
+							</div>
+						</div>
+						<!-- Exercise 12 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#advanced9">
+									Exercise 12: Implementing a Memory Pool
+								</button>
+							</h2>
+							<div id="advanced9" class="accordion-collapse collapse" data-bs-parent="#advancedExercises">
+								<div class="accordion-body">
+									Write a simple memory pool allocator that preallocates a large block of memory and manages allocation and deallocation within that block. Demonstrate the usage of this custom memory pool with a few allocations and deallocations.
+								</div>
+							</div>
+						</div>
+						<!-- Additional Advanced Exercises -->
+						<!-- Repeat similar structure for Exercise 10, 11, and 12 -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Footer -->
+	<footer class="text-center">
+		<div class="container">
+			<p>&copy; 2024 Memory Management in C++. All Rights Reserved.</p>
+			<a href="#" class="footer-link me-3">Contact</a>
+			<a href="#" class="footer-link">Privacy Policy</a>
+		</div>
+	</footer>
+
+	<!-- JavaScript for Smooth Scroll -->
+	<script>
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
+				});
+			});
+		});
+
+		// Change navbar background on scroll
+		window.addEventListener('scroll', function() {
+			const navbar = document.querySelector('nav');
+			if (window.scrollY > 50) {
+				navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+			} else {
+				navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+			}
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

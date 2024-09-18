@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+    <!-- SweetAlert2 CSS and JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Bootstrap CSS (optional for more styling) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="profile-container container mt-5">
+        <h1 class="text-center">Your Profile</h1>
+
+        <div class="profile-layout row">
+            <!-- Image Section -->
+            <div class="profile-image-section col-md-4 text-center">
+                <img id="profileImage" src="" alt="Profile Picture" class="profile-image img-thumbnail">
+                <input type="file" id="imageUpload" style="display: none;" onchange="uploadImage()">
+                <button type="button" class="btn btn-primary mt-2" onclick="document.getElementById('imageUpload').click();">Upload Image</button>
+            </div>
+
+            <!-- Form Section -->
+            <div class="profile-form-section col-md-8">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="text" class="form-control" id="username" readonly>
+                        <span class="edit-pencil" onclick="enableEdit('username')">✏️</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" class="form-control" id="email" readonly>
+                        <span class="edit-pencil" onclick="enableEdit('email')">✏️</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="text" class="form-control" id="phone" readonly>
+                        <span class="edit-pencil" onclick="enableEdit('phone')">✏️</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter new password if you want to change">
+                        <span class="edit-pencil" onclick="enableEdit('password')">✏️</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="updateButton">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const userId = localStorage.getItem("user_id");
+
+            // Fetch user info
+            $.ajax({
+                url: "fetch_user.php",
+                type: "POST",
+                data: { user_id: userId },
+                success: function (response) {
+                    const user = JSON.parse(response);
+                    $('#username').val(user.username);
+                    $('#email').val(user.email);
+                    $('#phone').val(user.phone);
+                    $('#profileImage').attr("src", user.image);
+                    // Password field is not pre-filled since we don’t want to show the hash
+                }
+            });
+
+            // Handle profile form submission
+            $('#profileForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const updatedData = {
+                    user_id: userId,
+                    username: $('#username').val(),
+                    email: $('#email').val(),
+                    phone: $('#phone').val(),
+                    password: $('#password').val()  // Include password (if it's changed)
+                };
+
+                $.ajax({
+                    url: 'update_user.php',
+                    type: 'POST',
+                    data: updatedData,
+                    success: function (response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Profile Updated',
+                            text: 'Your profile has been successfully updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Update Failed',
+                            text: 'There was an issue updating your profile. Please try again.'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Enable editing fields
+        function enableEdit(fieldId) {
+            $('#' + fieldId).removeAttr('readonly').focus();
+        }
+
+        // Handle image upload
+        function uploadImage() {
+            const formData = new FormData();
+            const imageFile = document.getElementById("imageUpload").files[0];
+            formData.append("file", imageFile);
+            formData.append("user_id", localStorage.getItem("user_id"));
+
+            $.ajax({
+                url: "upload_image.php",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.includes("uploads/")) {
+                        $('#profileImage').attr("src", response);
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Image Uploaded',
+                            text: 'Your profile picture has been successfully uploaded.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Upload Failed',
+                            text: response
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'There was a problem uploading your image. Please try again.'
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

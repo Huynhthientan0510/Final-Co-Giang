@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: #f0f8ff;
+			overflow-x: hidden;
+			scroll-behavior: smooth;
+		}
+
+		/* Header Styling */
+		.lesson-header {
+			background: linear-gradient(135deg, #007bff, #00c6ff);
+			color: white;
+			padding: 50px 0;
+			text-align: center;
+			margin-bottom: 40px;
+			border-bottom-left-radius: 50px;
+			border-bottom-right-radius: 50px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.lesson-header h1 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+			animation: bounceInDown 1s ease-in-out;
+		}
+
+		.lesson-header p {
+			font-size: 1.2rem;
+			margin-top: 10px;
+		}
+
+		/* Section Title */
+		.section-title {
+			font-size: 1.8rem;
+			margin-top: 20px;
+			color: #007bff;
+			text-transform: uppercase;
+			font-weight: bold;
+			border-bottom: 3px solid #007bff;
+			display: inline-block;
+			padding-bottom: 5px;
+			position: relative;
+			animation: fadeInLeft 1s ease-in-out;
+		}
+
+		.section {
+			margin-bottom: 30px;
+			padding: 20px;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			animation: fadeInUp 1s ease-in-out;
+		}
+
+		.section p {
+			color: #333;
+			line-height: 1.6;
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		/* Code Example */
+		.code-example {
+			background-color: #2d2d2d;
+			color: #61dafb;
+			padding: 20px;
+			border-radius: 5px;
+			font-family: 'Courier New', Courier, monospace;
+			overflow-x: auto;
+			margin-top: 10px;
+			border-left: 5px solid #007bff;
+			animation: fadeIn 1.5s ease-in-out;
+		}
+
+		/* Button Styles */
+		.btn-quiz {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			transition: all 0.3s ease;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+		}
+
+		.btn-quiz:hover {
+			background-color: #218838;
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+		}
+
+		.btn-quiz:focus {
+			outline: none;
+			box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+		}
+
+		.btn-quiz:active {
+			transform: translateY(1px);
+		}
+
+		/* Animations */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInLeft {
+			from {
+				opacity: 0;
+				transform: translateX(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes bounceInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+			60% {
+				opacity: 1;
+				transform: translateY(30px);
+			}
+			80% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Lesson Header -->
+	<header class="lesson-header">
+		<h1>Welcome to Lesson 5</h1>
+		<p>Thread Pools and Parallelism</p>
+	</header>
+
+	<div class="container">
+		<!-- Introduction Section -->
+		<div class="section">
+			<h2 class="section-title"> 1) Introduction</h2>
+			<ul>
+				<li> Thread pools are a powerful tool in multithreaded programming that help manage a group of reusable threads to perform tasks concurrently, reducing the overhead associated with creating and destroying threads repeatedly.</li>
+				<li> Parallelism leverages multiple threads to perform independent tasks simultaneously, significantly improving the performance of computationally intensive applications.</li>
+			</ul>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="section">
+			<h2 class="section-title"> 2) Purpose of the Lesson</h2>
+			<ul>
+				<li> To understand the concept of thread pools and how they improve the efficiency of multithreaded applications.</li>
+				<li> To learn about parallelism, its advantages, and how it differs from concurrency.</li>
+				<li> To implement thread pools in C++ and explore strategies for optimizing parallel execution.</li>
+			</ul>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="section">
+			<h2 class="section-title"> 3) Detailed Explanation</h2>
+			<ul> 
+				<li> <strong> What is a Thread Pool </strong>? </li> <br>
+				<li style="margin-left: 20px;"> A thread pool is a collection of pre-instantiated, idle threads that stand ready to execute tasks as needed.</li>
+				<li style="margin-left: 20px"> Thread pools minimize the overhead of creating and destroying threads repeatedly, as threads are reused for multiple tasks.</li> 
+				<li style="margin-left: 20px"> Thread pools are particularly useful in server applications where handling many short-lived tasks efficiently is crucial.</li><br>
+
+				<li> <strong> How Thread Pools Work: </strong> </li>
+				<li style="margin-left: 20px;">  Tasks are submitted to a queue.</li>
+				<li style="margin-left: 20px;">  Worker threads in the pool pick up tasks from the queue and execute them.</li>
+				<li style="margin-left: 20px;">  Once a task is completed, the thread returns to the pool and becomes available for new tasks.</li><br>
+
+
+				<li> <strong> Parallelism vs. Concurrency: </strong> </li>
+				<li style="margin-left: 20px;"> <strong> Concurrency </strong>: Multiple tasks are managed simultaneously but not necessarily executed at the same time.</li>
+				<li style="margin-left: 20px;">  <strong> Parallelism </strong>: Multiple tasks are executed at the same time, taking full advantage of multi-core processors.</li>
+
+				<li> <strong> Implementing Thread Pools in C++: </strong> </li>
+				<li style="margin-left: 20px;"> C++ does not provide a built-in thread pool class, but it can be implemented using <code> std::thread</code>, <code> std::mutex</code>, <code> std::condition_variable</code>, and a task queue.</li> 
+				<li style="margin-left: 20px;"> Basic Thread Pool Implementation:</li>
+				<div class="section">
+					<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;thread&gt;
+#include &lt;queue&gt;
+#include &lt;functional&gt;
+#include &lt;mutex&gt;
+#include &lt;condition_variable&gt;
+#include &lt;atomic&gt;
+
+class ThreadPool {
+public:
+	ThreadPool(size_t numThreads);
+	~ThreadPool();
+
+	// Add a new task to the pool
+	void enqueueTask(std::function&lt;void()&gt; task);
+
+private:
+	std::vector&lt;std::thread&gt; workers;
+	std::queue&lt;std::function&lt;void()&gt;&gt; tasks;
+	std::mutex tasksMutex;
+	std::condition_variable condition;
+	std::atomic&lt;bool> stop;
+
+	void workerThread();
+};
+
+ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
+	for (size_t i = 0; i < numThreads; ++i) {
+		workers.emplace_back(&ThreadPool::workerThread, this);
+	}
+}
+
+ThreadPool::~ThreadPool() {
+	stop = true;
+	condition.notify_all();
+	for (auto &worker : workers) {
+		worker.join();
+	}
+}
+
+void ThreadPool::enqueueTask(std::function&lt;void()&gt; task) {
+	{
+		std::unique_lock&lt;std::mutex&gt; lock(tasksMutex);
+		tasks.push(task);
+	}
+	condition.notify_one();
+}
+
+void ThreadPool::workerThread() {
+	while (!stop) {
+		std::function&lt;void()&gt; task;
+		{
+			std::unique_lock&lt;std::mutex&gt;lock(tasksMutex);
+			condition.wait(lock, [this] { return stop || !tasks.empty(); });
+			if (stop && tasks.empty()) return;
+			task = std::move(tasks.front());
+			tasks.pop();
+		}
+		task();
+	}
+}
+
+int main() {
+	ThreadPool pool(4); // Create a pool with 4 threads
+	for (int i = 0; i < 10; ++i) {
+		pool.enqueueTask([i] {
+			std::cout << "Task " << i << " is running on thread " << std::this_thread::get_id() << std::endl;
+		});
+	}
+
+	// Allow some time for tasks to complete
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+	return 0;
+}
+
+					</pre> 
+				</div> <br>
+				<li> <h3> Explanantion: </li>
+					<ul>
+						<li style="margin-left:20px"> The thread pool consists of a fixed number of threads that execute tasks pulled from a task queue.</li>
+						<li style="margin-left:20px"> Tasks are submitted to the pool using <code> enqueueTask() </code>, and worker threads pick up tasks when they become available.</li>
+					</ul>
+			</ul>
+		</div>
+
+		<!-- Code Examples or Practical Demonstrations -->
+		<div class="section">
+			<h2 class="section-title">Parallel Matrix Multiplication</h2>
+			<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;vector&gt;
+
+const int MATRIX_SIZE = 3;
+
+void multiplyRowByMatrix(const std::vector&lt;std::vector&lt;int&gt;&gt;& A,
+						 const std::vector&lt;std::vector&lt;int&gt;&gt;& B,
+						 std::vector&lt;std::vector&lt;int&gt;&gt;& C,
+						 int row) {
+	for (int j = 0; j &lt; MATRIX_SIZE; ++j) {
+		C[row][j] = 0;
+		for (int k = 0; k &lt; MATRIX_SIZE; ++k) {
+			C[row][j] += A[row][k] * B[k][j];
+		}
+	}
+}
+
+int main() {
+	std::vector&lt;std::vector&lt;int&gt;&gt; A = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	std::vector&lt;std::vector&lt;int&gt;&gt; B = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+	std::vector&lt;std::vector&lt;int&gt;&gt; C(MATRIX_SIZE, std::vector&lt;int&gt;(MATRIX_SIZE));
+
+	std::vector&lt;std::thread&gt; threads;
+	for (int i = 0; i &lt; MATRIX_SIZE; ++i) {
+		threads.emplace_back(multiplyRowByMatrix, std::ref(A), std::ref(B), std::ref(C), i);
+	}
+
+	for (auto& t : threads) {
+		t.join();
+	}
+
+	std::cout &lt;&lt; "Resultant Matrix:" &lt;&lt; std::endl;
+	for (const auto& row : C) {
+		for (int val : row) {
+			std::cout &lt;&lt; val &lt;&lt; " ";
+		}
+		std::cout &lt;&lt; std::endl;
+	}
+	return 0;
+}
+
+			</pre><br>
+			<h2> Explanation: </h2>
+			<ul>
+				<li> Each row of the resultant matrix is calculated concurrently by separate threads, demonstrating how parallelism can speed up computations.</li>
+			</ul>
+		</div>
+
+		<!-- Best Practices and Tips -->
+		<div class="section">
+			<h2 class="section-title">Best Practices and Tips</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Optimize Task Granularity</strong>: Avoid creating too many small tasks; the overhead may outweigh the benefits of parallelism.</li>
+				<li class="list-group-item"> <strong> Manage Work Distribution</strong>:  Ensure tasks are evenly distributed among threads to prevent some threads from being idle while others are overburdened.</li>
+				<li class="list-group-item"> <strong> Handle Exceptions</strong>: Properly handle exceptions within thread pool tasks to avoid crashing the pool..</li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes and Pitfalls -->
+		<div class="section">
+			<h2 class="section-title">Common Mistakes and Pitfalls:</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Overloading Threads </strong>:  Creating too many threads or tasks can lead to excessive context switching and degrade performance.</li>
+				<li class="list-group-item"> <strong> Improper Resource Sharing </strong>: Failing to synchronize shared resources can cause race conditions even within a thread pool.</li>
+			</ul>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="section">
+			<h2 class="section-title">Real-World Applications</h2>
+			<ul>
+				<li> <strong>Web Servers </strong>:Thread pools handle incoming HTTP requests concurrently, allowing servers to process multiple client requests efficiently. </li>
+				<li> <strong>Scientific Computing </strong>:Parallel algorithms accelerate computations in simulations, modeling, and data analysis.</li>
+			</ul>
+		</div>
+
+		<!-- Advanced Concepts -->
+		<div class="section">
+			<h2 class="section-title">Advanced Concepts</h2>
+			<ul>
+				<li> <strong> Task Scheduling Algorithms </strong>: Explore task scheduling algorithms like work-stealing that dynamically redistribute tasks among threads to optimize workload balance.</li> 
+				<li> <strong> Thread Affinity </strong>:Binding threads to specific CPU cores to improve performance through cache locality.</li> 
+			</ul>
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="section text-center">
+			<h2 class="section-title">Interactive Elements / Quizzes</h2>
+			<button class="btn btn-quiz">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="section">
+			<h2 class="section-title">Summary</h2>
+			<p>Summarize the benefits of thread pools, strategies for effective parallelism, and common pitfalls to avoid when implementing these techniques.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="section">
+			<h2 class="section-title">Exercises / Challenges</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Basic Exercise </strong>: Modify the provided thread pool implementation to include a shutdown method that gracefully stops all threads.</li>
+				<li class="list-group-item"> <strong> Intermediate Exercise </strong>: Implement a parallel quicksort algorithm using a thread pool to sort large datasets.</li>
+			</ul>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="section">
+			<h2 class="section-title">Further Reading and Resources</h2>
+			<ul>
+				<li> <strong> Online Resources: </strong>: Explore tutorials on advanced parallel algorithms and thread pool design patterns.</li>
+				<li> <strong> Books </strong>: Explore tutorials on advanced parallel algorithms and thread pool design patterns.</li>
+				<li> <p> Read more information, on this presentation <a href="https://indico.cern.ch/event/771113/contributions/3203724/attachments/1843122/3027323/4_ResourceProtectionAndThreadSafety.pdf"> Thread Safety abd Deadlocks </a> </p></li>
+			</ul>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="section">
+			<h2 class="section-title">Q&A / Reflection Section</h2>
+			
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="section">
+			<h2 class="section-title">Project-Based Learning Section</h2>
+			<p>Develop a multithreaded web server simulation where a thread pool handles incoming client requests, demonstrating the benefits of using a pool to manage high concurrency levels.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap JavaScript Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

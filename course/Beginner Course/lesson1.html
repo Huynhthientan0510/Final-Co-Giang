@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beginner Course</title>
+	<style>
+		{
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: 'Arial', sans-serif;
+			background-color: #f3f6f9;
+			color: #333;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+		}
+
+		.container {
+			max-width: 1200px;
+			width: 100%;
+			background-color: #ffffff;
+			border-radius: 12px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+			padding: 40px;
+			margin-top: 20px;
+		}
+
+		h1 {
+			color: #2d3748;
+			font-size: 36px;
+			text-align: center;
+			margin-bottom: 40px;
+			text-transform: uppercase;
+		}
+
+		#codeEditor {
+			width: 100%;
+			height: 250px;
+			font-family: 'Courier New', monospace;
+			border: 2px solid #6c757d;
+			border-radius: 10px;
+			padding: 15px;
+			margin-bottom: 20px;
+			background-color: #fdfdfd;
+			outline: none;
+			resize: vertical;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+		}
+
+		#runBtn {
+			display: inline-block;
+			padding: 14px 30px;
+			font-size: 18px;
+			color: #fff;
+			background-color: #007bff;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		#runBtn:hover {
+			background-color: #0056b3;
+			transform: translateY(-2px);
+		}
+
+		#output, #timer {
+			width: 100%;
+			padding: 20px;
+			background-color: #f1f3f5;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			margin-top: 20px;
+			font-size: 16px;
+			line-height: 1.5;
+			word-wrap: break-word;
+			overflow-y: auto;
+		}
+
+		#timer {
+			text-align: center;
+			background-color: #ffe8a1;
+			color: #856404;
+			font-weight: bold;
+		}
+
+		#output {
+			background-color: #e2f7e9;
+			color: #155724;
+		}
+
+		#lessonContent {
+			margin-top: 40px;
+		}
+
+		.lesson-section {
+			margin-bottom: 25px;
+			padding: 20px;
+			background-color: #f8f9fa;
+			border-radius: 8px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		}
+
+		.lesson-section h2 {
+			color: #343a40;
+			margin-bottom: 12px;
+			font-size: 24px;
+			border-bottom: 2px solid #dee2e6;
+			padding-bottom: 8px;
+		}
+
+		.lesson-section p {
+			color: #495057;
+			font-size: 16px;
+			line-height: 1.6;
+		}
+
+		a {
+			color: #007bff;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		li {
+			margin-bottom: 10px;
+		}
+
+		@media (max-width: 768px) {
+			h1 {
+				font-size: 28px;
+			}
+
+			#runBtn {
+				width: 100%;
+			}
+
+			#codeEditor {
+				height: 200px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			h1 {
+				font-size: 24px;
+			}
+
+			.container {
+				padding: 20px;
+			}
+
+			.lesson-section h2 {
+				font-size: 20px;
+			}
+
+			.lesson-section p {
+				font-size: 14px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+		<img src="../../assets/images/banner-for-beginner-course.jpg" alt="Banner Image"
+			style="width: 100%; height: 100%; object-fit: cover; object-position: center bottom;">
+	</header>
+
+	<div class="container">
+		<h1>Lesson 1: Introduction to C++ and Environment Setup</h1>
+
+		<div id="lessonContent">
+			<div class="lesson-section" id="LessonVariables">
+				<h2>Introduction</h2>
+				<p>C++ is a versatile programming language known for its performance, efficiency, and flexibility. It is widely used in developing software, games, and system-level applications. In this lesson, you will learn about the origins of C++, set up your development environment, and write your first C++ program.</p>
+			</div>
+
+			<div class="lesson-section" id="ConceptCovered">
+				<h2>Core Content</h2>
+				<p>1) What is C++?</p>
+				<ul>
+					<li><strong>History:</strong> Developed by Bjarne Stroustrup at Bell Labs in 1985 as an extension of the C language. It was designed to provide object-oriented features while retaining C's low-level capabilities.</li>
+					<li><strong>Applications:</strong> Used in software development (like operating systems, browsers, and games), embedded systems, and high-performance applications.</li>
+					<li><strong>Key Features:</strong></li>
+					<ul>
+						<li><strong>Object-Oriented:</strong> Supports classes and objects for structuring code.</li>
+						<li><strong>High Performance:</strong> Efficient memory management and direct hardware access.</li>
+						<li><strong>Portable:</strong> Can run on various platforms with minimal or no changes to the code.</li>
+					</ul>
+				</ul>
+
+				<p>2) Setting Up Your Development Environment</p>
+				<ul>
+					<li><strong>Choose an IDE (Integrated Development Environment):</strong></li>
+					<ul>
+						<li><strong>Options:</strong> Visual Studio (Windows), Code::Blocks (cross-platform), VS Code (cross-platform).</li>
+						<li><strong>Why use an IDE:</strong> Provides tools like code editors, debuggers, and compilers to write, debug, and run programs efficiently.</li>
+					</ul>
+
+					<li><strong>Installation Guide:</strong></li>
+					<ul>
+						<li><strong>Visual Studio:</strong>
+							<ul>
+								<li>Download the installer from <a href="https://visualstudio.microsoft.com/">Visual Studio's official website</a></li>
+								<li>Run the installer, select "Desktop development with C++," and follow the on-screen instructions.</li>
+							</ul>
+						<div style="display: flex; justify-content: center; margin: 20px 0;">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/SViilF85ues?si=SzRb33H3RxFK5vQv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+						</div>
+						</li>
+						<li><strong>Code::Blocks:</strong>
+							<ul>
+								<li>Download the installer from <a href="https://www.codeblocks.org/">Code::Block's official website</a></li>
+								<li>Install the software by following the setup wizard.</li>
+							</ul>
+						<div style="display: flex; justify-content: center; margin: 20px 0;">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/zmT79Ljo0lI?si=5Co_kytTEYLpYCww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+						</div>
+						</li>
+						<li><strong>VS Code:</strong>
+							<ul>
+								<li>Download the installer from <a href="https://code.visualstudio.com/">Visual Studio Code's official website</a></li>
+								<li>Install the "C/C++" extension from the Extensions Marketplace.</li>
+								<li>Configure the C++ compiler (e.g., GCC) according to your operating system.</li>
+							</ul>
+						<div style="display: flex; justify-content: center; margin: 20px 0;">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/9VE7p-he4fA?si=u2vIsQ_ZvqVvoqbR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+						</div>
+						</li>
+					</ul>
+				</ul>
+			</div>
+
+			<!-- Code Section -->
+			<div class="lesson-section" id="LineByLineExplanation">
+				<h2>Writing Your First C++ Program </h2>
+				<p> <li> You can start coding with your IDE or use Code Editor below </li></p>
+				<ul style="margin-left: 20px;">
+					<li>LET'S START WITH HELLO WORLD BY USING C++ </li>
+				</ul>
+				<pre>
+				<code> 
+					<code>
+					#include &lt;iostream&gt;  // Preprocessor directive to include input-output library
+					using namespace std; // Allows the use of standard namespace
+
+					int main() {
+						cout &lt;&lt; "Hello, World!" &lt;&lt; endl; // Output "Hello, World!" to the console
+						return 0; // End of program
+					}
+
+					</code>
+				</pre>
+
+				<h2> Explanation of Each Component </h2>
+				<ul>
+					<li style="margin-left: 40px;"><strong> #include &lt;iostream&gt; </strong>: Includes the library needed for input and output operations.</li>
+					<li style="margin-left: 40px;"><strong> using namespace std; </strong>: Allows the use of names from the standard library</li>
+					<li style="margin-left: 40px;"><strong> int main() { ... }</strong>: The main function where the program starts executing.</li>
+					<li style="margin-left: 40px;"><strong> cout </strong>: Outputs text to the console.</li>
+					<li style="margin-left: 40px;"><strong> endl </strong>: Inserts a newline character.</li>
+					<li style="margin-left: 40px;"><strong> return 0; </strong> : Indicates the program ended successfully.</li>
+				</ul>
+			</div>
+
+			<div class="lesson-section" id="CodeEditorSection">
+				<h2>Code Editor</h2>
+				<textarea id="codeEditor" placeholder="Write your C++ code here..."></textarea><br>
+				<button id="runBtn">Run Code</button>
+				<div id="output"></div>
+				<div id="timer"></div>
+			</div>
+
+			<div class="lesson-section" id="AdditionalKnowledge">
+				<h2>Write a program that prints your name, age, and favorite hobby to the console.</h2>
+				<p style="margin-left: 20px;"> Example output:</p>
+				<p style="margin-left: 40px;">  Name: John Doe  </p>
+				<p style="margin-left: 40px;">  Age: 25  </p>
+				<p style="margin-left: 40px;">  Hobby: Reading  </p>
+			</div>
+
+			<div class="lesson-section" id="SummaryKnowledge">
+				<h2>Summary</h2>
+				<p>By the end of this lesson, you will have set up your development environment, written, compiled, and run your first C++ program, and understood the basic components of a C++ program.</p>
+			</div>
+			<div class="lesson-section" id="navigationButtons" style="text-align: center; margin-top: 40px;">
+				<!-- Previous Button -->
+				<a href="lesson1.html" id="prevBtn" class="nav-btn" style="padding: 14px 30px; background-color: #6c757d; color: white; border-radius: 8px; text-decoration: none;">Previous</a>
+
+				<!-- Next Button -->
+				<a href="lesson2.html" id="nextBtn" class="nav-btn" style="padding: 14px 30px; background-color: #007bff; color: white; border-radius: 8px; text-decoration: none;">Next</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.getElementById('runBtn').addEventListener('click', function() {
+			var code = document.getElementById('codeEditor').value;
+			var countdownTime = 5;  // Set the countdown time (in seconds)
+
+			// Display countdown timer
+			var countdownInterval = setInterval(function() {
+				if (countdownTime > 0) {
+					document.getElementById('timer').innerText = "Time remaining: " + countdownTime + " seconds";
+					countdownTime--;
+				} else {
+					document.getElementById('timer').innerText = "Processing result...";
+					clearInterval(countdownInterval);
+				}
+			}, 1000);
+
+			// Send the C++ code to Judge0 API for compilation and execution
+			fetch("https://judge0-ce.p.rapidapi.com/submissions", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+					"X-RapidAPI-Key": "47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5"
+				},
+				body: JSON.stringify({
+					"language_id": 52, // C++ (GCC 9.2.0)
+					"source_code": code
+				})
+			})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error("Network response was not ok " + response.statusText);
+				}
+				return response.json();
+			})
+			.then(result => {
+				const token = result.token;
+				setTimeout(function() {
+					fetch(`https://judge0-ce.p.rapidapi.com/submissions/${token}`, {
+						method: "GET",
+						headers: {
+							"X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+							"X-RapidAPI-Key": "47dfbed7f0mshbf3b7e745a734bbp109babjsnf408cf6ce7b5"
+						}
+					})
+					.then(response => {
+						if (!response.ok) {
+							throw new Error("Network response was not ok " + response.statusText);
+						}
+						return response.json();
+					})
+					.then(outputResult => {
+						// Stop the countdown when the result is received
+						clearInterval(countdownInterval);
+						document.getElementById('timer').innerText = "Result received!";
+						
+						// Display the output
+						if (outputResult.stdout) {
+							document.getElementById('output').innerText = "Output:\n" + outputResult.stdout;
+						} else if (outputResult.stderr) {
+							document.getElementById('output').innerText = "Error:\n" + outputResult.stderr;
+						} else {
+							document.getElementById('output').innerText = "Compilation Error:\n" + outputResult.compile_output;
+						}
+					})
+					.catch(error => console.error('Error fetching result:', error));
+				}, 5000);  // Wait 5 seconds (this matches the countdown time)
+			})
+			.catch(error => console.error('Error:', error));
+		});
+	</script>
+	<script>
+		// Get the current lesson page filename (e.g., 'lesson2.html')
+		var currentLesson = window.location.pathname.split("/").pop();
+
+		// Hide the Previous button if it's the first lesson (lesson1.html)
+		if (currentLesson === 'lesson1.html') {
+			document.getElementById('prevBtn').style.display = 'none';
+		} else {
+			document.getElementById('prevBtn').style.display = 'inline-block';
+		}
+
+		// Dynamically set the href for Previous and Next buttons (if needed)
+		if (currentLesson === 'lesson2.html') {
+			document.getElementById('prevBtn').href = 'lesson1.html';
+			document.getElementById('nextBtn').href = 'lesson3.html';
+		}
+		// Add more conditions as needed for other lessons
+	</script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Learn C++ Online</title>
+	<!-- Bootstrap CSS CDN -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+	<link href="styles/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">	
+			<a class="navbar-brand" href="#">C++ Learning</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto" id="navbar-items">
+					<li class="nav-item">
+						<a class="nav-link" href="courses/courses.php">Courses</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#why-cpp">Why Learn C++</a>
+					</li>
+					<!-- Login/Register section, visible by default -->
+					<li class="nav-item" id="login-btn">
+						<a class="nav-link" href="login.html">Login</a>
+					</li>
+					<li class="nav-item" id="register-btn">
+						<a class="nav-link" href="register.html">Register</a>
+					</li>
+					<!-- Account Settings dropdown, hidden by default -->
+					<li class="nav-item dropdown d-none" id="account-settings">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Account Settings
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="user-profile/profile.html">Profile</a>
+							<a class="dropdown-item" href="account-settings.html">Account Setting</a>
+							<a class="dropdown-item" href="my_course.php">My Courses</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#" id="logout-btn">Logout</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Banner -->
+	<header>
+		<div id="heroCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#heroCarousel" data-slide-to="1"></li>
+				<li data-target="#heroCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Carousel Items -->
+			<div class="carousel-inner">
+				<!-- Slide 1 -->
+				<div class="carousel-item active">
+					<div class="hero-banner d-flex align-items-center"
+						style="background: url('assets/images/banner1.jpg') no-repeat center center/cover;">
+						<div class="container text-center">
+							<h1 class="display-4 text-white">Master C++ Programming</h1>
+							<p class="lead text-white">Take your programming skills to the next level with our
+								comprehensive C++ courses.</p>
+							<a href="#courses" class="btn btn-primary btn-lg">Explore Courses</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slide 2 -->
+				<div class="carousel-item">
+					<div class="hero-banner d-flex align-items-center"
+						style="background: url('assets/images/banner2.jpg') no-repeat center center/cover;">
+						<div class="container text-center">
+							<h1 class="display-4 text-white">Learn from Industry Experts</h1>
+							<p class="lead text-white">Join our expert-led C++ classes and enhance your programming
+								skills.</p>
+							<a href="#why-cpp" class="btn btn-primary btn-lg">Learn More</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slide 3 -->
+				<div class="carousel-item">
+					<div class="hero-banner d-flex align-items-center"
+						style="background: url('assets/images/banner3.jpg') no-repeat center center/cover;">
+						<div class="container text-center">
+							<h1 class="display-4 text-white">Get Certified</h1>
+							<p class="lead text-white">Earn a recognized certificate upon completing our C++ course.</p>
+							<a href="#why-cpp" class="btn btn-primary btn-lg">Start Today</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Carousel Controls -->
+			<a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</header>
+
+	<!-- Courses Section -->
+	<section id="courses" class="py-5 bg-light">
+		<div class="container">
+			<h2 class="text-center mb-4">C++ Courses</h2>
+			<div class="row">
+				<!-- Beginner Course -->
+				<div class="col-md-4 mb-4">
+					<div class="card h-100">
+						<img src="assets/images/beginner.jpg" class="card-img-top" alt="Beginner Course">
+						<div class="card-body text-center">
+							<h5 class="card-title">C++ for Beginners</h5>
+							<p class="card-text">Learn the fundamentals of C++ programming, including syntax, data types, and functions.</p>
+						</div>
+						<div class="card-footer text-center">
+							<a href="#" class="btn btn-primary w-100">Start Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- Intermediate Course -->
+				<div class="col-md-4 mb-4">
+					<div class="card h-100">
+						<img src="assets/images/intermediate.jpg" class="card-img-top" alt="Intermediate Course">
+						<div class="card-body text-center">
+							<h5 class="card-title">Intermediate C++ Concepts</h5>
+							<p class="card-text">Dive deeper into C++ with object-oriented programming, memory management, and more.</p>
+						</div>
+						<div class="card-footer text-center">
+							<a href="#" class="btn btn-primary w-100">Learn More</a>
+						</div>
+					</div>
+				</div>
+				<!-- Advanced Course -->
+				<div class="col-md-4 mb-4">
+					<div class="card h-100">
+						<img src="assets/images/advanced.jpg" class="card-img-top" alt="Advanced Course">
+						<div class="card-body text-center">
+							<h5 class="card-title">Advanced C++ Programming</h5>
+							<p class="card-text">Master advanced topics like template metaprogramming, multi-threading, and design patterns.</p>
+						</div>
+						<div class="card-footer text-center">
+							<a href="#" class="btn btn-primary w-100">Advance Your Skills</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Why Learn C++ Section -->
+	<section id="why-cpp" class="py-5">
+		<div class="container">
+			<h2 class="text-center mb-4">Why Learn C++?</h2>
+			<div class="row">
+				<div class="col-md-6">
+					<h4>Powerful and Versatile</h4>
+					<p>C++ is one of the most powerful programming languages, used in a variety of industries, including game development, systems programming, and high-performance computing.</p>
+				</div>
+				<div class="col-md-6">
+					<h4>High-Performance Applications</h4>
+					<p>With its low-level memory manipulation capabilities, C++ is perfect for developing high-performance applications that require direct control over hardware resources.</p>
+				</div>
+			</div>
+			<div class="text-center mt-4">
+				<a href="why-learn-cpp/why.html" class="btn btn-secondary btn-lg">Read More About C++</a>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Why Choose Us Section -->
+	<section class="why-choose-us text-center py-5">
+		<div class="container">
+			<h2 class="mb-4">Why Choose Us</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fas fa-code fa-3x mb-3"></i>
+					<h4>Experienced Instructors</h4>
+					<p>Learn C++ from seasoned professionals with years of experience in the industry.</p>
+				</div>
+				<div class="col-md-4">
+					<i class="fas fa-laptop-code fa-3x mb-3"></i>
+					<h4>Hands-on Learning</h4>
+					<p>Get hands-on experience with real-world projects and coding challenges.</p>
+				</div>
+				<div class="col-md-4">
+					<i class="fas fa-certificate fa-3x mb-3"></i>
+					<h4>Certification</h4>
+					<p>Earn a certificate upon completing the course, recognized by top tech companies.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Instructor Section -->
+	<section id="instructors" class="py-5 bg-light">
+		<div class="container">
+			<h2 class="text-center mb-4">Meet Our Instructors</h2>
+			<div id="instructorCarousel" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<!-- First Slide -->
+					<div class="carousel-item active">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="card h-100 text-center">
+									<img src="assets/images/instructor1.jpg" class="card-img-top" alt="Instructor 1">
+									<div class="card-body">
+										<h5 class="card-title">David Brooks</h5>
+										<p class="card-text">Haley Family Professor of Computer Science. Harvard University</p>
+										<a href="#" class="btn btn-primary">View Profile</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card h-100 text-center">
+									<img src="assets/images/instructor2.jpg" class="card-img-top" alt="Instructor 2">
+									<div class="card-body">
+										<h5 class="card-title">Michael D. Smith</h5>
+										<p class="card-text">Michael D. Smith John H. Finley, Jr. Professor of Engineering and Applied Sciences; Distinguished Service Professor at Harvard University</p>
+										<a href="#" class="btn btn-primary">View Profile</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card h-100 text-center">
+									<img src="assets/images/instructor3.jpg" class="card-img-top" alt="Instructor 3">
+									<div class="card-body">
+										<h5 class="card-title">Regina Barzilay</h5>
+										<p class="card-text">School of Engineering Distinguished Professor for AI and Health in the Department of Electrical Engineering and Computer Science Member, Computer Science and Artificial Intelligence Laboratory (CSAIL)</p>
+										<a href="#" class="btn btn-primary">View Profile</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Additional Slides -->
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="card h-100 text-center">
+									<img src="assets/images/instructor4.jpg" class="card-img-top" alt="Instructor 4">
+									<div class="card-body">
+										<h5 class="card-title">Wojciech Matusik</h5>
+										<p class="card-text">Associate Professor of Electrical Engineering and Computer Science, MIT Member, Computer Science and Artificial Intelligence Laboratory (CSAIL)</p>
+										<a href="#" class="btn btn-primary">View Profile</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card h-100 text-center">
+									<img src="assets/images/instructor5.jpg" class="card-img-top" alt="Instructor 5">
+									<div class="card-body">
+										<h5 class="card-title">Divesh AGGARWAL</h5>
+										<p class="card-text">Ph.D. (Computer Science, ETH Zurich) - M.Sc. (Integrated Mathematics & Scientific Computing, Indian Institute of Technology, Kanpur)</p>
+										<a href="#" class="btn btn-primary">View Profile</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="card h-100 text-center">
+									<img src="assets/images/instructor6.jpg" class="card-img-top" alt="Instructor 6">
+									<div class="card-body">
+										<h5 class="card-title">Damith Chatura RAJAPAKSE</h5>
+										<p class="card-text">Associate Professor (Educator Track) - Deputy Head, Department Of Computer Science. Ph.D. (Software Engineering, National University of Singapore, 2006) </p>
+										<a href="#" class="btn btn-primary">View Profile</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Carousel Controls -->
+				<a class="carousel-control-prev" href="#instructorCarousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#instructorCarousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	
+	<!-- Testimonial Section -->
+	<section id="testimonial" class="py-5 bg-light">
+		<div class="container">
+			<h2 class="text-center mb-4">Testimonials</h2>
+			<div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<!-- Testimonial 1 -->
+					<div class="carousel-item active">
+						<div class="testimonial-item">
+							<img src="assets/images/1.jpg" alt="Person 1">
+							<div class="testimonial-text">
+								<p>"This SCAM center is very passionate with their teaching and spread the knowledge of programming language, especially C++. As a former student of Havard University, i consider that C++ is one the most fundamental and necessary for a programmer career."</p>
+								<h5>- Mark Zuckerberg ,founder, chairman and CEO of Meta</h5>
+							</div>
+						</div>
+					</div>
+					<!-- Testimonial 2 -->
+					<div class="carousel-item">
+						<div class="testimonial-item">
+							<img src="assets/images/2.jpg" alt="Person 2">
+							<div class="testimonial-text">
+								<p>"As a partner with SCAM center in over 20 years, we have seen a lot of astonishing programmers and developers who have learnt and trained by SCAM center. We are really glad to having a SCAM center in our business."</p>
+								<h5>- Larry Page Former CEO of Google </h5>
+							</div>
+						</div>
+					</div>
+					<!-- Testimonial 3 -->
+					<div class="carousel-item">
+						<div class="testimonial-item">
+							<img src="assets/images/3.jpg" alt="Person 3">
+							<div class="testimonial-text">
+								<p>"As a shareholder of this SCAM center and also as an advisor for this SCAM center.I believe that this center is most reliable and private enterprise where trained a lot of extraordinary programmers and advisors for Microsft corporation."</p>
+								<h5>- Bill Gates , former Chairman, CEO of Microsoft</h5>
+							</div>
+						</div>
+					</div>
+					<!-- Testimonial 4 -->
+					<div class="carousel-item">
+						<div class="testimonial-item">
+							<img src="assets/images/4.jpg" alt="Person 4">
+							<div class="testimonial-text">
+								<p>"Everytime my companies receive intership from SCAM center, i always to keep all of them for my companies. Why ? Because i know they trained and taught very well by competent professors, lecturers and instructors. I am not only evaluate these student through observing but i also witnessed that they solve the logical porblems very rapid and effective. Truly talented beings."</p>
+								<h5>- Elon Musk , CEO of Tesla, SpaceX</h5>
+							</div>
+						</div>
+					</div>
+					<!-- Testimonial 5 -->
+					<div class="carousel-item">
+						<div class="testimonial-item">
+							<img src="assets/images/5.jpg" alt="Person 5">
+							<div class="testimonial-text">
+								<p>"I think i don't i don't need to give any opinions to this SCAM center anymore. Because many conglomerates have give a lot of compliments to them, and my company is not an exception. Good job SCAM center ! "</p>
+								<h5>- Jeff Bezos , Executive chairman of Amazon </h5>
+							</div>
+						</div>
+					</div>
+					<!-- Testimonial 6 -->
+					<div class="carousel-item">
+						<div class="testimonial-item">
+							<img src="assets/images/6.jpg" alt="Person 6">
+							<div class="testimonial-text">
+								<p>"If you want to start your programming career, i believe this center is one the most reliable and talent center. They teach students with knowledge from the fundamental to advance. Every lessons of them always bring the positive energy and their education is great. It's my pleasure to join in 2019.  "</p>
+								<h5>- Tim Cook , CEO of Apple </h5>
+							</div>
+						</div>
+					</div>
+
+					<!-- Add more testimonials as needed -->
+				</div>
+				<!-- Carousel Controls -->
+				<a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Partners Slideshow Section -->
+	<section id="partners" class="py-5 bg-light">
+		<div class="container">
+			<h2 class="text-center mb-5">Our Partners</h2>
+			<div id="partnersCarousel" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="d-flex justify-content-around">
+							<img src="assets/images/partner1.png" alt="Partner 1" class="img-fluid" style="max-height: 100px;">
+							<img src="assets/images/partner2.png" alt="Partner 2" class="img-fluid" style="max-height: 100px;">
+							<img src="assets/images/partner3.png" alt="Partner 3" class="img-fluid" style="max-height: 100px;">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-flex justify-content-around">
+							<img src="assets/images/partner4.png" alt="Partner 4" class="img-fluid" style="max-height: 100px;">
+							<img src="assets/images/partner5.png" alt="Partner 5" class="img-fluid" style="max-height: 100px;">
+							<img src="assets/images/partner6.png" alt="Partner 6" class="img-fluid" style="max-height: 100px;">
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#partnersCarousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#partnersCarousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Send Message Section -->
+	<section id="contact" class="py-5 bg-light">
+		<div class="container">
+			<h2 class="text-center">Contact Us</h2>
+			<p class="text-center">If you have any question want to have advice, send message and we will counsel everything for you</p>
+			<div class="row mt-4">
+				<div class="col-md-6">
+					<h4>Get in Touch</h4>
+					<p><i class="fas fa-map-marker-alt"></i> 127 ABC street, District X, Ward Y, HoChiMinh City</p>
+					<p><i class="fas fa-phone"></i> 0909 xxx xxx </p>
+					<p><i class="fas fa-envelope"></i> scam-center@gmail.com</p>
+				</div>
+				<div class="col-md-6" data-aos="slide-up">
+					<form action="https://formspree.io/f/mnnadwkn" method="POST">
+						<div class="form-group">
+							<input type="text" class="form-control" name="name" placeholder="Your Name" required>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" name="email" placeholder="Your Email" required>
+						</div>
+						<div class="form-group">
+							<input type="tel" class="form-control" name="phone-number" placeholder="Your Phone Number" pattern="\d{10}" minlength="10" maxlength="10" required>
+						</div>
+
+						<div class="form-group">
+							<textarea name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
+						</div>
+						
+						<button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<!-- Footer -->
+	<footer class="bg-dark text-white py-3">
+		<div class="container text-center">
+			<p>&copy; 2024 SCAM center. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<!-- Bootstrap JS and dependencies -->
+	<!-- jQuery and Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
+	<script>
+		// Simulate user login state with localStorage (or sessionStorage)
+		document.addEventListener('DOMContentLoaded', function () {
+			// Example: Check if user is logged in from localStorage (you would replace this with real logic)
+			let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+			if (isLoggedIn) {
+				// If user is logged in, hide "Login" and "Register", and show "Account Settings"
+				document.getElementById('login-btn').classList.add('d-none');
+				document.getElementById('register-btn').classList.add('d-none');
+				document.getElementById('account-settings').classList.remove('d-none');
+			} else {
+				// If user is not logged in, show "Login" and "Register", and hide "Account Settings"
+				document.getElementById('login-btn').classList.remove('d-none');
+				document.getElementById('register-btn').classList.remove('d-none');
+				document.getElementById('account-settings').classList.add('d-none');
+			}
+
+			// Logout functionality: Clears login state and reloads page
+			document.getElementById('logout-btn').addEventListener('click', function() {
+				localStorage.setItem('isLoggedIn', 'false');
+				location.reload(); // Reload the page to update navbar
+			});
+		});
+
+		// Function to log in a user (for testing purposes, this simulates login)
+		function loginUser() {
+			localStorage.setItem('isLoggedIn', 'true');
+			location.reload(); // Reload the page to reflect the login state in the navbar
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C++ Course - Lesson 5</title>
+		
+		<!-- Bootstrap and FontAwesome -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		
+
+		<style>
+				body {
+						background-color: #f4f7fc;
+						font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+
+				.header h1 {
+						text-align: center;
+						margin-top: 20px;
+						color: #333;
+				}
+
+				h1, h2 {
+						color: #007bff;
+						position: relative;
+				}
+
+				/* Icon styles */
+				h2 i {
+						color: #007bff;
+						margin-right: 10px;
+				}
+
+				.content-section {
+						background: white;
+						border-radius: 8px;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+						margin-bottom: 20px;
+						padding: 20px;
+						opacity: 0;
+						transform: translateY(50px);
+						transition: all 0.6s ease;
+				}
+
+				/* Animation for sections */
+				.content-section.visible {
+						opacity: 1;
+						transform: translateY(0);
+				}
+
+				pre {
+						background-color: #f0f0f0;
+						padding: 15px;
+						border-radius: 8px;
+						font-size: 1rem;
+						border-left: 5px solid #007bff;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				}
+
+				code {
+						background-color: #e8e8e8;
+						padding: 2px 6px;
+						border-radius: 4px;
+				}
+
+				.btn {
+						background-color: #007bff;
+						color: white;
+				}
+
+				.footer {
+						text-align: center;
+						margin-top: 20px;
+						padding: 20px;
+						background-color: #007bff;
+						color: white;
+				}
+		</style>
+</head>
+<body>
+		<div class="container">
+				<header class="header">
+						<h1>Lesson 5: <code> constexpr </code> and Compile-Time Programming</h1>
+				</header>
+
+				<!-- Lesson Introduction -->
+				<section class="content-section">
+						<h2><i class="fas fa-book"></i>Introduction</h2>
+						<p>The <code> constexpr </code>  keyword was introduced in C++11 to enable compile-time evaluation of functions and expressions. It allows for the creation of constants and functions that can be evaluated at compile time, leading to performance improvements and more predictable behavior.</p>
+				</section>
+
+				<!-- Purpose of the Lesson -->
+				<section class="content-section">
+						<h2><i class="fas fa-bullseye"></i>Purpose of the Lesson</h2>
+						<p>By the end of this lesson, you will: </p>
+						<ul>
+								<li>Understand what <code> constexpr </code> is and how it works.</li>
+								<li>Learn how to use <code> constexpr </code> functions and variables.</li>
+								<li>Explore best practices for <code> constexpr </code> and how it impacts compile-time and runtime performance.</li>
+						</ul>
+				</section>
+
+				<!-- Detailed Explanation -->
+				<section class="content-section">
+						<h2><i class="fas fa-info-circle"></i>Detailed Explanation</h2>
+						<p><code> constexpr </code> <strong> Variables</strong></p>
+						<p><code> constexpr </code> variables are constants that are evaluated at compile time. They must be initialized with a constant expression.</p>
+						<pre class="highlight">
+#include &lt;iostream&gt;
+
+constexpr int square(int x) {
+    return x * x;
+}
+
+int main() {
+    constexpr int value = 5;
+    constexpr int squared_value = square(value);
+    
+    std::cout << "Value: " << value << std::endl;  // Output: Value: 5
+    std::cout << "Squared Value: " << squared_value << std::endl;  // Output: Squared Value: 25
+    
+    return 0;
+}					</pre>
+								<p> Explanation </p>
+								<li> <code> constexpr int square(int x) </code> is a <code> constexpr </code> function that computes the square of an integer. It can be evaluated at compile time if provided with <code> constexpr </code> arguments.</li>
+								<li> <code> value </code> and <code> squared_value </code> are <code> constexpr </code> variables, which means their values are determined at compile time</li>
+						</ul><br>
+
+						<p><code> constexpr </code> <strong> Functions </strong></p>
+						<p><code> constexpr </code> functions can be evaluated at compile time if their arguments are <code> constexpr </code>. They must consist of a single return statement (in C++11) or multiple statements (in C++14 and later).</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+constexpr int factorial(int n) {
+    return (n <= 1) ? 1 : (n * factorial(n - 1));
+}
+
+int main() {
+    constexpr int fact_5 = factorial(5);
+    std::cout << "Factorial of 5: " << fact_5 << std::endl;  // Output: Factorial of 5: 120
+    
+    return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li> <code> constexpr int factorial(int n) </code> is a recursive function that calculates the factorial of <code> n </code>. Since <code> n </code> is known at compile time, the function can be evaluated at compile time.</li>
+								<li> <code> fact_5 </code> is computed at compile time, leading to more efficient code generation.</li>
+						</ul><br>
+
+						<p><code> constexpr </code> and Classes</p>
+						<p><code> constexpr </code>can also be used with class member functions and constructors, allowing class objects to be created and manipulated at compile time.</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+class Point {
+public:
+    constexpr Point(int x, int y) : x(x), y(y) {}
+    constexpr int getX() const { return x; }
+    constexpr int getY() const { return y; }
+    
+private:
+    int x, y;
+};
+
+int main() {
+    constexpr Point p(3, 4);
+    std::cout << "Point: (" << p.getX() << ", " << p.getY() << ")" << std::endl;  // Output: Point: (3, 4)
+    
+    return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li><code> constexpr Point(int x, int y)</code>  is a <code> constexpr </code> constructor that allows <code> Point </code> objects to be created at compile time.</li>
+								<li> <code> getX()</code> and <code> getY()</code> are  <code> constexpr </code> member functions that can also be evaluated at compile time.</li>
+						</ul><br>
+
+				<!-- Best Practices and Tips -->
+				<section class="content-section">
+						<h2><i class="fas fa-lightbulb"></i>Tips</h2>
+						<ul>
+								<li> <strong>Use <code> constexpr </code>for Compile-Time Constants </strong>:Utilize <code> constexpr </code> to define constants and functions that should be evaluated at compile time for performance improvements.  </li>
+								<li> <strong> Prefer </strong> <code> constexpr </code> Over <code> const </code> Where Possible: Use <code> constexpr </code> for compile-time evaluation, and <code> const </code> for values that are fixed but not necessarily evaluated at compile time.</li>
+						</ul>
+				</section>
+
+				<!-- Common Mistakes and Pitfalls -->
+				<section class="content-section">
+						<h2><i class="fas fa-exclamation-circle"></i>Common Mistakes and Pitfalls</h2>
+						<ul>
+							<li> <strong> Misunderstanding Compile-Time vs. Run-Time Evaluation</strong>: Ensure that <code> constexpr </code> functions are used correctly to take advantage of compile-time evaluation.</li>
+							<li> <strong> Incorrect <code> constexpr </code> Function Implementation</strong>:<code> constexpr </code>  functions should not have side effects or complex control flow that cannot be evaluated at compile time. </li>
+						</ul>
+
+				<!-- Real-World Applications -->
+				<section class="content-section">
+						<h2><i class="fas fa-industry"></i>Real-World Applications</h2>
+						<ul>
+							<li> <strong> Compile-Time Computation</strong>: <code> constexpr </code> is used in scenarios where computations can be performed at compile time, such as in template metaprogramming and constexpr algorithms.</li>
+							<li> <strong> Constant Expressions in Templates </strong>: Use <code> constexpr </code> to define constants and expressions in template arguments for better compile-time performance..</li>
+						</ul>
+				</section>
+
+				<!-- Advanced Concepts (Optional) -->
+				<section class="content-section">
+						<h2><i class="fas fa-cogs"></i>Advanced Concepts</h2>
+						<li> <strong> <code> constexpr </code> and Lambdas</strong>:<code> constexpr </code> lambdas can be used for compile-time computations within lambda expressions. </li>
+						<pre class="highlight">
+auto square = [](int x) constexpr { return x * x; };
+constexpr int result = square(5);
+
+				</section>
+
+				<!-- Interactive Quiz -->
+				<section class="content-section">
+						<h2><i class="fas fa-clipboard-check"></i>Quiz</h2>
+						<button class="btn quiz-btn">Start Quiz</button>
+				</section>
+
+				<!-- Summary -->
+				<section class="content-section summary">
+						<h2><i class="fas fa-file-alt"></i>Summary</h2>
+						<p>The <code> constexpr </code> keyword enables compile-time evaluation of variables and functions, leading to performance improvements and more efficient code. Understanding how to use <code> constexpr </code> effectively can help optimize performance and leverage compile-time computations.</p>
+				</section>
+
+				<!-- Exercises -->
+				<section class="content-section exercise">
+						<h2><i class="fas fa-dumbbell"></i>Exercises</h2>
+						<p> <strong> Exercise 1</strong>:Implement a <code> constexpr </code> function that calculates the nth Fibonacci number and test it with various values. </p>
+						<p> <strong> Exercise 2</strong>:Create a <code> constexpr </code> class that represents a 2D vector and provides operations like addition and dot product.</p>
+						<p> <strong> Exercise 3</strong>:Develop a compile-time matrix library using <code> constexpr </code> to perform matrix operations like multiplication and inversion.</p>
+				</section>
+
+				<!-- Further Reading -->
+				<section class="content-section reading">
+						<h2><i class="fas fa-link"></i>Further Reading and Resources</h2>
+						<li> <a href="https://en.cppreference.com/w/cpp/language/constexpr"><code> constexpr </code>  in C++</a></li>
+						<li> <a href="https://isocpp.org/wiki/faq/const-correctness#constexpr">Modern C++ <code> constexpr </code></a></li>
+						<li> <<a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rconst-expr">C++ Core Guidelines: <code> constexpr </code> </a> </li>
+				</section>
+
+
+				<!-- Question -->
+				<section class="content-section question">
+						<h2><i class="fas fa-question"></i>Any Question?</h2>		
+				</section>
+
+
+				<!-- Project -->
+				<section class="content-section project">
+						<h2><i class="fas fa-project-diagram"></i>Project-Based Learning</h2>	
+						<p> Develop a compile-time configuration system using `constexpr` for defining and managing compile-time constants and calculations. Implement various features to demonstrate the benefits of `constexpr` in optimizing performance.</p>	
+				</section>
+
+				<!-- Footer -->
+				<footer class="footer">
+						<p>SCAM Center. All Rights Reserved</p>
+				</footer>
+		</div>
+
+		<!-- Bootstrap JS, jQuery, and FontAwesome -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Animation Script -->
+		<script>
+				// Scroll Animation
+				window.addEventListener('scroll', function () {
+						const sections = document.querySelectorAll('.content-section');
+						sections.forEach(section => {
+								const position = section.getBoundingClientRect().top;
+								if (position < window.innerHeight - 100) {
+										section.classList.add('visible');
+								}
+						});
+				});
+		</script>
+</body>
+</html>

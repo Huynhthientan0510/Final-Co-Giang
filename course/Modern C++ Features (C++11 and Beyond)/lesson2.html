@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C++ Course - Lesson 2</title>
+		
+		<!-- Bootstrap and FontAwesome -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		
+
+		<style>
+				body {
+						background-color: #f4f7fc;
+						font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+
+				.header h1 {
+						text-align: center;
+						margin-top: 20px;
+						color: #333;
+				}
+
+				h1, h2 {
+						color: #007bff;
+						position: relative;
+				}
+
+				/* Icon styles */
+				h2 i {
+						color: #007bff;
+						margin-right: 10px;
+				}
+
+				.content-section {
+						background: white;
+						border-radius: 8px;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+						margin-bottom: 20px;
+						padding: 20px;
+						opacity: 0;
+						transform: translateY(50px);
+						transition: all 0.6s ease;
+				}
+
+				/* Animation for sections */
+				.content-section.visible {
+						opacity: 1;
+						transform: translateY(0);
+				}
+
+				pre {
+						background-color: #f0f0f0;
+						padding: 15px;
+						border-radius: 8px;
+						font-size: 1rem;
+						border-left: 5px solid #007bff;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				}
+
+				code {
+						background-color: #e8e8e8;
+						padding: 2px 6px;
+						border-radius: 4px;
+				}
+
+				.btn {
+						background-color: #007bff;
+						color: white;
+				}
+
+				.footer {
+						text-align: center;
+						margin-top: 20px;
+						padding: 20px;
+						background-color: #007bff;
+						color: white;
+				}
+		</style>
+</head>
+<body>
+		<div class="container">
+				<header class="header">
+						<h1>Lesson 2: Lambda Expressions and Their Use Cases</h1>
+				</header>
+
+				<!-- Lesson Introduction -->
+				<section class="content-section">
+						<h2><i class="fas fa-book"></i>Introduction</h2>
+						<p>Lambda expressions were introduced in C++11 to allow the creation of anonymous, inline functions. They provide a convenient way to define function objects, especially for short-term usage, without needing to declare a separate function or functor. Lambda expressions are highly useful in situations requiring callbacks, sorting, or filtering, and they enhance readability by localizing functionality</p>
+				</section>
+
+				<!-- Purpose of the Lesson -->
+				<section class="content-section">
+						<h2><i class="fas fa-bullseye"></i>Purpose of the Lesson</h2>
+						<p>By the end of this lesson, you will: </p>
+						<ul>
+								<li>Understand what lambda expressions are and how to define them.</li>
+								<li>Learn about capture clauses, parameters, and return types in lambdas.</li>
+								<li>Explore practical use cases for lambda expressions, such as sorting and callbacks.</li>
+						</ul>
+				</section>
+
+				<!-- Detailed Explanation -->
+				<section class="content-section">
+						<h2><i class="fas fa-info-circle"></i>Detailed Explanation</h2>
+						<p><strong>Syntax of Lambda Expressions</strong></p>
+						<p>The general syntax for lambda expressions is:</p>
+						<ul>
+							<pre class="highlight">
+[capture](parameters) -> return_type {
+	// function body
+};
+								</pre>
+								<li><strong>Capture</strong>: Defines which variables from the surrounding scope are available within the lambda.</li>
+								<li><strong>Parameters</strong>:  Specifies the arguments the lambda accepts.</li>
+								<li><strong>Return Type</strong>: Explicitly defines the type returned by the lambda.</li>
+								<li><strong>Body</strong>: Contains the code executed by the lambda.</li>
+						</ul> <br>
+
+						<p><strong> Capture Clause</strong></p>
+						<p>The capture clause allows the lambda to "capture" variables from the surrounding scope. There are multiple ways to specify the capture behavior:</p>
+						<ul>
+								<li><strong>[]</strong>: No variables are captured.</li>
+								<li><strong>[=]</strong>:  Capture all variables by value.</li>
+								<li><strong>[&]</strong>: Capture all variables by reference.</li>
+								<li><strong>[x]</strong>: Capture the variable <code> x </code> by value.</li>
+								<li><strong>[&x]</strong>: Capture  the variable <code> x </code> by reference.</li>
+						</ul><br>
+
+						<p><strong> Parameters and Return Type</strong></p>
+						<p>Lambda functions can take parameters just like regular functions. The return type is optional and is usually inferred from the lambda body, but it can be explicitly specified using -&gt; </p>
+				</section>
+
+
+				<!-- Code Examples -->
+				<section class="content-section">
+						<h2><i class="fas fa-code"></i>Code Examples</h2>
+						<p>Code Examples:</p>
+						<!-- Lambda -->
+						<ul>
+								<li><strong>Example 1: Basic Lambda Expression:</strong></li>
+								<pre class="highlight">
+#include &lt;iostream&gt;
+int main() {
+	auto add = [](int a, int b) -> int {
+		return a + b;
+	};
+	
+	std::cout << "Sum: " << add(3, 4) << std::endl;  // Output: Sum: 7
+	return 0;
+}
+								</pre>
+								<h2> Explanation: </h2>
+								<li> In this example, we define a lambda expression <code> add </code> that takes two parameters, <code> a </code> and <code> b </code>, and returns their sum.</li>
+								<li> The lambda is assigned to the variable <code> add </code>. The capture clause is empty <code> [] </code>, indicating that no variables from the outer scope are captured.</li>
+								<li> The return type is explicitly defined as <code> int </code> using <code> -> int </code>, though it could be omitted since the return type would be inferred as <code> int </code> based on the return statement. </li>
+								<li> When we call <code>add(3, 4)</code>, the lambda returns the sum, which is printed to the console.</li>
+						</ul> <br>
+
+						<!-- Smart Pointer -->
+						<ul>
+								<li><strong>Example 2: Capturing Variables by Value</strong></li>
+								<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+
+int main() {
+	int x = 10;
+	auto multiply = [x](int a) -> int {
+		return a * x;
+	};
+	
+	std::cout << "Product: " << multiply(5) << std::endl;  // Output: Product: 50
+	return 0;
+}
+								</pre>
+								<h2> Explanation: </h2>
+								<li> Here, the variable <code> x </code> is captured by value using <code> [x] </code> in the capture clause.</li>
+								<li> The lambda takes one parameter, <code> a </code>, and returns the product of <code> a </code> and <code> x </code>. Even though <code> x </code> is outside the lambda’s scope, it can be used inside the lambda because it has been captured.</li>
+								<li> The value of <code> x </code> is fixed when the lambda is created, so changes to <code> x </code> after the lambda is defined will not affect the lambda's behavior. </li>
+						</ul>
+						<!-- Lambda -->
+						<ul>
+								<li><strong>Example 3: Capturing Variables by Reference</strong></li>
+								<pre class="highlight">
+#include &lt;iostream&gt;
+int main() {
+	int x = 10;
+	auto increment = [&x]() {
+		x += 1;
+	};
+	
+	increment();
+	std::cout << "x after increment: " << x << std::endl;  // Output: x after increment: 11
+	return 0;
+}
+								</pre>
+								<h2> Explanation: </h2>
+								<li> In this case, we capture the variable <code> x</code> by reference using <code> [&x] </code>in the capture clause.</li>
+								<li> The lambda does not take any parameters, but it modifies the value of <code> x </code> by adding <code> 1 </code> to it.</li>
+								<li> Since <code> x </code> is captured by reference, any changes made inside the lambda are reflected in the original <code> x </code> variable outside the lambda. </li>
+								<li> After calling <code> increment()</code>, the value of <code> x</code> is updated from <code> 10</code> to <code> 11</code>, as shown by the output.</li>
+						</ul> 
+				</section>
+
+				<!-- Best Practices and Tips -->
+				<section class="content-section">
+						<h2><i class="fas fa-lightbulb"></i>Tips</h2>
+						<ul>
+								<li> <strong> Capture by Value vs. Reference </strong>: Use capture by value when you don’t want to modify the captured variables. Capture by reference if you need to modify external variables from within the lambda.</li>
+								<li> <strong> Use Lambdas for Short Functions </strong>: Lambdas are best suited for small, concise functions that don’t need to be reused elsewhere.</li>
+								<li> <strong> Avoid Overusing Lambdas </strong>: While lambdas are powerful, they can make code harder to understand if overused or overly complex. For more complex logic, prefer named functions.</li>
+							
+						</ul>
+				</section>
+
+				<!-- Common Mistakes and Pitfalls -->
+				<section class="content-section">
+						<h2><i class="fas fa-exclamation-circle"></i>Common Mistakes and Pitfalls</h2>
+						<ul>
+							<li> <strong> Capturing Variables Incorrectly</strong>:If you capture a variable by value but expect its modifications to be reflected outside the lambda, it won’t happen. Ensure you understand when to capture by value and when to capture by reference</li>
+							<li> <strong> Overcomplicating Lambdas</strong>:Lambdas are meant to simplify code, so avoid adding too much complexity. If your lambda requires multiple lines of code, consider creating a named function instead. </li>
+							<li> <strong>Using Mutable Captures</strong>: By default, variables captured by value cannot be modified inside the lambda. If you need to modify a captured variable, use the <code> mutable </code> keyword in the lambda definition.</li>
+							<pre class="highlight">
+int x = 10;
+auto modify_x = [x]() mutable {
+	x += 1;  // Allowed due to 'mutable'
+};
+								</pre>
+						</ul>
+				</section>
+
+				<!-- Real-World Applications -->
+				<section class="content-section">
+						<h2><i class="fas fa-industry"></i>Real-World Applications</h2>
+						<ul>
+							<li> <strong> Sorting Algorithms</strong>:Lambdas are commonly used as custom comparators in sorting algorithms. </li>
+							<li> <strong> Callbacks Computing </strong>:Lambda expressions are perfect for passing lightweight callback functions to event handlers or asynchronous operations. </li>
+							<li> <strong>Functional Programming</strong>: RWith the growing use of functional programming techniques in modern C++, lambdas enable higher-order functions and more readable, concise code.</li>
+						</ul>
+				</section>
+
+				<!-- Advanced Concepts (Optional) -->
+				<section class="content-section">
+						<h2><i class="fas fa-cogs"></i>Advanced Concepts</h2>
+						<li> <strong> Generic Lambdas (C++14) </strong>: You can create lambda functions that accept parameters of any type using auto:</li>
+						<pre class="highlight">
+auto generic_lambda = [](auto x, auto y) {
+	return x + y;
+};
+
+								</pre>
+						<p> This allows the lambda to handle multiple types without specifying them explicitly.</p>
+						<li> <strong> Lambda Closures </strong>: Lambda expressions create closures, which means they can capture and store references or copies of variables from their surrounding scope. This makes lambdas a powerful tool in scenarios where functions need to "remember" the state of their environment.</li>
+				</section>
+
+				<!-- Interactive Quiz -->
+				<section class="content-section">
+						<h2><i class="fas fa-clipboard-check"></i>Quiz</h2>
+						<button class="btn quiz-btn">Start Quiz</button>
+				</section>
+
+				<!-- Summary -->
+				<section class="content-section summary">
+						<h2><i class="fas fa-file-alt"></i>Summary</h2>
+						<p>Lambda expressions in C++ provide a concise way to define anonymous functions that can capture variables from their surrounding scope. They are especially useful in situations requiring short, one-time-use functions such as sorting, filtering, and callbacks. By understanding the syntax and behavior of lambda expressions, you can write more expressive and efficient code..</p>
+				</section>
+
+				<!-- Exercises -->
+				<section class="content-section exercise">
+						<h2><i class="fas fa-dumbbell"></i>Exercises</h2>
+						<p> <strong> Exercise 1</strong>:Write a lambda function that captures two variables by reference and adds them together. Ensure the lambda modifies the original variables. </p>
+						<p> <strong> Exercise 2</strong>:Create a lambda that takes an integer and returns whether it is even or odd.</p>
+						<p> <strong> Exercise 3</strong>:Implement a sorting algorithm using the std::sort function and a lambda as the custom comparator.</p>
+				</section>
+
+				<!-- Further Reading -->
+				<section class="content-section reading">
+						<h2><i class="fas fa-link"></i>Further Reading and Resources	</h2>
+						<li> <a href="https://en.cppreference.com/w/cpp/language/lambda">Lambda Expressions in C++ </a></li>
+						<li> <a href="https://isocpp.org/wiki/faq/cpp11-language-lambdas">C++ Lambda Expressions Explained </a></li>
+						<li> <<a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-lambda">C++ Core Guidelines: Lambdas </a> </li>
+				</section>
+
+
+				<!-- Question -->
+				<section class="content-section question">
+						<h2><i class="fas fa-question"></i>Any Question?</h2>		
+				</section>
+
+
+				<!-- Project -->
+				<section class="content-section project">
+						<h2><i class="fas fa-project-diagram"></i>Project-Based Learning</h2>	
+						<p> Create a small event system where events trigger lambda expressions as callbacks. Implement an event loop that takes user input and triggers corresponding lambdas to handle events</p>	
+				</section>
+
+				<!-- Footer -->
+				<footer class="footer">
+						<p>SCAM Center. All Rights Reserved</p>
+				</footer>
+		</div>
+
+		<!-- Bootstrap JS, jQuery, and FontAwesome -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Animation Script -->
+		<script>
+				// Scroll Animation
+				window.addEventListener('scroll', function () {
+						const sections = document.querySelectorAll('.content-section');
+						sections.forEach(section => {
+								const position = section.getBoundingClientRect().top;
+								if (position < window.innerHeight - 100) {
+										section.classList.add('visible');
+								}
+						});
+				});
+		</script>
+</body>
+</html>

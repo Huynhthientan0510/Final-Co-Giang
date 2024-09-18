@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: #f0f8ff;
+			overflow-x: hidden;
+			scroll-behavior: smooth;
+		}
+
+		/* Header Styling */
+		.lesson-header {
+			background: linear-gradient(135deg, #007bff, #00c6ff);
+			color: white;
+			padding: 50px 0;
+			text-align: center;
+			margin-bottom: 40px;
+			border-bottom-left-radius: 50px;
+			border-bottom-right-radius: 50px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.lesson-header h1 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+			animation: bounceInDown 1s ease-in-out;
+		}
+
+		.lesson-header p {
+			font-size: 1.2rem;
+			margin-top: 10px;
+		}
+
+		/* Section Title */
+		.section-title {
+			font-size: 1.8rem;
+			margin-top: 20px;
+			color: #007bff;
+			text-transform: uppercase;
+			font-weight: bold;
+			border-bottom: 3px solid #007bff;
+			display: inline-block;
+			padding-bottom: 5px;
+			position: relative;
+			animation: fadeInLeft 1s ease-in-out;
+		}
+
+		.section {
+			margin-bottom: 30px;
+			padding: 20px;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			animation: fadeInUp 1s ease-in-out;
+		}
+
+		.section p {
+			color: #333;
+			line-height: 1.6;
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		/* Code Example */
+		.code-example {
+			background-color: #2d2d2d;
+			color: #61dafb;
+			padding: 20px;
+			border-radius: 5px;
+			font-family: 'Courier New', Courier, monospace;
+			overflow-x: auto;
+			margin-top: 10px;
+			border-left: 5px solid #007bff;
+			animation: fadeIn 1.5s ease-in-out;
+		}
+
+		/* Button Styles */
+		.btn-quiz {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			transition: all 0.3s ease;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+		}
+
+		.btn-quiz:hover {
+			background-color: #218838;
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+		}
+
+		.btn-quiz:focus {
+			outline: none;
+			box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+		}
+
+		.btn-quiz:active {
+			transform: translateY(1px);
+		}
+
+		/* Animations */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInLeft {
+			from {
+				opacity: 0;
+				transform: translateX(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes bounceInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+			60% {
+				opacity: 1;
+				transform: translateY(30px);
+			}
+			80% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Lesson Header -->
+	<header class="lesson-header">
+		<h1>Welcome to Lesson 1</h1>
+		<p>Introduction to Threads in C++</p>
+	</header>
+
+	<div class="container">
+		<!-- Introduction Section -->
+		<div class="section">
+			<h2 class="section-title"> 1) Introduction</h2>
+			<ul>
+				<li> Threads are independent paths of execution within a program. Unlike processes, which run in separate memory spaces, threads share the same data space, making them lightweight and efficient for performing concurrent tasks.</li>
+				<li> Multithreading is crucial in modern applications, from web servers handling multiple client requests simultaneously to games running complex physics calculations parallel to rendering graphics.</li>
+			</ul>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="section">
+			<h2 class="section-title"> 2) Purpose of the Lesson</h2>
+			<ul>
+				<li> To introduce the concept of threads in C++, explain their significance, and demonstrate how they can be utilized to improve the efficiency and performance of applications.</li>
+				<li> Provide foundational knowledge of threading, setting the stage for more complex topics such as synchronization and thread safety.</li>
+			</ul>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="section">
+			<h2 class="section-title"> 3) Detailed Explanation</h2>
+			<ul> 
+				<li> <strong> What is a Thread? </strong>: A thread is the smallest unit of execution within a program. All threads within a process share the same data and resources, such as memory, file handles, and network connections. </li> <br>
+				<li> <strong> Differences between Processes and Threads </strong> </li>
+				<li style="margin-left: 20px;"> Processes are heavyweight and have their own memory space, while threads are lightweight and share memory. </li>
+				<li style="margin-left: 20px"> Threads within the same process can communicate directly by accessing shared data, whereas processes must use inter-process communication (IPC) mechanisms.</li> <br>
+				<li> <strong> Benefits of Multithreading: </strong> </li>
+				<li style="margin-left: 20px;"> <strong> Responsiveness</strong>: In GUI applications, multithreading allows the UI to remain responsive while performing background tasks, such as data loading.</li>
+				<li style="margin-left: 20px;"> <strong> Resource Sharing</strong>: Threads share the same data space, allowing for efficient communication and resource sharing.</li>
+				<li style="margin-left: 20px;"> Introduced in C++11, the <code>thread </code> library provides a simple and standard way to create and manage threads in C++.</li>
+				<li> <strong> The <code> thread </code> Library: </strong> </li>
+				<li style="margin-left: 20px;"> <strong> Responsiveness</strong>: In GUI applications, multithreading allows the UI to remain responsive while performing background tasks, such as data loading.</li>
+				<li style="margin-left: 20px;"> Overview of key functions: <code> std::thread </code>, <code> join() </code>, <code> detach() </code>, <code> hardware_concurrency() </code>, and thread identifiers (<code> std::this_thread::get_id() </code>).</li>
+
+
+			</ul>
+		</div>
+
+		<!-- Code Examples or Practical Demonstrations -->
+		<div class="section">
+			<h2 class="section-title">Code Examples</h2>
+			<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+// Function that will be run by the thread
+void printMessage() {
+    std::cout << "Hello from the thread!" << std::endl;
+}
+
+int main() {
+    // Create a thread that runs the printMessage function
+    std::thread t(printMessage);
+
+    // Wait for the thread to finish execution
+    t.join();
+
+    std::cout << "Thread has finished execution." << std::endl;
+    return 0;
+}
+
+			</pre><br>
+			<h2> Explanation: </h2>
+			<ul>
+				<li> <strong>Creating Threads</strong>: <code> std::thread </code> is used to create a thread. It takes a callable object (like a function) as an argument.</li>
+				<li> <strong>Joining Threads</strong>: <code> join() </code> blocks the calling thread until the thread represented by <code> std::thread </code> completes execution. This ensures orderly termination and resource cleanup.</li>
+				<li> <strong>Detaching Threads</strong>: Detaching a thread with <code> detach() </code> allows it to run independently, but the main program must ensure it doesn't access resources that may be destructed.</li>
+			</ul>
+		</div>
+
+		<!-- Best Practices and Tips -->
+		<div class="section">
+			<h2 class="section-title">Best Practices and Tips</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Always Join Threads </strong>: Always join threads unless you specifically want them to run independently. Unjoined threads may cause resource leaks or unexpected program termination.</li>
+				<li class="list-group-item"> <strong> Avoid Race Conditions</strong>: Threads sharing data must be synchronized properly to avoid unpredictable behavior.</li>
+				<li class="list-group-item"> <strong> Use Thread Pools</strong>: For repeated or bulk threading tasks, consider using a thread pool to manage a set of reusable threads rather than creating new ones repeatedly.</li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes and Pitfalls -->
+		<div class="section">
+			<h2 class="section-title">Common Mistakes and Pitfalls:</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Forgetting to Join Threads</strong>: Threads that are not joined before the program terminates can cause crashes or resource leaks.</li>
+				<li class="list-group-item"> <strong> Race Conditions</strong>: Occur when multiple threads access shared data without proper synchronization, leading to inconsistent results.</li>
+				<li class="list-group-item"> <strong> Deadlocks</strong>: When two or more threads are waiting indefinitely for each other to release resources.</li>
+			</ul>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="section">
+			<h2 class="section-title">Real-World Applications</h2>
+			<ul>
+			 	<li> <strong>Web Servers </strong>:Handling multiple client requests simultaneously. </li>
+			 	<li> <strong>Games </strong>:Parallel processing of physics calculations, AI, and rendering. </li>
+			 	<li> <strong>Data Processing </strong>: Splitting tasks like image processing or big data analytics into smaller, parallel threads.</li>
+			</ul>
+		</div>
+
+		<!-- Advanced Concepts -->
+		<div class="section">
+			<h2 class="section-title">Advanced Concepts</h2>
+			<ul>
+				<li> <strong> Thread Affinity </strong>: Binding a thread to a specific CPU core to improve cache utilization and reduce context-switching overhead. </li> 
+				<li> <strong> Thread Priorities </strong>: Adjusting thread priorities to control execution order, though implementation is platform-dependent.</li> 
+			</ul>
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="section text-center">
+			<h2 class="section-title">Interactive Elements / Quizzes</h2>
+			<button class="btn btn-quiz">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="section">
+			<h2 class="section-title">Summary</h2>
+			<p>Summarize the key points: what threads are, their benefits, how to create and manage them, and the importance of proper synchronization.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="section">
+			<h2 class="section-title">Exercises / Challenges</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Basic Exercise </strong>: Write a program that creates a thread to print numbers from 1 to 10.</li>
+				<li class="list-group-item"> <strong> Intermediate Exercise </strong>: Create a program that spawns multiple threads, each executing a different mathematical operation, such as addition, subtraction, multiplication, and division on a set of numbers.</li>
+			</ul>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="section">
+			<h2 class="section-title">Further Reading and Resources</h2>
+			<ul>
+				<li> <strong> C++ Reference Documentation </strong>: Detailed documentation on <code> thread </code> and related concurrency features.</li>
+				<li> <strong> Books </strong>: C++ Concurrency in Action” by Anthony Williams for an in-depth exploration of modern C++ concurrency techniques.</li>
+				<li> <p> You can read more information in this document: <a href="https://db.in.tum.de/teaching/ss21/c++praktikum/slides/lecture-10.2.pdf"> Threading </a></p></li>
+			</ul>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="section">
+			<h2 class="section-title">Q&A / Reflection Section</h2>
+
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="section">
+			<h2 class="section-title">Project-Based Learning Section</h2>
+			<p>Modify a simple single-threaded file-reading program to use threads to read multiple files concurrently, improving performance for large datasets.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap JavaScript Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

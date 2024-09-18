@@ -1,0 +1,96 @@
+/* General body and dark mode toggle styles */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background: linear-gradient(to right, #0d6efd, #6610f2);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+#courses h2 {
+    color: #0d6efd;
+}
+
+.course-card {
+    border: 2px solid #6610f2;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.course-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart-btn,
+.subscribe-btn {
+    display: block;  /* Ensure the buttons are displayed */
+    z-index: 100;    /* Ensure the buttons are on top */
+}
+
+.subscribe-btn:hover {
+    background-color: #6610f2;
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #0d6efd;
+    font-size: 1.25rem;
+}
+
+footer {
+    background-color: #333;
+    color: #bbb;
+}
+
+.footer .social-icons a {
+    color: #fff;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.footer .social-icons a:hover {
+    color: #0d6efd;
+    transform: scale(1.1);
+}
+
+/* Navbar styles */
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ddd;
+}
+
+.mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 1000;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode header {
+    background: linear-gradient(to right, #222, #333);
+}
+
+body.dark-mode h1, body.dark-mode h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .course-card {
+    border-color: #444;
+}
+
+body.dark-mode .footer {
+    background-color: #000;
+    color: #bbb;
+}

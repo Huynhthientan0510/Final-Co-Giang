@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course Lesson</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar">
+		<div class="logo">C++ Learning</div>
+		<ul class="nav-links">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Courses</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!-- Hero Section -->
+	<header class="hero">
+		<div class="hero-content">
+			<h1>Welcome to Lesson 1</h1>
+			<p>First step on our learning journey </p>
+			<a href="#lesson" class="cta-btn">Start Learning</a>
+		</div>
+	</header>
+
+	<!-- Lesson Section -->
+	<section class="lesson" id="lesson">
+		<h1 class="section-title">Lesson Title: Introduction to Memory in C++ (Stack vs. Heap)</h1>
+
+		<!-- Introduction -->
+		<div class="lesson-section">
+			<h2>Introduction</h2>
+			<p>Memory management is one of the core elements of C++ programming, distinguishing it from higher-level languages with automatic garbage collection. Proper memory management ensures that resources are utilized efficiently and that the program runs optimally. In C++, understanding how and where variables are stored is crucial for writing code that is both performant and safe. This lesson focuses on the two main types of memory used in C++: the stack and the heap.</p>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="lesson-section">
+			<h2>Purpose of the Lesson</h2>
+			<p>The goal of this lesson is to provide a comprehensive understanding of stack and heap memory, their distinct characteristics, and practical implications. By the end, you should be able to:</p>
+			<ul>
+				<li> Identify the differences between stack and heap memory. </li>
+				<li> Understand the benefits and drawbacks of each.</li>
+				<li> Make informed decisions on when to use stack versus heap memory in your applications. </li>
+			</ul>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="lesson-section">
+			<h2>Detailed Explanation</h2>
+			<p>In C++, memory is divided into several segments, but the two most important for this discussion are the Stack and the Heap.</p>
+			<ul>
+				<li> Stack Memory:</li>
+				<li style="margin-left: 20px;"> <strong> Definition:</strong> The stack is a region of memory used for storing local variables, function parameters, and return addresses. It's organized in a Last-In-First-Out (LIFO) manner.</li>
+				<li style="margin-left: 20px;"> <strong> Characteristics:</strong></li>
+				<li style="margin-left: 40px;"> Memory allocation and deallocation are automatically managed by the compiler.</li>
+				<li style="margin-left: 40px;"> Extremely fast access because of its LIFO structure, making it ideal for temporary storage.</li>
+				<li style="margin-left: 40px;"> Limited in size; stack size is usually much smaller compared to heap size.</li>
+				<li style="margin-left: 40px;"> Typically used for primitive data types (e.g., int, float) and small, short-lived objects.</li>
+				<li style="margin-left: 20px;"> <strong> Behavior:</strong></li>
+				<li style="margin-left: 40px;"> Each time a function is called, a new stack frame is created, storing the function's local variables and parameters.</li>
+				<li style="margin-left: 40px;"> Once the function returns, the stack frame is popped off, and the memory is automatically reclaimed.</li>
+
+				<li> Heap Memory:</li>
+				<li style="margin-left: 20px;"> <strong> Definition:</strong> The heap is a larger pool of memory used for dynamic memory allocation. Unlike the stack, memory on the heap is manually managed.</li>
+				<li style="margin-left: 20px;"> <strong> Characteristics:</strong></li>
+				<li style="margin-left: 40px;"> Managed using pointers; memory must be allocated (new) and deallocated (delete) explicitly by the programmer.</li>
+				<li style="margin-left: 40px;"> Access is slower due to its unordered structure and manual management.</li>
+				<li style="margin-left: 40px;"> Suitable for large or persistent data that needs to be shared across functions or has a variable size determined at runtime.</li>
+				<li style="margin-left: 40px;"> More prone to errors like memory leaks if not managed carefully.</li>
+				<li style="margin-left: 20px;"> <strong> Behavior:</strong></li>
+				<li style="margin-left: 40px;"> When you allocate memory on the heap, you request a block of memory of a specific size.</li>
+				<li style="margin-left: 40px;"> You must explicitly release this memory when it's no longer needed, or it will remain occupied, leading to memory leaks.</li>
+
+			</ul>
+		</div>
+
+		<!-- Code Examples -->
+		<div class="lesson-section code-examples">
+			<h2>Code Examples</h2>
+			<pre><code>
+#include &lt;iostream&gt;
+
+void stackExample() {
+    // Stack allocation
+    int x = 10; 
+    std::cout << "Stack variable: " << x << std::endl; // Memory is managed automatically
+}
+
+void heapExample() {
+    // Heap allocation
+    int* ptr = new int(20); // Dynamically allocate memory on the heap
+    std::cout << "Heap variable: " << *ptr << std::endl;
+    delete ptr; // Manual deallocation to avoid memory leaks
+}
+
+int main() {
+    stackExample();
+    heapExample();
+    return 0;
+}
+
+			</code></pre> 
+		</div>
+		<p> Explanation of the Code: </p>
+		<ul>
+			<li> In stackExample(), the variable x is stored on the stack. It is automatically created when the function is called and destroyed when the function exits.</li>
+			<li> In heapExample(), ptr points to memory allocated on the heap. You must explicitly delete this memory, or it remains allocated. </li>
+		</ul>
+
+		<!-- Best Practices -->
+		<div class="lesson-section">
+			<h2>Best Practices</h2>
+			<ul>	
+				<li> <strong> Use stack memory when possible: </strong> Stack memory is faster and automatically managed, making it suitable for temporary or small data.</li>
+				<li> <strong> Reserve heap memory for larger, dynamic data </strong>: If you need more memory than the stack can provide or need data that persists beyond the function call, use the heap.</li>
+				<li> <strong>Always deallocate heap memory</strong>: Use <code> delete </code> or <code> delete[] </code>  to free up memory and avoid leaks. Smart pointers (<code> std::unique_ptr </code>, <code> std::shared_ptr </code>) can help manage heap memory safely.</li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes -->
+		<div class="lesson-section">
+			<h2>Common Mistakes</h2>
+			<li> <strong> Memory Leaks </strong>: Failing to free heap memory results in memory that remains allocated indefinitely, which can degrade performance and crash programs over time.</li>
+			<li> <strong> Dangling Pointers </strong>: Pointers that reference memory that has already been freed can lead to undefined behavior if accessed again.</li>
+			<li> <strong> Stack Overflows </strong>: Deep recursion or excessive stack usage can exhaust stack space, leading to a crash.</li>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="lesson-section">
+			<h2>Real-World Applications</h2>
+			<li> <strong> Stack </strong>: Commonly used for function calls, recursion, and managing local variables. The stack is used implicitly by the system for function call management, providing rapid function invocation and return.</li>
+			<li> <strong> Heap</strong>: Used for dynamic data structures like linked lists, trees, graphs, and large arrays. Applications like game engines, database management systems, and scientific computing heavily rely on heap memory for their complex data requirements. </li>
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="lesson-section quiz">
+			<h2>Quiz</h2>
+			<p>Take the quiz to test your understanding of the material...</p>
+			<button class="quiz-btn">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="lesson-section">
+			<h2>Summary</h2>
+			<p>This lesson provided an in-depth look at stack and heap memory, two critical aspects of C++ programming. Understanding when and how to use each can lead to better performance, safer code, and more efficient resource management.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="lesson-section">
+			<h2>Exercises</h2>
+			<li> <strong> Exercise 1 </strong>: Write a program that uses recursion to calculate the factorial of a number. Observe how stack memory is used. </li>
+			<li> <strong> Exercise 2 </strong>: Create a dynamic array using heap memory and manually manage its lifecycle.</li>
+			<li> <strong> A little challenge</strong>: Implement a basic linked list class using heap memory for nodes, ensuring proper cleanup of resources.</li>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="lesson-section">
+			<h2>Further Reading</h2>
+			<p>You can read more about this lession, read <a href="https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/d3efc710bb90753e60a7b0f799a46296_MIT6_096IAP11_lec08.pdf">Memory Management</a></p>
+			<p>Books: "C++ Primer" by Lippman, Lajoie, and Moo. </p>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="lesson-section">
+			<h2>Q&A</h2>
+			<p>Reflect on what you've learned and post any questions in the comments section...</p>
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="lesson-section">
+			<h2>Project-Based Learning</h2>
+			<p>Project: Create a memory management module that simulates stack and heap operations, providing visual insights into how memory is allocated and deallocated during program execution.</p>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; 2024 SCAM center | All rights reserved</p>
+	</footer>
+
+	<script src="scripts.js"></script>
+</body>
+</html>

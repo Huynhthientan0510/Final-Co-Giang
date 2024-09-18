@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C++ Course - Lesson 3</title>
+		
+		<!-- Bootstrap and FontAwesome -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		
+
+		<style>
+				body {
+						background-color: #f4f7fc;
+						font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				}
+
+				.header h1 {
+						text-align: center;
+						margin-top: 20px;
+						color: #333;
+				}
+
+				h1, h2 {
+						color: #007bff;
+						position: relative;
+				}
+
+				/* Icon styles */
+				h2 i {
+						color: #007bff;
+						margin-right: 10px;
+				}
+
+				.content-section {
+						background: white;
+						border-radius: 8px;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+						margin-bottom: 20px;
+						padding: 20px;
+						opacity: 0;
+						transform: translateY(50px);
+						transition: all 0.6s ease;
+				}
+
+				/* Animation for sections */
+				.content-section.visible {
+						opacity: 1;
+						transform: translateY(0);
+				}
+
+				pre {
+						background-color: #f0f0f0;
+						padding: 15px;
+						border-radius: 8px;
+						font-size: 1rem;
+						border-left: 5px solid #007bff;
+						box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				}
+
+				code {
+						background-color: #e8e8e8;
+						padding: 2px 6px;
+						border-radius: 4px;
+				}
+
+				.btn {
+						background-color: #007bff;
+						color: white;
+				}
+
+				.footer {
+						text-align: center;
+						margin-top: 20px;
+						padding: 20px;
+						background-color: #007bff;
+						color: white;
+				}
+		</style>
+</head>
+<body>
+		<div class="container">
+				<header class="header">
+						<h1>Lesson 3: Smart Pointers and Automatic Memory Management</h1>
+				</header>
+
+				<!-- Lesson Introduction -->
+				<section class="content-section">
+						<h2><i class="fas fa-book"></i>Introduction</h2>
+						<p>Smart pointers are an advanced feature in C++ that manage the lifecycle of dynamically allocated objects. Introduced in C++11, they provide automatic memory management to help prevent common issues such as memory leaks and dangling pointers. Smart pointers come in several varieties, each serving different needs and offering distinct advantages.</p>
+				</section>
+
+				<!-- Purpose of the Lesson -->
+				<section class="content-section">
+						<h2><i class="fas fa-bullseye"></i>Purpose of the Lesson</h2>
+						<p>By the end of this lesson, you will: </p>
+						<ul>
+								<li>Understand the different types of smart pointers in C++.</li>
+								<li>Learn how to use <code> std::unique_ptr</code>, <code> std::shared_ptr</code>, and <code> std::weak_ptr</code>.</li>
+								<li>Explore best practices for using smart pointers and how they help in managing memory efficiently.</li>
+						</ul>
+				</section>
+
+				<!-- Detailed Explanation -->
+				<section class="content-section">
+						<h2><i class="fas fa-info-circle"></i>Detailed Explanation</h2>
+						<p><strong>Types of Smart Pointers</strong></p>
+						<p>The general syntax for lambda expressions is:</p>
+						<ul>
+								<li><code>std::unique_ptr</code>: Represents exclusive ownership of a dynamically allocated object. Only one <code> std::unique_ptr </code> can own the object at a time, and it automatically deletes the object when the <code> std::unique_ptr </code> is destroyed.</li>
+								<li><code>std::shared_ptr</code>:  SRepresents shared ownership of a dynamically allocated object. Multiple <code> std::shared_ptr </code> instances can own the same object. The object is deleted only when the last <code> std::shared_ptr </code> owning it is destroyed.</li>
+								<li><code>std::weak_ptr</code>: Acts as a non-owning reference to an object managed by <code> std::shared_ptr </code>. It does not affect the reference count of the object and is used to break circular references that can lead to memory leaks.</li>
+						</ul> <br>
+
+						<p><code> std::unique_ptr</code></p>
+						<p><code> std::unique_ptr</code>ensures that only one pointer owns a given resource. It cannot be copied but can be moved, making it suitable for exclusive ownership scenarios.</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+int main() {
+	std::unique_ptr&lt;int&gt; ptr1 = std::make_unique&lt;int&gt;(10);  // Create a unique pointer
+	std::cout << "Value: " << *ptr1 << std::endl;  // Output: Value: 10
+	
+	// std::unique_ptr&lt;int&gt; ptr2 = ptr1; // Error: Cannot copy unique_ptr
+	
+	std::unique_ptr&lt;int&gt; ptr2 = std::move(ptr1);  // Transfer ownership
+	if (!ptr1) {
+		std::cout << "ptr1 is now nullptr" << std::endl;  // Output: ptr1 is now nullptr
+	}
+	std::cout << "Value: " << *ptr2 << std::endl;  // Output: Value: 10
+	
+	return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li><code>std::make_unique&lt;int&gt;(10)</code>: creates a <Code> std::unique_ptr </Code> that owns an <Code> int </Code> initialized to <Code> 10 </Code>.</li>
+								<li>Attempting to copy <code> std::unique_ptr </code> is not allowed. Instead, <code> std::move transfers </code> ownership from <code> ptr1 </code> to <code> ptr2 </code>.</li>
+								<li>After the move, <code> ptr1</code> is set to <code> nullptr</code>, indicating that it no longer owns the resource.</li>
+						</ul><br>
+
+						<p><code> std::shared_ptr</code></p>
+						<p><code> std::shared_ptr</code>allows multiple pointers to share ownership of an object. The object is destroyed when the last <code> std::shared_ptr</code> to it is destroyed.</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() {
+	std::shared_ptr&lt;int&gt; sp1 = std::make_shared&lt;int&gt;(20);
+	std::shared_ptr&lt;int&gt; sp2 = sp1;  // Shared ownership
+	std::cout << "Value: " << *sp1 << std::endl;  // Output: Value: 20
+	std::cout << "Value: " << *sp2 << std::endl;  // Output: Value: 20
+	
+	std::cout << "Use count: " << sp1.use_count() << std::endl;  // Output: Use count: 2
+	
+	sp1.reset();  // Release ownership
+	std::cout << "Use count after reset: " << sp2.use_count() << std::endl;  // Output: Use count after reset: 1
+	
+	return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li><code>std::make_shared&lt;int&gt;(20)</code>: creates a <code> std::shared_ptr</code> that owns an <code> int </code> initialized to <code>20 </code>.</li>
+								<li> <code> sp2 </code> shares ownership of the same <code> int </code> with <code> sp1 </code>. Both pointers can access the value.</li>
+								<li>The <code> use_count() </code> method shows how many <code> std::shared_ptr </code> instances are currently managing the same object.</li>
+								<li> Calling <code> reset() </code> on <code> sp1 </code> decreases the reference count. The object is destroyed only when the last <code> std::shared_ptr </code> (in this case, <code> sp2 </code>) is destroyed or reset.</li>
+						</ul><br>
+
+						<p><code> std::weak_ptr</code></p>
+						<p><code> std::weak_ptr</code> is used to observe an object managed by <code> std::shared_ptr</code> without affecting its reference count. It is useful for avoiding circular references that can lead to memory leaks.</p>
+						<ul>
+							<pre class="highlight">
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() {
+	std::shared_ptr&lt;int&gt; sp1 = std::make_shared&lt;int&gt;(30);
+	std::weak_ptr&lt;int&gt; wp = sp1;  // Create a weak pointer
+	
+	if (auto sp2 = wp.lock()) {  // Attempt to obtain a shared pointer
+		std::cout << "Value: " << *sp2 << std::endl;  // Output: Value: 30
+	} else {
+		std::cout << "Weak pointer is expired" << std::endl;
+	}
+	
+	sp1.reset();  // Release the shared pointer
+	if (auto sp2 = wp.lock()) {
+		std::cout << "Value: " << *sp2 << std::endl;
+	} else {
+		std::cout << "Weak pointer is expired" << std::endl;  // Output: Weak pointer is expired
+	}
+	
+	return 0;
+}
+								</pre>
+								<p> Explanation </p>
+								<li><code>std::weak_ptr&lt;int&gt;</code>: does not affect the reference count of the object managed by std::shared_ptr&lt;int&gt;</li>
+								<li> The <code> lock() </code> method attempts to obtain a <code> std::shared_ptr</code> from the <code> std::weak_ptr</code>. If the original object has been destroyed, <code> lock() </code> returns an empty <code> std::shared_ptr</code>.</li>
+								<li>After <code> sp1 </code> is reset, the <code> std::weak_ptr</code> no longer has access to the object, indicating that the object is no longer available.</li>
+						</ul><br>
+				</section>
+
+
+				<!-- Best Practices and Tips -->
+				<section class="content-section">
+						<h2><i class="fas fa-lightbulb"></i>Tips</h2>
+						<ul>
+								<li> <strong> Prefer <code> std::unique_ptr </code> for Exclusive Ownership </strong>: Use <code> std::unique_ptr </code> when an object should have a single owner, as it provides better performance and simplicity.</li>
+								<li> <strong> Use <code> std::shared_ptr </code> for Shared Ownership </strong>: Use <code> std::shared_ptr </code> when multiple owners need to share access to the same object. Be cautious of circular references that can cause memory leaks.</li>
+								<li> <strong> Utilize <code> std::weak_ptr </code> to Break Circular References </strong>: Use <code> std::weak_ptr </code> to observe objects managed by <code> std::shared_ptr </code> without affecting the reference count, which helps prevent memory leaks.</li>
+						</ul>
+				</section>
+
+				<!-- Common Mistakes and Pitfalls -->
+				<section class="content-section">
+						<h2><i class="fas fa-exclamation-circle"></i>Common Mistakes and Pitfalls</h2>
+						<ul>
+							<li> <strong> Circular References with <code> std::shared_ptr </code></strong>:If two or more <code> std::shared_ptr</code> instances refer to each other, they will never be destroyed, leading to a memory leak. Use <code> std::weak_ptr</code> to break such cycles.</li>
+							<li> <strong> Mixing Raw Pointers with Smart Pointers</strong>:Avoid mixing raw pointers and smart pointers to prevent confusion and potential memory management issues. Prefer smart pointers for resource management. </li>
+						</ul>
+
+				<!-- Real-World Applications -->
+				<section class="content-section">
+						<h2><i class="fas fa-industry"></i>Real-World Applications</h2>
+						<ul>
+							<li> <strong> Resource Management</strong>:Smart pointers are widely used in resource management to handle dynamic memory allocation safely and efficiently. </li>
+							<li> <strong> Observer Patterns </strong>: <code> std::weak_ptr </code> is often used in observer patterns to prevent circular dependencies and memory leaks.</li>
+						</ul>
+				</section>
+
+				<!-- Advanced Concepts (Optional) -->
+				<section class="content-section">
+						<h2><i class="fas fa-cogs"></i>Advanced Concepts</h2>
+						<li> <strong> Custom Deleters with <code> std::unique_ptr </code> and <code> std::shared_ptr </code></strong>: You can specify custom deleters for smart pointers to handle special cleanup operations.</li>
+						<pre class="highlight">
+auto custom_deleter = [](int* ptr) {
+	std::cout << "Custom delete: " << *ptr << std::endl;
+	delete ptr;
+};
+std::unique_ptr<int, decltype(custom_deleter)> ptr(new int(40), custom_deleter);
+				</section>
+
+				<!-- Interactive Quiz -->
+				<section class="content-section">
+						<h2><i class="fas fa-clipboard-check"></i>Quiz</h2>
+						<button class="btn quiz-btn">Start Quiz</button>
+				</section>
+
+				<!-- Summary -->
+				<section class="content-section summary">
+						<h2><i class="fas fa-file-alt"></i>Summary</h2>
+						<p>Smart pointers in C++ simplify memory management by automatically handling resource cleanup. Understanding the differences between std::unique_ptr, std::shared_ptr, and std::weak_ptr helps in selecting the appropriate type of smart pointer based on ownership semantics and avoiding common pitfalls like memory leaks and circular references.</p>
+				</section>
+
+				<!-- Exercises -->
+				<section class="content-section exercise">
+						<h2><i class="fas fa-dumbbell"></i>Exercises</h2>
+						<p> <strong> Exercise 1</strong>:Implement a class that uses <code> std::unique_ptr </code> to manage its resources. Ensure proper resource management and demonstrate moving ownership. </p>
+						<p> <strong> Exercise 2</strong>:Write a program using <code> std::shared_ptr </code> to manage a collection of objects. Implement a circular reference scenario and resolve it using <code> std::weak_ptr </code>.</p>
+						<p> <strong> Exercise 3</strong>:Create a small memory management system that uses custom deleters with <code> std::unique_ptr </code> and <code> std::shared_ptr </code></p>
+				</section>
+
+				<!-- Further Reading -->
+				<section class="content-section reading">
+						<h2><i class="fas fa-link"></i>Further Reading and Resources</h2>
+						<li> <a href="https://en.cppreference.com/w/cpp/memory">Smart Pointers in C++</a></li>
+						<li> <a href="https://isocpp.org/wiki/faq/smart-pointers">Modern C++ Smart Pointers </a></li>
+						<li> <<a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rsm-smart-pointers">C++ Core Guidelines: Smart Pointers </a> </li>
+				</section>
+
+
+				<!-- Question -->
+				<section class="content-section question">
+						<h2><i class="fas fa-question"></i>Any Question?</h2>		
+				</section>
+
+
+				<!-- Project -->
+				<section class="content-section project">
+						<h2><i class="fas fa-project-diagram"></i>Project-Based Learning</h2>	
+						<p> Develop a simple resource manager that utilizes all three types of smart pointers. Create a scenario where resources are dynamically allocated and managed using <code> std::unique_ptr </code>, <code> std::shared_ptr </code>, and <code> std::weak_ptr </code>, demonstrating their usage and benefits.</p>	
+				</section>
+
+				<!-- Footer -->
+				<footer class="footer">
+						<p>SCAM Center. All Rights Reserved</p>
+				</footer>
+		</div>
+
+		<!-- Bootstrap JS, jQuery, and FontAwesome -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Animation Script -->
+		<script>
+				// Scroll Animation
+				window.addEventListener('scroll', function () {
+						const sections = document.querySelectorAll('.content-section');
+						sections.forEach(section => {
+								const position = section.getBoundingClientRect().top;
+								if (position < window.innerHeight - 100) {
+										section.classList.add('visible');
+								}
+						});
+				});
+		</script>
+</body>
+</html>

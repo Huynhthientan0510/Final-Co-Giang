@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C++ Online Course - Lesson 2</title>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<!-- FontAwesome Icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+		<!-- Animate.css -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+		<!-- Navigation Bar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+				<a class="navbar-brand" href="#"><i class="fas fa-code"></i> C++ Online Learning</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse animate__animated animate__fadeIn" id="navbarNav">
+						<ul class="navbar-nav ml-auto">
+								<li class="nav-item active">
+										<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+								</li>
+								<li class="nav-item">
+										<a class="nav-link" href="#">Courses</a>
+								</li>
+								<li class="nav-item">
+										<a class="nav-link" href="#">Community</a>
+								</li>
+								<li class="nav-item">
+										<a class="nav-link" href="#">Contact Us</a>
+								</li>
+						</ul>
+				</div>
+		</nav>
+
+		<!-- Header Image -->
+		<header class="header-image text-white text-center">
+				<div class="header-content">
+						<h1 class="animate__animated animate__fadeInDown">Welcome to Course: Template Programming and Metaprogramming</h1>
+						<p class="animate__animated animate__fadeInUp">Master the basics of C++ programming with our comprehensive lessons.</p>
+						<a href="#lesson-content" class="btn btn-lg btn-light mt-3 animate__animated animate__fadeInUp"><i class="fas fa-chevron-down"></i> Get Started</a>
+				</div>
+		</header>
+
+		<!-- Main Content -->
+		<div class="container mt-5" id="lesson-content">
+				<div class="lesson-section">
+						<!-- Lesson Title -->
+						<h1 class="lesson-title text-center animate__animated animate__fadeInUp">Lesson 2: Function and Class Templates</h1>
+
+						<!-- Introduction -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-lightbulb"></i> Introduction</h2>
+								<p>Templates can be used not only for functions but also for classes. In this lesson, you’ll learn about function templates and class templates in greater detail. While function templates allow you to create generic functions, class templates enable you to create classes that work with multiple types. Understanding the difference and how to use them both is key to mastering C++'s generic programming features.</p>
+						</section>
+
+						<!-- Purpose of the Lesson -->
+						<section class="animate__animated animate__fadeInRight">
+								<h2><i class="fas fa-bullseye"></i> Purpose of the Lesson</h2>
+								<p>The goal of this lesson is to explore function and class templates in C++. By the end of this lesson, you should be able to:</p>
+								<ul>
+									<li>Write and use both function and class templates. </li>
+									<li>Understand the benefits of each type of template. </li>
+									<li>Apply class templates to real-world programming scenarios like generic data structures. </li>
+								</ul>
+						</section>
+
+						<!-- Detailed Explanation -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-book-open"></i> Detailed Explanation</h2>
+								<p>A <strong> function </strong> template provides a way to create a function that works with any data type. You’ve already seen simple examples of function templates in the previous lesson, but now we’ll extend those concepts.</p>
+								<p> Let’s look at a slightly more complex example that works with two different types:</p>
+								<pre><code>// Example C++ code
+template &lt;typename T, typename U&gt;
+T multiply(T a, U b) {
+	return a * b;
+}</code></pre>
+						<p> Explanation:</p>
+								<ul>
+									<li> <strong> Multiple Template Parameters </strong>: The template above has two template parameters: <code> T </code> and <code> U </code>. This means that <code> a </code> and <code> b </code> can be of different types. For example, you can multiply an <code> int </code> by a <code> double </code>.</li>
+									<li> <strong> Flexibility </strong>: This template is more flexible than one with a single type because it allows mixing types. You could call <code> multiply(3, 5.5) </code> and the template would automatically handle the different types. </li>
+								</ul>
+
+						<p>Now, let’s explore <strong> class templates </strong>. </p>
+						<p>A <strong> class templates </strong> works similarly to a function template, but it allows you to create generic classes. This is especially useful for creating data structures like lists, stacks, and queues that can work with any data type. </p>
+						<pre><code>
+template &lt;typename T&gt;
+class Box {
+	T value;
+public:
+	Box(T val) : value(val) {}
+	T getValue() const { return value; }
+	void setValue(T val) { value = val; }
+};</code></pre>
+							<p> Explanation:</p>
+								<ul>
+									<li>The Box class is a template that can store any type T. You can create an instance of <code> Box&lt;int&gt;</code>, <code> Box&lt;double&gt;</code>, or even <code> Box&lt;string&gt;</code>.</li>
+									<li> The class has a constructor that initializes the value of type <code> T </code>, a getter method <code> getValue() </code> that returns the stored value, and a setter method <code> setValue() </code> to update the value. </li>
+								</ul>
+
+								<p>Example usage:</p>
+								<pre><code>
+int main() {
+	Box&lt;int&gt; intBox(123);
+	cout << "Value in intBox: " << intBox.getValue() << endl;
+	intBox.setValue(456);
+	cout << "Updated Value in intBox: " << intBox.getValue() << endl;
+
+	Box&lt;string&gt; strBox("Hello");
+	cout << "Value in strBox: " << strBox.getValue() << endl;
+	strBox.setValue("World");
+	cout << "Updated Value in strBox: " << strBox.getValue() << endl;
+
+	return 0;
+}</code></pre>
+							<p> Explanation:</p>
+							<ul>
+								<li>In <code> main() </code>, two <code> Box </code> objects are created: one for <code> int </code> and one for <code> string </code>. </li>
+								<li>You can see that the same class works with both data types, which is the main advantage of class templates: code reuse and type safety. </li>
+							</ul>
+
+							<li>Code Example: A Generic Pair Class </li>
+							<p>Another common example of a class template is a generic Pair class that stores two values: </p>
+							<pre><code>
+template <typename T1, typename T2>
+class Pair {
+	T1 first;
+	T2 second;
+public:
+	Pair(T1 a, T2 b) : first(a), second(b) {}
+	T1 getFirst() const { return first; }
+	T2 getSecond() const { return second; }
+	void setFirst(T1 a) { first = a; }
+	void setSecond(T2 b) { second = b; }
+};</code></pre>
+							<p> Explanation:</p>
+							<ul>
+								<li>The <code> Pair </code> class template takes two template parameters, <code> T1 </code> and <code> T2 </code>, meaning that the two values <code> first </code> and <code> second </code> can be of different types. </li>
+								<li>This class can be used to create pairs of any types, such as Pair&gt;int, double&gt;, Pair&gt;string, int&gt;, or even Pair&gt;char, bool&gt;. </li>
+							</ul>
+
+							<p> Example Usage:</p>
+							<pre><code>
+int main() {
+	Pair<int, double> p1(10, 20.5);
+	cout << "First: " << p1.getFirst() << ", Second: " << p1.getSecond() << endl;
+
+	Pair<string, int> p2("Age", 30);
+	cout << "First: " << p2.getFirst() << ", Second: " << p2.getSecond() << endl;
+
+	return 0;
+}</code></pre>
+							<p> Explanation:</p>
+							<ul>
+								<li>In <code> main() </code>, the <code> Pair </code> class template is used to store a pair of an integer and a double, and then a string and an integer.. </li>
+								<li>The template automatically generates the correct class definitions for each type combination, allowing you to store and retrieve different types easily. </li>
+							</ul>
+
+							<li>Benefits of Class Templates </li>
+							<ol>
+								<li> <strong>Reusability </strong>:Write a class once, use it for many types. </li>
+								<li> <strong>Reusability </strong>:The compiler ensures that only valid operations are performed on the types used in the template </li>
+								<li> <strong>Reusability </strong>:Templates are evaluated at compile-time, leading to optimized code.</li>
+							</ol>
+
+						</section>
+
+						<!-- Best Practices and Tips -->
+						<section class="animate__animated animate__fadeInRight">
+								<h2><i class="fas fa-check-circle"></i> Best Practices and Tips</h2>
+								<ul>
+										<li> <strong>Use Class Templates for Data Structures </strong>:Templates are perfect for creating generic data structures like linked lists, queues, and stacks that can store any type of data. </li>
+										<li> <strong>Leverage Multiple Template Parameters </strong>:If your class needs to handle multiple types, don’t hesitate to use more than one template parameter </li>
+										<li> <strong>Limit Template Use in Complex Applications </strong>:While templates are powerful, avoid using them in overly complex scenarios where polymorphism or other techniques might be more appropriate. </li>
+								</ul>
+						</section>
+
+						<!-- Common Mistakes and Pitfalls -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-exclamation-triangle"></i> Common Mistakes and Pitfalls</h2>
+								<ul>
+									<li> <strong>Incorrect Template Parameter Usage </strong>:Be careful to ensure that all template parameters are used correctly within the class. If a type doesn’t support the operations in your template, you will get confusing compiler errors. </li>
+									<li> <strong>Over-Templating </strong>: Resist the urge to template everything. Sometimes, simple overloading or inheritance is more appropriate, especially for smaller or more specialized tasks. </li>
+								</ul>
+						</section>
+
+						<!-- Real-World Applications -->
+						<section class="animate__animated animate__fadeInRight">
+								<h2><i class="fas fa-briefcase"></i> Real-World Applications</h2>
+								<p>The C++ Standard Template Library (STL) is built entirely on templates. Classes like <code> std::vector </code>, <code> std::pair </code>, and <code> std::map </code> are all class templates. These classes are capable of working with any data type, which is why the STL is so versatile and powerful. </p>
+								<p>Let’s look at an example with <code> std::pair </code>: </p>
+								<pre><code>
+#include &lt;utility&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+	pair&lt;int, string&gt; student(1, "John");
+	cout << "ID: " << student.first << ", Name: " << student.second << endl;
+
+	return 0;
+}</code></pre>
+								<p> Explanation: </p>
+								<li>The <code> std::pair </code> template allows you to create a pair of values of any types. Here, a pair of an integer (student ID) and a string (student name) is created. The <Code> first </Code> and <Code> second </Code> members of the pair hold the respective values. </li>
+								<p>This kind of flexibility makes templates invaluable for generic programming. </p>
+
+						</section>
+
+						<!-- Advanced Concepts -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-rocket"></i> Advanced Concepts</h2>
+								<ul>
+									<li> <strong>Partial Specialization </strong>:While template specialization involves providing a specific implementation for a particular type, partial specialization allows you to specialize templates for a subset of template parameters. This is a more advanced topic that allows greater control over the behavior of templates. </li>
+									<li> <strong>Non-Type Template Parameters </strong>:Templates can also accept non-type parameters, such as integer values or pointers, allowing for even more flexibility in defining templates.
+ </li>
+								</ul>
+						</section>
+
+						<!-- Interactive Elements or Quizzes -->
+						<section class="animate__animated animate__fadeInRight">
+								<h2><i class="fas fa-question-circle"></i> Interactive Quiz</h2>
+								<button class="btn btn-primary quiz-btn" onclick="startQuiz()">Start Quiz</button>
+						</section>
+
+						<!-- Summary -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-stream"></i> Summary</h2>
+								<p>Function and class templates are a cornerstone of generic programming in C++. They enable developers to write flexible, reusable code that works with multiple data types without duplication. Function templates are ideal for generic algorithms, while class templates are commonly used for data structures that can handle various types of data.</p>
+						</section>
+
+						<!-- Exercises or Challenges -->
+						<section class="animate__animated animate__fadeInRight">
+								<h2><i class="fas fa-tasks"></i> Exercises</h2>
+								<ul>
+									<li> <strong> Exercise 1 </strong>:Write a template function to calculate the average of an array of any numeric type. </li>
+									<li> <strong> Exercise 2</strong>:Write a class template for a queue that works with any data type. Implement <code> enqueue </code>, <code> dequeue </code>, and <code> front </code> methods. </li>
+									<li> <strong> Exercise 3</strong>:Extend the <code>Pair</code>. class template to include a method that swaps the values of <code>first</code>. and <code>second</code>.</li>
+								</ul>
+						</section>
+
+						<!-- Further Reading and Resources -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-book"></i> Further Reading</h2>
+								<li style="margin-left: 20px">Books</li>
+								<ul>
+									<li style="margin-left: 40px">"C++ Templates: The Complete Guide" by David Vandevoorde and Nicolai M. Josuttis (Chapter on Function and Class Templates) </li>
+									<li style="margin-left: 40px">"Modern C++ Design" by Andrei Alexandrescu </li>
+								</ul>
+								<li style="margin-left: 20px">Online Resources</li>
+								<ul>
+										<li><a href="https://www.geeksforgeeks.org/templates-cpp/" >GeeksforGeeks: Templates in C+</a></li>
+										<li><a href="http://www.cplusplus.com/doc/oldtutorial/templates/">CPlusPlus.com: Templates</a></li>
+								</ul>
+						</section>
+
+						<!-- Q&A or Reflection Section -->
+						<section class="animate__animated animate__fadeInRight">
+								<h2><i class="fas fa-comments"></i> Q&A and Reflection</h2>
+								<p>Have questions? Join our community forum to discuss with peers and instructors.</p>
+						</section>
+
+						<!-- Project-Based Learning Section -->
+						<section class="animate__animated animate__fadeInLeft">
+								<h2><i class="fas fa-project-diagram"></i> Project</h2>
+								<p>Create a template-based stack or queue class that can store any data type. The class should include methods for adding and removing items, checking if the structure is empty, and retrieving the current size. Then, extend the class to work with complex types like <code> std::string </code> and custom classes.</p>
+						</section>
+				</div>
+		</div>
+
+		<!-- Footer -->
+		<footer class="bg-primary text-white text-center p-4">
+				&copy; SCAM Center All Rights Reserved.
+		</footer>
+
+		<!-- JavaScript and Dependencies -->
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<!-- Bootstrap Bundle JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+		<!-- Custom JS -->
+		<script src="script.js"></script>
+</body>
+</html>

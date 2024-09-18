@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: #f0f8ff;
+			overflow-x: hidden;
+			scroll-behavior: smooth;
+		}
+
+		/* Header Styling */
+		.lesson-header {
+			background: linear-gradient(135deg, #007bff, #00c6ff);
+			color: white;
+			padding: 50px 0;
+			text-align: center;
+			margin-bottom: 40px;
+			border-bottom-left-radius: 50px;
+			border-bottom-right-radius: 50px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.lesson-header h1 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+			animation: bounceInDown 1s ease-in-out;
+		}
+
+		.lesson-header p {
+			font-size: 1.2rem;
+			margin-top: 10px;
+		}
+
+		/* Section Title */
+		.section-title {
+			font-size: 1.8rem;
+			margin-top: 20px;
+			color: #007bff;
+			text-transform: uppercase;
+			font-weight: bold;
+			border-bottom: 3px solid #007bff;
+			display: inline-block;
+			padding-bottom: 5px;
+			position: relative;
+			animation: fadeInLeft 1s ease-in-out;
+		}
+
+		.section {
+			margin-bottom: 30px;
+			padding: 20px;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			animation: fadeInUp 1s ease-in-out;
+		}
+
+		.section p {
+			color: #333;
+			line-height: 1.6;
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		/* Code Example */
+		.code-example {
+			background-color: #2d2d2d;
+			color: #61dafb;
+			padding: 20px;
+			border-radius: 5px;
+			font-family: 'Courier New', Courier, monospace;
+			overflow-x: auto;
+			margin-top: 10px;
+			border-left: 5px solid #007bff;
+			animation: fadeIn 1.5s ease-in-out;
+		}
+
+		/* Button Styles */
+		.btn-quiz {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			transition: all 0.3s ease;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+		}
+
+		.btn-quiz:hover {
+			background-color: #218838;
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+		}
+
+		.btn-quiz:focus {
+			outline: none;
+			box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+		}
+
+		.btn-quiz:active {
+			transform: translateY(1px);
+		}
+
+		/* Animations */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInLeft {
+			from {
+				opacity: 0;
+				transform: translateX(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes bounceInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+			60% {
+				opacity: 1;
+				transform: translateY(30px);
+			}
+			80% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Lesson Header -->
+	<header class="lesson-header">
+		<h1>Welcome to Lesson 3</h1>
+		<p>Synchronization (Mutexes, Locks)</p>
+	</header>
+
+	<div class="container">
+		<!-- Introduction Section -->
+		<div class="section">
+			<h2 class="section-title"> 1) Introduction</h2>
+			<ul>
+				<li> In multithreaded programming, synchronization is crucial to ensure that shared resources are accessed safely by multiple threads. Without synchronization, threads may interfere with each other, leading to data corruption and unpredictable behavior.</li>
+				<li> This lesson introduces synchronization mechanisms in C++, focusing on mutexes and locks, which are essential tools to manage access to shared resources.</li>
+			</ul>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="section">
+			<h2 class="section-title"> 2) Purpose of the Lesson</h2>
+			<ul>
+				<li> To understand the importance of synchronization in multithreading.</li>
+				<li> To learn how to use mutexes and locks to protect shared resources and prevent race conditions.</li>
+				<li> To explore common synchronization patterns and best practices for writing safe and efficient multithreaded code.</li>
+			</ul>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="section">
+			<h2 class="section-title"> 3) Detailed Explanation</h2>
+			<ul> 
+				<li> <strong> What is Synchronization </strong>? </li> <br>
+				<li style="margin-left: 20px;"> Synchronization is the coordination of concurrent threads to ensure that they do not conflict when accessing shared resources</li>
+				<li style="margin-left: 20px"> It helps maintain data consistency, prevents race conditions, and ensures predictable execution order among threads.</li> <br>
+				<li> <strong> Race Conditions: </strong> </li>
+				<li style="margin-left: 20px;">  A race condition occurs when two or more threads access shared data simultaneously, and at least one thread modifies the data, leading to unpredictable results.</li> <br>
+				
+				
+				<li> <strong> Mutexes (Mutual Exclusion): </strong> </li>
+				<li style="margin-left: 20px;"> A mutex is a synchronization primitive that ensures only one thread can access a critical section of code at a time.</li>
+				<li style="margin-left: 20px;"> <strong> Critical Section </strong>: A part of the code that accesses shared resources and needs protection from concurrent access</li> <br>
+
+				<li> <strong> Using  </strong> <code> std::mutex </code> </li>
+				<li style="margin-left: 20px;"> A mutex must be locked before a thread enters a critical section and unlocked after the thread exits.</li>
+			</ul>
+			<div class="section">
+				<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+
+std::mutex mtx; // Global mutex
+
+void printMessage(const std::string& msg) {
+	mtx.lock();  // Lock the mutex
+	std::cout << msg << std::endl; // Critical section
+	mtx.unlock(); // Unlock the mutex
+}
+
+int main() {
+	std::thread t1(printMessage, "Hello from Thread 1");
+	std::thread t2(printMessage, "Hello from Thread 2");
+
+	t1.join();
+	t2.join();
+
+	return 0;
+}
+			</pre> <br>
+			<h3> Explanation:The mutex <code> mtx </code> ensures that only one thread at a time can access the <code> printMessage </code> function's critical section, preventing race conditions. </h3> <br>
+			</div> 
+
+			<h2> Locks (<code> std::lock_guard </code> and <code> std::unique_lock </code>) </h2>
+			<ul>
+				<li style="margin-left:20px"> <code> std::lock_guard </code>: </li>
+				<li style="margin-left:40px"> Automatically locks a mutex when created and unlocks it when destroyed, ensuring exception-safe locking </li>
+				<div class="section">
+					<pre class="code-example">
+void printSafely(const std::string& msg) {
+	std::lock_guard&lt;std::mutex&gt; guard(mtx); // Lock is acquired here
+	std::cout << msg << std::endl; // Critical section
+}
+					</pre> 
+				</div> <br>
+
+				<li style="margin-left:20px"> <code> std::unique_lock </code>: </li>
+				<li style="margin-left:40px"> More flexible than <code> std::lock_guard </code>, allowing for manual lock/unlock control, delayed locking, and timed locking. </li>
+				<div class="section">
+					<pre class="code-example">
+void conditionalLock() {
+	std::unique_lock&lt;std::mutex&gt; lock(mtx, std::defer_lock); // Defer lock
+	if (/* some condition */) {
+		lock.lock(); // Manually lock when needed
+		// Critical section
+		lock.unlock(); // Manually unlock
+	}
+}
+					</pre> 
+				</div> <br>
+
+			</ul>
+		</div>
+
+		<!-- Code Examples or Practical Demonstrations -->
+		<div class="section">
+			<h2 class="section-title">Thread-Safe Counter with Mutex</h2>
+			<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+std::mutex counterMutex;
+int counter = 0;
+
+void incrementCounter() {
+	for (int i = 0; i < 100; ++i) {
+		std::lock_guard<std::mutex> lock(counterMutex);
+		++counter; // Critical section
+	}
+}
+
+int main() {
+	std::thread t1(incrementCounter);
+	std::thread t2(incrementCounter);
+
+	t1.join();
+	t2.join();
+
+	std::cout << "Final counter value: " << counter << std::endl;
+	return 0;
+}
+
+			</pre><br>
+			<h2> Explanation: </h2>
+			<ul>
+				<li> <strong> Thread-Safe Increment </strong>: The mutex counterMutex ensures that the counter is incremented safely by both threads without data corruption.</li>
+			</ul>
+		</div>
+
+		<!-- Best Practices and Tips -->
+		<div class="section">
+			<h2 class="section-title">Best Practices and Tips</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Always Lock and Unlock Properly </strong>: Use <code> std::lock_guard </code> or <code> std::unique_lock </code> to manage locks safely and prevent deadlocks.</li>
+				<li class="list-group-item"> <strong> Minimize Critical Sections</strong>: Keep the critical section as small as possible to reduce contention and improve performance.</li>
+				<li class="list-group-item"> <strong> Avoid Deadlocks</strong>: Ensure that locks are acquired in a consistent order and that no circular dependencies exist between locks.</li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes and Pitfalls -->
+		<div class="section">
+			<h2 class="section-title">Common Mistakes and Pitfalls:</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Forgetting to Unlock Mutexes</strong>: This can cause the program to hang as other threads wait indefinitely for the lock.</li>
+				<li class="list-group-item"> <strong> Deadlocks</strong>: Occur when two threads wait on each other to release locks, resulting in a standstill.</li>
+				<li class="list-group-item"> <strong> Excessive Locking</strong>: Locking can be expensive in terms of performance. Overuse or unnecessarily broad critical sections can degrade performance.</li>
+			</ul>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="section">
+			<h2 class="section-title">Real-World Applications</h2>
+			<ul>
+				<li> <strong>Database Systems: </strong>:Synchronization is essential for managing concurrent access to shared resources like databases. </li>
+				<li> <strong>Multithreaded Logging </strong>:Using mutexes to protect shared logging resources ensures logs are not corrupted when accessed by multiple threads.</li>
+			</ul>
+		</div>
+
+		<!-- Advanced Concepts -->
+		<div class="section">
+			<h2 class="section-title">Advanced Concepts</h2>
+			<ul>
+				<li> <strong> Deadlock Detection and Prevention </strong>: Strategies such as lock ordering, lock timeout, and deadlock avoidance algorithms.</li> 
+				<li> <strong> Condition Variables </strong>:  Use <code> std::condition_variable </code> to synchronize threads by allowing threads to wait for certain conditions to be met before proceeding.</li> 
+			</ul>
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="section text-center">
+			<h2 class="section-title">Interactive Elements / Quizzes</h2>
+			<button class="btn btn-quiz">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="section">
+			<h2 class="section-title">Summary</h2>
+			<p>Summarize key synchronization techniques with mutexes and locks, emphasizing the importance of protecting shared data in multithreaded applications.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="section">
+			<h2 class="section-title">Exercises / Challenges</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Basic Exercise </strong>: Write a program with two threads that increment and decrement a shared variable safely using a mutex.</li>
+				<li class="list-group-item"> <strong> Intermediate Exercise </strong>: Implement a thread-safe queue using mutexes and condition variables to synchronize access between producer and consumer threads.</li>
+			</ul>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="section">
+			<h2 class="section-title">Further Reading and Resources</h2>
+			<ul>
+				<li> <strong> Online Articles: </strong>: Tutorials on mutex and condition variable usage in C++.</li>
+				<li> <strong> Books </strong>: "The Little Book of Semaphores" by Allen B. Downey, which provides an intuitive understanding of synchronization concepts</li>
+				<li> <p> Read more information, on this presentation <a href="https://ecs.syr.edu/faculty/fawcett/handouts/CSE681/Presentations/Threads-Win32AndMFC.pdf"> Threads and Thread Synchronization </a> </p></li>
+			</ul>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="section">
+			<h2 class="section-title">Q&A / Reflection Section</h2>
+			
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="section">
+			<h2 class="section-title">Project-Based Learning Section</h2>
+			<p>Create a simple multi-threaded simulation of a bank account system where multiple threads represent transactions (deposit, withdrawal) that must be synchronized to maintain account consistency.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap JavaScript Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

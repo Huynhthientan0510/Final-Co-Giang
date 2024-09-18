@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: #f0f8ff;
+			overflow-x: hidden;
+			scroll-behavior: smooth;
+		}
+
+		/* Header Styling */
+		.lesson-header {
+			background: linear-gradient(135deg, #007bff, #00c6ff);
+			color: white;
+			padding: 50px 0;
+			text-align: center;
+			margin-bottom: 40px;
+			border-bottom-left-radius: 50px;
+			border-bottom-right-radius: 50px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.lesson-header h1 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+			animation: bounceInDown 1s ease-in-out;
+		}
+
+		.lesson-header p {
+			font-size: 1.2rem;
+			margin-top: 10px;
+		}
+
+		/* Section Title */
+		.section-title {
+			font-size: 1.8rem;
+			margin-top: 20px;
+			color: #007bff;
+			text-transform: uppercase;
+			font-weight: bold;
+			border-bottom: 3px solid #007bff;
+			display: inline-block;
+			padding-bottom: 5px;
+			position: relative;
+			animation: fadeInLeft 1s ease-in-out;
+		}
+
+		.section {
+			margin-bottom: 30px;
+			padding: 20px;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			animation: fadeInUp 1s ease-in-out;
+		}
+
+		.section p {
+			color: #333;
+			line-height: 1.6;
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		/* Code Example */
+		.code-example {
+			background-color: #2d2d2d;
+			color: #61dafb;
+			padding: 20px;
+			border-radius: 5px;
+			font-family: 'Courier New', Courier, monospace;
+			overflow-x: auto;
+			margin-top: 10px;
+			border-left: 5px solid #007bff;
+			animation: fadeIn 1.5s ease-in-out;
+		}
+
+		/* Button Styles */
+		.btn-quiz {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			transition: all 0.3s ease;
+			border-radius: 20px;
+			padding: 10px 20px;
+			font-size: 1rem;
+		}
+
+		.btn-quiz:hover {
+			background-color: #218838;
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+		}
+
+		.btn-quiz:focus {
+			outline: none;
+			box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+		}
+
+		.btn-quiz:active {
+			transform: translateY(1px);
+		}
+
+		/* Animations */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInLeft {
+			from {
+				opacity: 0;
+				transform: translateX(-20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes bounceInDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-2000px);
+			}
+			60% {
+				opacity: 1;
+				transform: translateY(30px);
+			}
+			80% {
+				transform: translateY(-10px);
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Lesson Header -->
+	<header class="lesson-header">
+		<h1>Welcome to Lesson 4</h1>
+		<p>Thread Safety and Deadlocks</p>
+	</header>
+
+	<div class="container">
+		<!-- Introduction Section -->
+		<div class="section">
+			<h2 class="section-title"> 1) Introduction</h2>
+			<ul>
+				<li> Thread safety is the practice of writing code that functions correctly when accessed by multiple threads simultaneously. Achieving thread safety often requires careful synchronization to avoid common pitfalls such as race conditions and deadlocks.</li>
+				<li> This lesson explores strategies for ensuring thread safety and understanding deadlocks, including their causes, detection, and prevention.</li>
+			</ul>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="section">
+			<h2 class="section-title"> 2) Purpose of the Lesson</h2>
+			<ul>
+				<li> To define thread safety and understand its importance in multithreaded applications.</li>
+				<li> To identify common causes of deadlocks and learn techniques to prevent them.</li>
+				<li> To explore thread-safe programming practices, including atomic operations and lock management.</li>
+			</ul>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="section">
+			<h2 class="section-title"> 3) Detailed Explanation</h2>
+			<ul> 
+				<li> <strong> What is Thread Safety </strong>? </li> <br>
+				<li style="margin-left: 20px;"> Code is considered thread-safe when multiple threads can access shared resources without causing data corruption or unpredictable behavior.</li>
+				<li style="margin-left: 20px"> Thread safety is achieved by ensuring proper synchronization, avoiding race conditions, and managing access to shared resources.</li> <br>
+
+				<li> <strong> Deadlocks: </strong> </li>
+				<li style="margin-left: 20px;">  A deadlock occurs when two or more threads are blocked forever, each waiting for the other to release a resource.</li>
+				<li style="margin-left: 20px;">  <strong> Causes of Deadlocks</strong>:</li>
+				<li style="margin-left: 40px;">  <strong> Mutual Exclusion</strong>: Only one thread can hold a resource at a time.</li>
+				<li style="margin-left: 40px;">  <strong> Hold and Wait</strong>: Threads hold resources while waiting for other resources.</li>
+				<li style="margin-left: 40px;">  <strong> No Preemption</strong>: Resources cannot be forcibly taken from a thread.</li>
+				<li style="margin-left: 40px;">  <strong> Circular Wait</strong>: A circular chain of threads exists, where each thread holds a resource needed by the next thread in the chain.</li>
+				
+				
+				<li> <strong> Deadlock Prevention: </strong> </li>
+				<li style="margin-left: 20px;"> <strong> Lock Ordering </strong>: Always acquire locks in a predefined order across all threads to avoid circular wait conditions.</li> 
+				<li style="margin-left: 20px;"> <strong> Lock Timeout </strong>: Use timed locks (<code> std::unique_lock </code> with timeout) to avoid indefinite waiting.</li>
+				<li style="margin-left: 20px;"> <strong> Deadlock Avoidance Algorithms </strong>: Techniques like resource hierarchy, wait-die, and wound-wait can be used to avoid deadlocks dynamically.</li>
+			</ul>
+		</div>
+
+		<!-- Code Examples or Practical Demonstrations -->
+		<div class="section">
+			<h2 class="section-title">Thread-Safe Counter with Mutex</h2>
+			<pre class="code-example">
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+
+std::mutex mtx1;
+std::mutex mtx2;
+
+void task1() {
+    std::lock_guard&lt;std::mutex&gt; lock1(mtx1); // Lock mtx1
+    std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Simulate work
+    std::lock_guard&lt;std::mutex&gt; lock2(mtx2); // Lock mtx2
+    std::cout << "Task 1 completed" << std::endl;
+}
+
+void task2() {
+    std::lock_guard&lt;std::mutex&gt; lock2(mtx2); // Lock mtx2
+    std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Simulate work
+    std::lock_guard&lt;std::mutex&gt; lock1(mtx1); // Lock mtx1
+    std::cout << "Task 2 completed" << std::endl;
+}
+
+int main() {
+    std::thread t1(task1);
+    std::thread t2(task2);
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+
+			</pre><br>
+			<h2> Explanation: </h2>
+			<ul>
+				<li> In this example, <code> task1 </code> locks <code> mtx1 </code> first, then <code> mtx2 </code>, while <code> task2 </code> does the opposite, creating a circular wait condition and causing a deadlock.</li>
+			</ul>
+		</div>
+
+		<!-- Best Practices and Tips -->
+		<div class="section">
+			<h2 class="section-title">Best Practices and Tips</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Use Lock Hierarchies </strong>: Establish and follow a consistent lock acquisition order to avoid deadlocks.</li>
+				<li class="list-group-item"> <strong> Prefer Scoped Locks</strong>:  Use <code> std::lock_guard </code> or <code> std::scoped_lock </code> to handle lock acquisition and release automatically, ensuring exceptions do not leave locks held.</li>
+				<li class="list-group-item"> <strong> Minimize Lock Duration</strong>: Keep the critical section as short as possible to reduce the time a lock is held.</li>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes and Pitfalls -->
+		<div class="section">
+			<h2 class="section-title">Common Mistakes and Pitfalls:</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Neglecting Lock Order </strong>: Failing to maintain a consistent lock acquisition order across threads can lead to deadlocks.</li>
+				<li class="list-group-item"> <strong> Ignoring Lock Release</strong>: Not releasing locks properly due to exceptions or errors can cause resource contention.</li>
+			</ul>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="section">
+			<h2 class="section-title">Real-World Applications</h2>
+			<ul>
+				<li> <strong>Operating Systems </strong>:OS kernels often use complex locking mechanisms to manage resources and prevent deadlocks among processes. </li>
+				<li> <strong>Financial Systems </strong>:Synchronization is crucial in financial applications to ensure data consistency during transactions.</li>
+			</ul>
+		</div>
+
+		<!-- Advanced Concepts -->
+		<div class="section">
+			<h2 class="section-title">Advanced Concepts</h2>
+			<ul>
+				<li> <strong> Atomic Operations </strong>: Use <code> std::atomic </code> for lock-free synchronization on individual variables.</li> 
+				<li> <strong> Deadlock Detection Tools </strong>:Tools like Valgrind or Intel Inspector can help detect deadlocks during development.</li> 
+			</ul>
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="section text-center">
+			<h2 class="section-title">Interactive Elements / Quizzes</h2>
+			<button class="btn btn-quiz">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="section">
+			<h2 class="section-title">Summary</h2>
+			<p>Emphasize the importance of thread safety, understanding deadlocks, and implementing strategies to avoid common synchronization issues in multithreaded programs.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="section">
+			<h2 class="section-title">Exercises / Challenges</h2>
+			<ul class="list-group">
+				<li class="list-group-item"> <strong> Basic Exercise </strong>: Identify and fix a deadlock in a given code snippet.</li>
+				<li class="list-group-item"> <strong> Intermediate Exercise </strong>: Implement a simple banking application where multiple threads perform deposits and withdrawals, ensuring thread safety.</li>
+			</ul>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="section">
+			<h2 class="section-title">Further Reading and Resources</h2>
+			<ul>
+				<li> <strong> Articles: </strong>: In-depth articles on thread safety and deadlock prevention techniques.</li>
+				<li> <strong> Books </strong>: "Java Concurrency in Practice" by Brian Goetz, which, despite being Java-focused, provides excellent insights into concurrency principles applicable to C++.</li>
+				<li> <p> Read more information, on this presentation <a href="https://indico.cern.ch/event/771113/contributions/3203724/attachments/1843122/3027323/4_ResourceProtectionAndThreadSafety.pdf"> Thread Safety abd Deadlocks </a> </p></li>
+			</ul>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="section">
+			<h2 class="section-title">Q&A / Reflection Section</h2>
+			
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="section">
+			<h2 class="section-title">Project-Based Learning Section</h2>
+			<p>Develop a multithreaded dining philosophers simulation, implementing deadlock prevention strategies such as resource hierarchy or waiter solutions.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap JavaScript Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

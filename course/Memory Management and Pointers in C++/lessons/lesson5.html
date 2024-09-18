@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>C++ Course Lesson</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- Navbar -->
+	<nav class="navbar">
+		<div class="logo">C++ Learning</div>
+		<ul class="nav-links">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Courses</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+
+	<!-- Hero Section -->
+	<header class="hero">
+		<div class="hero-content">
+			<h1>Welcome to Lesson 5</h1>
+			<p>The last lesson on this course </p>
+			<a href="#lesson" class="cta-btn">Start Learning</a>
+		</div>
+	</header>
+
+	<!-- Lesson Section -->
+	<section class="lesson" id="lesson">
+		<h1 class="section-title">Lesson Title: Smart Pointers ( <code> unique_ptr, shared_ptr </code>)</h1>
+
+		<!-- Introduction -->
+		<div class="lesson-section">
+			<h2>Introduction</h2>
+			<p>Memory leaks occur when dynamically allocated memory is not properly released, leading to 
+			wasted resources and potential application crashes. This lesson covers best practices for 
+			avoiding memory leaks and ensuring efficient memory management in C++.</p>
+		</div>
+
+		<!-- Purpose of the Lesson -->
+		<div class="lesson-section">
+			<h2>Purpose of the Lesson</h2>
+			<p>The purpose of this lesson is to teach techniques for preventing memory leaks and managing resources effectively, including best practices, common mistakes, and practical tips</p>
+		</div>
+
+		<!-- Detailed Explanation -->
+		<div class="lesson-section">
+			<h2>Detailed Explanation</h2>
+			
+			<ul>
+				<li> <strong> What is a Memory Leak? </strong>: A memory leak occurs when a program allocates memory but fails to release it, causing a gradual loss of available memory.</li>
+				<li> <strong>Causes of Memory Leaks </strong>: Common causes include missing `delete` statements, circular references, and improper resource management.</li>
+				<li>  <strong> Tools to Detect Memory Leaks </strong>: Use tools like Valgrind or AddressSanitizer to detect memory leaks during development</li>
+			</ul>
+		</div>
+
+		<!-- Code Examples -->
+		<div class="lesson-section code-examples">
+			<h2>Code Examples</h2>
+			<pre><code>
+include &lt;iostream&gt;
+include &lt;memory&gt; // Include memory header for smart pointers.
+int main() {
+	class Resource { 
+	public:
+	Resource() { std::cout << "Resource acquired\n"; }
+		~Resource() { std::cout << "Resource released\n"; }
+	};
+	int main() {
+	// Example of avoiding memory leaks using smart pointers
+	{
+		std::shared_ptr&lt;Resource&gt; res1 = std::make_shared&lt;Resource&gt;(); // Resource managed
+		by shared_ptr.
+		std::shared_ptr&lt;Resource&gt; res2 = res1; // Shared ownership.
+		// Circular reference scenario demonstration (bad practice). 
+		std::shared_ptr&lt;Resource&gt; res3 = res1; // Another shared ownership, leading to a
+		potential cycle.
+		// All pointers go out of scope, resource is automatically released.
+		} // End of scope; shared_ptr automatically manages cleanup.
+		return 0;
+}
+
+
+
+
+
+			</code></pre> 
+		</div>
+		<p> Explanation of the Code: </p>
+		<ul>
+			<li> <strong> Smart Pointers in Action</strong>:<code> shared_ptr </code> automatically manages resource cleanup when all references go out of scope, preventing leaks   .</li>
+			<li> <<strong>Potential Circular Reference </strong>: Demonstrates shared ownership that can lead to memory management challenges. </li>
+		</ul>
+
+		<!-- Best Practices -->
+		<div class="lesson-section">
+			<h2>Tips:</h2>
+			<ul>	
+				<li> <strong> Use RAII </strong>: : Resource Acquisition Is Initialization (RAII) ensures that resources are properly cleaned up when they go out of scope.</li>
+				<li> <strong> Prefer Smart Pointers </strong>: Use <code> unique_ptr </code> and <code> shared_ptr </code>  to manage dynamically allocated memory safely.</li>
+				<li> <strong>Avoid Circular References </strong>:Use <code> weak_ptr </code>  to break cycles that can lead to memory leaks.</li>
+			<h2> Advanced Concepts</h2>
+			<ul>
+				<li> <code>Memory Pools </code>: Pre-allocate blocks of memory to reduce allocation overhead and fragmentation</li>
+				<li> <strong>Custom Allocators </strong>: Implement custom memory management strategies for performance-critical applications.</li>
+			</ul>
+			</ul>
+		</div>
+
+		<!-- Common Mistakes -->
+		<div class="lesson-section">
+			<h2>Common Mistakes</h2>
+			<li> <strong>- Ignoring Cleanup</strong>: Forgetting to release allocated memory is the primary cause of leaks</li>
+			<li> <strong> Improper Use of Smart Pointers</strong>: Misusing smart pointers can still lead to resource mismanagement, especially with circular references.</li>
+		</div>
+
+		<!-- Real-World Applications -->
+		<div class="lesson-section">
+			<h2>Real-World Applications</h2>
+			<li> <strong> Long-Running Applications </strong>: Proper memory management is critical in servers, games, and other applications that run for extended periods.</li>
+			<li> <strong> Embedded Systems </strong>: Efficient memory use is crucial in resource-constrained environments. </li>
+			
+		</div>
+
+		<!-- Interactive Elements or Quizzes -->
+		<div class="lesson-section quiz">
+			<h2>Quiz</h2>
+			<p>Take the quiz to test your understanding of the material...</p>
+			<button class="quiz-btn">Start Quiz</button>
+		</div>
+
+		<!-- Summary -->
+		<div class="lesson-section">
+			<h2>Summary</h2>
+			<p>Avoiding memory leaks requires careful attention to how memory is managed and released. 
+			Following best practices, using smart pointers, and leveraging modern tools can significantly 
+			reduce the risk of memory leaks in your applications.</p>
+		</div>
+
+		<!-- Exercises or Challenges -->
+		<div class="lesson-section">
+			<h2>Exercises</h2>
+			<li> <strong> Basic Exercise 1 </strong>: : Identify potential memory leaks in a given code snippet and suggest fixes. </li>
+			<li> <strong> Basic Exercise 2 </strong>: Use <code> unique_ptr </code>to manage a dynamically allocated array and ensure proper cleanup.</li>
+			<li> <strong> Intermediate Exercise 1 </strong>:Implement a class with dynamic memory allocation and a proper destructor to avoid leaks.</li>
+			<li> <strong> Intermediate Exercise 2 </strong>: Use <code> weak_ptr </code> to solve a circular reference issue in a program.</li>
+			<li> <strong> Advanced Exercise 1 </strong>: Create a custom memory manager that tracks allocations and deallocations. </li>
+			<li> <strong> Advanced Exercise 2 </strong>: Build a simple simulation of a memory pool and demonstrate its use </li>
+		</div>
+
+		<!-- Further Reading and Resources -->
+		<div class="lesson-section">
+			<h2>Further Reading</h2>
+			<p>You can read more about this lession, read <a href="https://startup-house.com/blog/memory-leaks-cpp">Avoiding Memory Leaks</a></p>
+			<p>Book: "C++ Concurrency in Action" by Anthony Williams </p>
+		</div>
+
+		<!-- Q&A or Reflection Section -->
+		<div class="lesson-section">
+			<h2>Q&A</h2>
+			<p>Reflect on what you've learned and post any questions in the comments section...</p>
+		</div>
+
+		<!-- Project-Based Learning Section -->
+		<div class="lesson-section">
+			<h2>Project-Based Learning</h2>
+			<p>Develop a memory-efficient data processing system that dynamically manages resources based on workload</p>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; 2024 SCAM center | All rights reserved</p>
+	</footer>
+
+	<script src="scripts.js"></script>
+</body>
+</html>
